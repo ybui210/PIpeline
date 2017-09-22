@@ -1,0 +1,84 @@
+﻿<ul class="listing-contents" ng-if="!showCardStack()">
+    <li>
+        <div class="page-title header md-accent-bg" layout="column" layout-align="space-between">
+            <div layout="row" layout-align="start end">
+                <div><span class="md-display-1 font-weight-200">{{title}}</span></div>
+            </div>
+        </div>
+    </li>
+    <li ng-repeat="l in listings track by $index">
+        <md-card>
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" ng-src="{{l.profile.Avatar}}">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{l.profile.FirstName}} {{l.profile.LastName}} {{l.profile.OrganizationName}}</span>
+                    <span class="md-subhead">{{l.profile.Email}}</span>
+                </md-card-header-text>
+                <md-card-actions ng-show="l.saved" layout="row" layout-align="end center">
+                    <md-icon md-svg-icon="imgs/icons/star.svg" aria-hidden="true"></md-icon>
+                </md-card-actions>
+            </md-card-header>
+            <md-card-title>
+                <img class="md-card-image" alt="Main Image" ng-src="/imgs/listings/{{l.listing.Images[0].photo}}">
+                <md-card-title-text>
+                    <span class="md-headline">{{l.listing.Title}}</span>
+                    <span class="md-subhead">Date Posted: {{l.listing.DatePosted | date}}</span>
+                    <span class="md-subhead" ng-show="l.listing.InvestmentType">Investment Type: {{l.listing.InvestmentType}}</span>
+                    <span class="md-subhead">Industry: {{l.listing.Category}}</span>
+                    <span class="md-subhead">Jurisdiction: {{l.listing.Jurisdiction}}</span>
+                    <span class="md-subhead" ng-show="l.listing.SeekingPrice">Seeking Price: {{l.listing.SeekingPrice | currency : $}}</span>
+                    <span class="md-subhead" ng-show="l.listing.LowestCapital">Captial Range: {{l.listing.LowestCapital | currency : $}} - {{l.listing.HighestCapital | currency : $}}</span>
+                    <span class="md-subhead">Ending Date: {{l.listing.EndingDate | date}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>{{l.listing.Summary}}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <button class="md-button md-primary md-ink-ripple" ng-click="openListingDetail(l.listing.ID)" type="button" aria-label="Details"><span class="ng-scope">Details</span><div class="md-ripple-container"></div></button>
+                <button class="md-button md-primary md-ink-ripple" ng-click="saveListing($index)" type="button" aria-label="Save"><span class="ng-scope">Save</span><div class="md-ripple-container"></div></button>
+            </md-card-actions>
+        </md-card>
+    </li>
+</ul>
+<ul class="listing-contents" ng-if="showCardStack()" swing-stack options="swingOptions">
+    <li swing-card ng-repeat="l in listings track by $index"
+        swing-on-throwoutleft="nextListing($index, $event)"
+        swing-on-throwoutright="saveListing($index)">
+        <md-card>
+            <md-card-header>
+                <div layout="column" layout-align="center start">
+                    <span class="md-headline" style="background-color: rgb(3,155,229); color: #fff">{{l.listing.Title}}</span>
+                </div>
+                <div layout="column" flex layout-align="center end">
+                    <md-card-actions ng-show="l.saved" layout="row">
+                        <md-icon md-svg-icon="imgs/icons/star.svg" class="pull-right" aria-hidden="true"></md-icon>
+                    </md-card-actions>
+                </div>
+            </md-card-header>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-subhead"><b>Date Posted:</b> {{l.listing.DatePosted | date}}</span>
+                    <span class="md-subhead" ng-show="l.listing.InvestmentType"><b>Investment Type:</b> {{l.listing.InvestmentType}}</span>
+                    <span class="md-subhead"><b>Industry:</b> {{l.listing.Category}}</span>
+                    <span class="md-subhead"><b>Jurisdiction:</b> {{l.listing.Jurisdiction}}</span>
+                    <span class="md-subhead" ng-show="l.listing.SeekingPrice"><b>Seeking Price:</b> {{l.listing.SeekingPrice | currency : $}}</span>
+                    <span class="md-subhead" ng-show="l.listing.LowestCapital"><b>Captial Range:</b> {{l.listing.LowestCapital | currency : $}} - {{l.listing.HighestCapital | currency : $}}</span>
+                    <span class="md-subhead"><b>Ending Date:</b> {{l.listing.EndingDate | date}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                {{l.listing.Summary}}
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <button class="md-button md-primary md-ink-ripple" ng-click="openListingDetail(l.listing.ID)" type="button" aria-label="Details"><span class="ng-scope">Details</span><div class="md-ripple-container"></div></button>
+                <button class="md-button md-primary md-ink-ripple" ng-click="saveListing($index)" type="button" aria-label="Save"><span class="ng-scope">Save</span><div class="md-ripple-container"></div></button>
+            </md-card-actions>
+        </md-card>
+    </li>
+    <li swing-card ng-show="listings.length === 0">
+        No more listings! Click<a ng-click="getInvestmentListings()" href="">&nbsp;here&nbsp;</a>to reload listings.
+    </li>
+</ul>

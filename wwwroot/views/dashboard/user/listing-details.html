@@ -1,0 +1,224 @@
+﻿<style>
+    .listing-header {
+        padding: 10px;
+        height: 45px;
+        background-color: #055091;
+        color: #fff;
+        font-size: 16pt;
+        font-family: Helvetica, Arial, sans-serif;
+        text-align: center;
+    }
+
+    .top-buffer { 
+        margin-top: 30px;
+    }
+
+    .listing-info {
+        display: inline-block;
+        font-size: 18pt;
+        padding: 10px;
+ 
+    }
+
+    .listing-info-container {
+        width:100%;
+
+        /* Firefox */
+        display:-moz-box;
+        -moz-box-pack:center;
+        -moz-box-align:center;
+
+        /* Safari and Chrome */
+        display:-webkit-box;
+        -webkit-box-pack:center;
+        -webkit-box-align:center;
+    }
+    
+    .listing-title {
+        font-size: 24pt;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight:bold;
+        padding-left: 40px;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .listing-container {
+        border: 2px solid #888889;
+        background-color: #fff;
+    }
+
+    .body-container {
+        background-color: #F0F2F2;
+    }
+
+    .table-striped {
+    	background-color:#A3D8FF;
+    }
+
+    .table-striped>tbody>tr:nth-child(odd) {
+	    background-color: #FAFAFF;
+    }
+
+
+    /* sm */
+    @media (max-width: 991px) {
+        .listing-title {
+            margin-left: -55px;
+            margin-right: -15px;
+        }
+
+        .listing-info {
+            display: inline-block;
+            font-size: 12pt;
+        }
+
+    }
+
+    /* md */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .row {
+            margin-left: -100px;
+            margin-right: -100px;
+        }
+        .listing-title {
+            margin-left: -25px;
+            margin-right: -25px;
+        }
+    }
+    
+    /* lg */
+    @media (min-width: 1200px) {
+        .row {
+            margin-left: -280px;
+            margin-right: -280px;
+        }
+        .listing-title {
+            margin-left: -33px;
+            margin-right: -33px;
+        }
+    }
+</style>
+
+<div class="container listing-container">
+    <div class="row">
+        <!-- Title -->
+        <div class="col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <div>
+                <h1 class="listing-title">{{listing.Title}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <div class="listing-info-container hidden-xs">
+                <!-- Category -->
+                <div class="listing-info">
+                    <img ng-src="/imgs/category/mining.png"/>
+                    {{listing.Category}}
+                </div>
+                <!-- Jurisdiction -->
+                <div class="listing-info">
+                    <img ng-src="/imgs/jurisdiction/canada.png" />
+                    {{listing.Jurisdiction}}
+                </div>
+                <!-- Price -->
+                <div class="listing-info">
+                    {{listing.SeekingPrice | currency }}
+                </div>
+            </div>
+            <div class="hidden-sm hidden-md hidden-lg text-center">
+                <div class="listing-info">
+                    {{listing.SeekingPrice | currency }} |
+                    {{listing.Category}} |
+                    {{listing.Jurisdiction}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Gallery -->
+        <div class="col-sm-6 col-md-5 col-lg-4 col-md-offset-1 col-lg-offset-2 top-buffer">
+            <!-- TODO: Replace with lightbox -->
+            <img id="listing-gallery"  ng-repeat="img in listing.Images"
+                    ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                    ng-hide="!isCurrentSlideIndex($index)"
+                    ng-src="/imgs/listings/{{img.photo}}">
+        </div>
+        <div class="col-sm-6 col-md-5 col-lg-4 top-buffer">
+            <!-- Details -->
+            <table id="listing-details-table" class="table table-striped">
+                <caption class="listing-header">Details</caption>
+                <tbody>
+                    <tr ng-if="listing.HighestCapital">
+                        <th scope="row">Investment Capital:</th>
+                        <td scope="row">{{listing.LowestCapital | currency}} - {{listing.HighestCapital | currency}}</td>
+                    </tr>
+                    <tr ng-if="listing.InvestmentType">
+                        <th scope="row">Investment Type:</th>
+                        <td>{{listing.InvestmentType}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Industry:</th>
+                        <td>{{listing.Category}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jurisdiction:</th>
+                        <td>{{listing.Jurisdiction}}</td>
+                    </tr>
+                    <tr ng-if="listing.SeekingPrice">
+                        <th scope="row">Seeking:</th>
+                        <td scope="row">{{listing.SeekingPrice | currency : $}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Posted:</th>
+                        <td>{{listing.DatePosted | date:'shortDate'}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">End Date:</th>
+                        <td>{{listing.EndingDate | date:'shortDate'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row top-buffer ">
+        <!-- Description -->
+        <div class="col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <p class="listing-header">Description</p>
+            <div>{{listing.Description}}</div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="row top-buffer">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <div ng-if="blurContact()"><b>To view contact info, you must sign an NDA with this user.</b></div>
+            <table id="listing-details-table" class="table table-striped"  ng-class="{'blur' : blurContact()}">
+                <caption class="listing-header">Contact Information</caption>
+                <tbody>
+                    <tr>
+                        <th scope="row">Contact Person</th>
+                        <td>
+                            {{listing.Contact.FirstName}}
+                            {{listing.Contact.MiddleName}}
+                            {{listing.Contact.LastName}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{{listing.Contact.Email}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Main Phone</th>
+                        <td>{{listing.Contact.MainPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Second Phone</th>
+                        <td>{{listing.Contact.SecondPhone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

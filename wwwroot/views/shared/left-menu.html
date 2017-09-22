@@ -1,0 +1,139 @@
+﻿
+<div ng-if="currentUser.role === 'Individual' || currentUser.role === 'Organization'">
+    <ul class="sidebar">
+        <li class="sidebar-main">
+            <a ng-click="toggleSidebar()">
+                PIPELINE
+                <span class="menu-icon glyphicon glyphicon-transfer" ng-if="!mobile"></span>
+            </a>
+        </li>
+        <li class="sidebar-title" ng-if="!mobile">
+            <div class="app-name left-menu-user-area">
+                <div class="left-menu-avatar-area">
+                    <img class="left-menu-avatar img-circle" width="100" height="100" ng-src="{{currentUser.avatar}}" />
+                </div>
+                <div class="left-menu-name-area">
+                    <label class="left-menu-name">{{currentUser.firstName}} {{currentUser.lastName}}</label>
+                    <label class="left-menu-name">{{currentUser.organizationName}}</label>
+                </div>
+            </div>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.browse')">
+                Browse Listings <span class="glyphicon glyphicon-list menu-icon">
+                    <md-tooltip md-direction="right">Browse Listing</md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.createlisting')">
+                Create Listing <span class="menu-icon glyphicon glyphicon-plus">
+                    <md-tooltip md-direction="right">
+                        Create Listing
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.mylistings')">
+                My Listings<span class="menu-icon glyphicon glyphicon-open">
+                    <md-tooltip md-direction="right">
+                        My Listings
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.saved-listings')">
+                Saved Listings<span class="glyphicon glyphicon-star menu-icon">
+                    <md-tooltip md-direction="right">
+                        Saved Listings
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.profile')">
+                Profile<span class="menu-icon glyphicon glyphicon-user">
+                    <md-tooltip md-direction="right">
+                        Profile
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.messages')">
+                Messages<span class="menu-icon glyphicon glyphicon-envelope">
+                    <md-tooltip md-direction="right">
+                        Messages
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.settings')">
+                Settings<span class="menu-icon glyphicon glyphicon-cog">
+                    <md-tooltip md-direction="right">
+                        Settings
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="logout()">
+                Logout<span class="menu-icon glyphicon glyphicon-log-out">
+                    <md-tooltip md-direction="right">
+                        Logout
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Admin Menu Options -->
+<div ng-if="currentUser.role === 'Admin'">
+    <ul class="sidebar">
+        <li class="sidebar-main">
+            <a ng-click="toggleSidebar()">
+                PIPELINE
+                <span class="menu-icon glyphicon glyphicon-transfer"></span>
+            </a>
+        </li>
+        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard')">
+                Dashboard <span class="glyphicon glyphicon-list menu-icon">
+                    <md-tooltip md-direction="right">Browse Listing</md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.messages')">
+                Messages<span class="menu-icon glyphicon glyphicon-envelope">
+                    <md-tooltip md-direction="right">
+                        Messages
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="selectItem('dashboard.inviteapproval')">
+                Invite Requests<span class="menu-icon glyphicon glyphicon-open">
+                    <md-tooltip md-direction="right">
+                        Invite Requests
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a href="" ng-click="logout()">
+                Logout<span class="menu-icon glyphicon glyphicon-log-out">
+                    <md-tooltip md-direction="right">
+                        Logout
+                    </md-tooltip>
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>
