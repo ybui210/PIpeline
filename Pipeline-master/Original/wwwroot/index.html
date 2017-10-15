@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html ng-app="pipeline">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
+
+    <title>PIPELINE</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.8/angular-material.min.css">
+
+    <link rel="stylesheet" href="lib/components-font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="lib/dropzone/downloads/css/dropzone.css" />
+    <link rel="stylesheet" href="lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-cookies.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
+
+    <script src="lib/angular-spinners/dist/angular-spinners.min.js"></script>
+    <script src="lib/dropzone/downloads/dropzone.js"></script>
+    <script src="lib/angular-dropzone/lib/angular-dropzone.js"></script>
+    <script src="lib/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="lib/angular-spinners/dist/angular-spinners.min.js"></script>
+    <script src="lib/angular-dropzone/lib/angular-dropzone.js"></script>
+    <script src="lib/dropzone/downloads/dropzone.min.js"></script>
+    <script src="js/overrides/mobile-angular-ui-altered.js"></script>
+    <script src="lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
+    <script src="js/overrides/angular-swing.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/controllers/master.js"></script>
+    <script src="js/controllers/header.js"></script>
+    <script src="js/controllers/invite.js"></script>
+    <script src="js/controllers/landing.js"></script>
+    <script src="js/controllers/register.js"></script>
+    <script src="js/controllers/left-menu.js"></script>
+    <script src="js/controllers/my-listings.js"></script>
+    <script src="js/controllers/admin-invite.js"></script>
+    <script src="js/controllers/create-listing.js"></script>
+    <script src="js/controllers/edit-listing.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/profile.js"></script>
+    <script src="js/controllers/listing-details.js"></script>
+    <script src="js/controllers/listings.js"></script>
+    <script src="js/controllers/dashboard.js"></script>
+    <script src="js/controllers/select-listing-type.js"></script>
+    <script src="js/controllers/saved-listings.js"></script>
+    <script src="js/controllers/change-password.js"></script>
+    <script src="js/controllers/forgot-password.js"></script>
+    <script src="js/directives/main-header.js"></script>
+    <script src="js/directives/login-form.js"></script>
+    <script src="js/directives/left-menu.js"></script>
+    <script src="js/directives/invite-approval.js"></script>
+    <script src="js/directives/changepassword-form.js"></script>
+    <script src="js/services/authentication.js"></script>
+    <script src="js/services/login-modal.js"></script>
+    <script src="js/services/select-listings-type-modal.js"></script>
+    <script src="js/services/spinner-modal.js"></script>
+    <script src="js/services/terms-of-service-modal.js"></script>
+    <script src="js/services/generic-modal.js"></script>
+    <script src="js/services/change-password-modal.js"></script>
+</head>
+<body ng-controller="MasterController">
+<div id="page-wrapper" ng-class="{'open': toggle, 'hideme': !showLeftMenu()}" class="open">
+
+    <div id="sidebar-wrapper" ng-class="{ 'hideme': !showLeftMenu(), 'mobile': mobileMode(), 'closed': !toggle}">
+        <left-menu></left-menu>
+    </div>
+    <div id="content-wrapper">
+        <div class="page-content">
+            <div class="row header" ng-if="showLeftMenu()" ng-class="{'hideme': !showLeftMenu(), 'mobile': mobileMode()}">
+                <main-header></main-header>
+            </div>
+            <div ui-view></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
