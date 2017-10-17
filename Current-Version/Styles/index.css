@@ -1,0 +1,27 @@
+#header {
+    background-color: aqua;
+}
+
+#content {
+    background-color: #FFAAAA;
+}
+
+#topSection {
+    background-color: beige;
+    padding: 10px;
+}
+
+#howItWorksSection {
+    background-color: aquamarine;
+    padding: 10px;
+}
+
+#aboutSection {
+    background-color: antiquewhite;
+    padding: 10px;
+}
+
+#contactSection {
+    background-color:azure;
+    padding: 10px;
+}
