@@ -3,11 +3,12 @@
     <header>
         <title>Welcome to Pipeline</title> <!-- Decided by Davin, open to change -->
         <link rel="stylesheet" type="text/css" href="Styles/index.css"> <!-- Style sheet for the body structure -->
+        <script src="Scripts/index.js"></script>
     </header>
     <body>
         <div id="header"> <!-- To hold the login buttons and labels that take you to different sections of the page -->
             <div id="loginSection"> <!-- In charge of holding the login button -->
-                <input type="button" value="login" />
+                <input type="image" id="loginButton" src="/Images/Login-Button.png"/>
             </div>
             <div id="options"> <!-- List of labels that can be clicked on and will take you to different sections of the page -->
                 <ul>
@@ -27,7 +28,9 @@
                 
                 <h1>PIPELINE</h1> <!-- Name of the project -->
                 <h2>Deals Made Simple</h2> <!-- Selling line -->
-                <input type="button" value="downArrow" /> <!-- Arrow that takes you to the next section (How It Works) -->
+                <section id="section02" class="demo"><!-- Arrow that takes you to the next section (How It Works) -->
+                    <a href="#howItWorksSection"><span></span></a>
+                </section>
                 
             </div> <!-- End of Top Section -->
             
@@ -77,7 +80,7 @@
                 <input type="text" value="Email" /><br>
                 <input type="text" value="Name" /><br>
                 <input type="text" value="Message:" /><br>
-                <input type="button" value="SUBMIT" />
+                <input id="submitMessageButton" type="button" value="SUBMIT" />
             </div>
         </div>
     </body>

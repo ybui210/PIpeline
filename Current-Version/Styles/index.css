@@ -9,6 +9,12 @@
 #topSection {
     background-color: beige;
     padding: 10px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,63abe2+84 */
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #ffffff 0%, #63abe2 84%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #ffffff 0%,#63abe2 84%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #ffffff 0%,#63abe2 84%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#63abe2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 #howItWorksSection {
@@ -24,4 +30,62 @@
 #contactSection {
     background-color:azure;
     padding: 10px;
+}
+
+#loginButton {
+    width: 100px;
+}
+
+#submitMessageButton {
+    background-color: #468cc7;
+    color: white;
+    width: 100px;
+    height: 33px;
+    border-radius: 5px;
+}
+
+#submitMessageButton:hover {
+    background-color: #EEE;
+    transition: 0.3s;
+}
+
+.demo a {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #fff;
+  transition: opacity .3s;
+}
+.demo a:hover {
+  opacity: .5;
+}
+
+#section02 a {
+  padding-top: 100px;
+}
+#section02 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  margin-left: -23px;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+#section02 a span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: '';
+  width: 16px;
+  height: 16px;
+  margin: -12px 0 0 -8px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  box-sizing: border-box;
 }
