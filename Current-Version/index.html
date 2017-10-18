@@ -7,16 +7,16 @@
     </header>
     <body>
         <div id="header"> <!-- To hold the login buttons and labels that take you to different sections of the page -->
-            <div id="loginSection"> <!-- In charge of holding the login button -->
-                <input type="image" id="loginButton" src="Images/Login-Button.png"/>
-            </div>
-            <div id="options"> <!-- List of labels that can be clicked on and will take you to different sections of the page -->
-                <ul>
-                    <li>Top</li> <!-- Takes you to the top graphic -->
-                    <li>How It Works</li> <!-- Takes you to the section outlining how Pipeline works -->
-                    <li>About</li> <!-- Takes you to the section outlining what Pipeline is -->
-                    <li>Contact</li> <!-- Takes you to the section where you can send messages regarding QUESTIONS about Pipeline -->
-                </ul>
+            <div id="navigationBar"> <!-- List of labels that can be clicked on and will take you to different sections of the page -->
+                <div id="loginSection"> <!-- In charge of holding the login button -->
+                    <input type="image" id="loginButton" src="Images/Login-Button.png"/>
+                </div>
+                <div id="options">
+                    <a href="#contactSection">Contact</a> <!-- Takes you to the section where you can send messages regarding QUESTIONS about Pipeline -->
+                    <a href="#aboutSection">About</a> <!-- Takes you to the section outlining what Pipeline is -->
+                    <a href="#howItWorksSection">How It Works</a> <!-- Takes you to the section outlining how Pipeline works -->
+                    <a href="#topSection">Top</a> <!-- Takes you to the top graphic -->
+                </div>
             </div>
         </div>
         
@@ -25,13 +25,11 @@
             
             <!-- Section meant to attract the user and draw them in -->
             <div id="topSection">
-                
-                <h1>PIPELINE</h1> <!-- Name of the project -->
+                <span><h1>PIPELINE</h1> <!-- Name of the project -->
                 <h2>Deals Made Simple</h2> <!-- Selling line -->
-                <section id="section02" class="demo"><!-- Arrow that takes you to the next section (How It Works) -->
+                <section id="downButtonSection" class="demo"><!-- Arrow that takes you to the next section (How It Works) -->
                     <a href="#howItWorksSection"><span></span></a>
-                </section>
-                
+                </section></span>
             </div> <!-- End of Top Section -->
             
             <!-- Explains how Pipeline works and what it does differently than competitors -->

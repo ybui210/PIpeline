@@ -1,24 +1,59 @@
-#header {
-    background-color: aqua;
+html {
+    font-family: "Helvetica Neue";
+    width: 100%;
 }
 
-#content {
-    background-color: #FFAAAA;
+#header {
+    height: 10vh;
+    position: fixed;
+    z-index: 1;
+}
+
+#navigationBar {
+    overflow: hidden;
+    background-color: #FFFFFF;
+    color: #000000; /* Sets the color of the text */
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    padding-bottom: 2vh; /* Makes the height a bit bigger so that the bottom matches the top */
+}
+
+#loginButton {
+    width: 100px; /* Sets the width and automatically the height */
+    margin-bottom: -20px; /* Makes the button align with the options */
+    margin-left: 10vw; /* Puts some distance between the button and the left side of the window */
+}
+
+#options {
+    margin-right: 7vw;/* Puts some distance between the options and the right side of the window */
+}
+
+#options a {
+    float: right; /* Makes the options go to the right */
+    margin-right: 4vw; /* Puts some distance between the each of the options */
 }
 
 #topSection {
-    background-color: beige;
-    padding: 10px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,63abe2+84 */
-background: #ffffff; /* Old browsers */
-background: -moz-linear-gradient(-45deg, #ffffff 0%, #63abe2 84%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg, #ffffff 0%,#63abe2 84%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg, #ffffff 0%,#63abe2 84%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#63abe2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: #FFFFFF; /* Set the font colour of all the text in this section */
+    text-align: center; /* Horizontally center all the text in this section */
+    height: 98vh;
+    line-height: 85vh;
+    margin-top: 3vh;
+    background-image: url(../Images/Index/Top-Section/Vancouver-2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#topSection span {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
 }
 
 #howItWorksSection {
-    background-color: aquamarine;
+    background-color: #136cb2;
+    color: #FFFFFF;
     padding: 10px;
 }
 
@@ -30,10 +65,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #contactSection {
     background-color:azure;
     padding: 10px;
-}
-
-#loginButton {
-    width: 100px;
 }
 
 #submitMessageButton {
@@ -61,10 +92,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   opacity: .5;
 }
 
-#section02 a {
-  padding-top: 100px;
+#downButtonSection a {
+  padding-top: 0px;
 }
-#section02 a span {
+#downButtonSection a span {
   position: absolute;
   top: 0;
   left: 50%;
@@ -75,7 +106,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   border-radius: 100%;
   box-sizing: border-box;
 }
-#section02 a span::after {
+#downButtonSection a span::after {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -88,4 +119,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   box-sizing: border-box;
+}
+h1 {
+    font-weight: 400;
+    font-size: 10vh;
+    margin-bottom: 0;
+    line-height: auto;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 3vh;
+    line-height: auto;
+}
+
+h3 {
+    text-align: center;
+}
+
+p {
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* All links will have the same font colour as the other text in its div */
+a {
+    color: inherit;
+    text-decoration: none;
 }
