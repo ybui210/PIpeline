@@ -43,7 +43,7 @@ html, body {
     line-height: 85vh;
     background-image: url(../Images/Index/Top-Section/Vancouver-2.jpg);
     background-repeat: no-repeat;
-    background-size: auto 102vh;
+    background-size: 100% 100%;
     text-shadow: 4px 4px 4px #000000;
 }
 
@@ -68,7 +68,7 @@ html, body {
 }
 
 #contactSection {
-    background-color:azure;
+    background-color:#FFFFFF;
     padding: 10px;
 }
 
@@ -78,9 +78,11 @@ html, body {
     width: 100px;
     height: 33px;
     border-radius: 5px;
+    float: right;
 }
 
 #submitMessageButton:hover {
+    cursor: pointer;
     background-color: #EEE;
     transition: 0.3s;
 }
@@ -143,6 +145,11 @@ h3 {
     text-align: center;
 }
 
+h4 {
+    color: #000;
+    font-weight: 400;
+}
+
 p {
     width: 90%;
     position: relative;
@@ -153,4 +160,8 @@ p {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+li {
+    margin: 0 5vw;
 }
