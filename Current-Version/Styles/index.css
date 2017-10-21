@@ -10,7 +10,10 @@ html, body {
     position: fixed;
     z-index: 1;
 }
-
+#loginSection {
+    width: auto;
+    width: 100px;
+}
 #loginButton {
     margin: 0;
     padding: 0;
