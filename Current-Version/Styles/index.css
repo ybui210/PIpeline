@@ -11,6 +11,15 @@ html, body {
     z-index: 1;
 }
 
+#loginButton {
+    margin: 0;
+    padding: 0;
+}
+
+#options a {
+    margin-bottom: 2vh;
+}
+
 #navigationBar {
     overflow: hidden;
     background-color: #FFFFFF;
@@ -18,7 +27,7 @@ html, body {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    padding-bottom: 2vh; /* Makes the height a bit bigger so that the bottom matches the top */
+    padding: 1vh 0; /* Makes the height a bit bigger so that the bottom matches the top */
 }
 
 #loginButton {
