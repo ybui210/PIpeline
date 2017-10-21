@@ -31,8 +31,8 @@ input {
 }
 
 input[type="checkbox"] {
-    width: 0;
-    margin-right: 10px;
+    width: 0.8em;
+    height: 0.8em;
 }
 
 label {
