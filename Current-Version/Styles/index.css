@@ -103,15 +103,15 @@ html, body {
   padding-top: 0px;
 }
 #downButtonSection a span {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 46px;
-  height: 46px;
-  margin-left: -23px;
-  border: 1px solid #fff;
-  border-radius: 100%;
-  box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    margin-left: -23px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    box-sizing: border-box;
     margin-top: 25vh;
 }
 #downButtonSection a span::after {

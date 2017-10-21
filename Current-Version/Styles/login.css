@@ -1,0 +1,81 @@
+html {
+    font-family: "Helvetica Neue";
+    background-color: #EEE;
+}
+
+#content {
+    background-color: #FFFFFF;
+    width: 400px;
+    margin: 20vh auto;
+    border: 2px solid #EEE;
+    padding: 5%;
+}
+
+h1 {
+    border-bottom: 1px solid #EEE;
+    font-weight: 400;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+input:focus{
+    outline: none;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #EEE;
+    font-size: 1.2em;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    width: 0;
+    margin-right: 10px;
+}
+
+label {
+    font-size: 0.8em;
+}
+
+*:focus {
+    outline: none;
+}
+
+#submitButton {
+    color: white;
+    background-color: #136cb2;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    font-size: 1em;
+    margin: 10px 0;
+    padding: 10px 0;
+    font-weight: 300;
+}
+
+#submitButton:hover {
+    background-color: #AAA;
+    transition: 0.3s;
+}
+
+#rememberMeSection {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEE;
+}
+
+#additionalOptions {
+    color: #136cb2;
+    font-size: 0.8em;
+}
+
+#forgotPassword {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}

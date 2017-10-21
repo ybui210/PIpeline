@@ -1,13 +1,4 @@
-
-
-@import "compass/css3";
-
-@import url(https://fonts.googleapis.com/css?family=Merriweather);
-$red: #e74c3c;
-
-*, 
-*:before, 
-*:after {
+*, *:before, *:after {
    @include box-sizing(border-box); 
 }
 
@@ -39,11 +30,16 @@ $red: #e74c3c;
    @include box-shadow(0 0px 2px rgba($red, 1)!important);
 }
   
-#contactSection #input-submit {
+#submitButton {
     color: white;
     background-color: #136cb2;
     cursor: pointer;
     border-radius: 10px;
+}
+
+#submitButton:hover {
+    background-color: #AAA;
+    transition: 0.3s;
 }
     
 #contactSection input:hover {
