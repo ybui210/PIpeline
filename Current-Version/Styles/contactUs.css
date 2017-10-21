@@ -4,7 +4,7 @@
 
 #contactSection html, #contactSection body {
   background: #f1f1f1;
-  font-family: 'Merriweather', sans-serif;
+  font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
   padding: 1em;
 }
 
