@@ -2,6 +2,8 @@
 <html>
     <header>
         <title>Welcome to Pipeline</title> <!-- Decided by Davin, open to change -->
+        
+        <!-- All this favicon code was taken from https://www.favicon-generator.org/ -->
         <link rel="apple-touch-icon" sizes="57x57" href="./Images/Favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="./Images/Favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="./Images/Favicon/apple-icon-72x72.png">
@@ -19,14 +21,17 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        
+        
         <link rel="stylesheet" type="text/css" href="./Styles/index.css"> <!-- Style sheet for the body structure -->
-        <link rel="stylesheet" type="text/css" href="./Styles/contactUs.css"> <!-- Style sheet for the body structure -->
+        <link rel="stylesheet" type="text/css" href="./Styles/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
+        
         <script src="./Scripts/index.js"></script>
     </header>
     <body>
         <div id="header"> <!-- To hold the login buttons and labels that take you to different sections of the page -->
             <div id="navigationBar"> <!-- List of labels that can be clicked on and will take you to different sections of the page -->
-                <a href="login.html"><img id="loginButton" src="Images/Login-Button.png" /></a>
+                <a href="login.php"><img id="loginButton" src="Images/Login-Button.png" /></a>
                 <div id="options">
                     <a href="#contactSection">Contact</a> <!-- Takes you to the section where you can send messages regarding QUESTIONS about Pipeline -->
                     <a href="#aboutSection">About</a> <!-- Takes you to the section outlining what Pipeline is -->
