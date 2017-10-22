@@ -1,0 +1,22 @@
+﻿<div class="scrollable">
+    <div class="scrollable-content section">
+        
+        <form name="forgotpwform" role="form" class="panel panel-default base-form" ng-submit="submitForgot(forgotpwform)" novalidate>
+            <h1 class="panel-heading text-center">Lost Password?</h1>
+            <br />
+            <md-input-container class="md-block flex-gt-sm md-input-invalid">
+                <label>Enter your email address</label>
+                <input type="email" ng-model="forgotpwform.email" class="ng-pristine md-input ng-invalid ng-invalid-required ng-touched" aria-required="true" aria-invalid="true" ng-trim="false" required>
+                <div ng-messages="forgotpwform.email.$error">
+                    <div ng-message="required">Email is required!</div>
+                </div>
+            </md-input-container>
+            <br ng-show="errors" />
+            <span class="error" ng-show="errors">{{errors}}</span>
+            <div class="form-group">
+                <input type="submit" name="request" class="login loginmodal-submit btn btn-primary btn-block" value="Request">
+            </div>
+        </form>
+
+    </div>
+</div>
