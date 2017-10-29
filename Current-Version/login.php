@@ -27,7 +27,7 @@
 <html>
     <header>
         <title>Login</title> <!-- Decided by Davin, open to change -->
-        <link rel="stylesheet" type="text/css" href="Styles/login.css">
+        <link rel="stylesheet" type="text/css" href="Styles/Desktop/login.css">
         
         <?php
             include 'favicon.php';
