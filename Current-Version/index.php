@@ -8,8 +8,9 @@
         ?>
         
         
-        <link rel="stylesheet" type="text/css" href="./Styles/index.css"> <!-- Style sheet for the body structure -->
-        <link rel="stylesheet" type="text/css" href="./Styles/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
+        
+        <link rel="stylesheet" type="text/css" href="./Styles/Desktop/index.css"> <!-- Style sheet for the body structure -->
+        <link rel="stylesheet" type="text/css" href="./Styles/Desktop/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
         
         <script src="./Scripts/index.js"></script>
     </header>
@@ -22,10 +23,14 @@
                     <a href="#aboutSection">About</a> <!-- Takes you to the section outlining what Pipeline is -->
                     <a href="#howItWorksSection">How It Works</a> <!-- Takes you to the section outlining how Pipeline works -->
                     <a href="#topSection">Top</a> <!-- Takes you to the top graphic -->
+        <?php
+            // Include and instantiate the class.
+            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
+            $detect = new Mobile_Detect;
+        ?>
                 </div>
             </div>
         </div>
-        
         <!-- Holds all objects not in the header -->
         <div id="content">
             
