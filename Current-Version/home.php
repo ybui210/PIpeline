@@ -2,7 +2,7 @@
   <html>
     <head>
 
-        <link href="Styles/myown.css" rel="stylesheet" />
+        <link href="Styles/home.css" rel="stylesheet" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -40,15 +40,35 @@
         </div>-->
         <div class="container-fluid" >
           <div class="row">
+              <nav class="navbar navbar-inverse topNavBarDiv">
+                  <div class="container-fluid">
+                      <div class="navbar-header">
+                          <a class="navbar-brand" href="#">Pipeline</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                          <li class="active"><a href="#">Browse Listings</a></li>
+                          <li><a href="#">Active Listings</a></li>
+                          <li><a href="createListing.php">Create Listing</a></li>
+                          <li><a href="#">News</a></li>
+                      </ul>
+                      <form class="navbar-form navbar-left">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Search">
+                          </div>
+                          <button type="submit" class="btn btn-default">Submit</button>
+                      </form>
+                  </div>
+              </nav>
+
+          </div>
+
+          <div class="row">
             <div class="col-sm-3 col-lg-2 navBarDiv">
-                <div class="row">
-                <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span>
-                </div>
               <nav class="nav nav-pills nav-stacked leftNavbar">
-                <li><a href="">Profile</a></li>
-                <li class="active"><a href="">Dashboard</a></li>
-                <li><a href="">My Listings</a></li>
-                <li><a href="">Saved Listings</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="myListings.php">My Listings</a></li>
+                <li><a href="savedListings.php">Saved Listings</a></li>
                 <li><a href="">Drafts</a></li>
               </nav>
             </div>
