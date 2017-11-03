@@ -1,3 +1,22 @@
+<?php
+    require_once("../../configdb.php");
+    function sendMessage($n, $e, $s, $m, $l) {
+        $sql = "INSERT INTO Messages(name, email, subject, message) VALUES ('$n', '$e', '$s', '$m')";
+        $result = $l->query($sql);
+    }
+    $emailIsOnTheBlackList = false;
+    $userHasSentTooManyMessages = false;
+    if (isset($_POST["submitMessage"])) {
+        $name = mysqli_real_escape_string($link, $_POST["name"]);
+        $email = mysqli_real_escape_string($link, $_POST["email"]);
+        $subject = mysqli_real_escape_string($link, $_POST["subject"]);
+        $message = mysqli_real_escape_string($link, $_POST["message"]);
+        include "okToSend.php";
+        if($okToSend) {
+            sendMessage($name, $email, $subject, $message, $link);
+        }
+    }
+?>
 <!DOCTYPE HTML>
 <html>
     <header>
@@ -6,13 +25,24 @@
         <?php
             include 'favicon.php';
         ?>
+        <link rel="stylesheet" type="text/css" href="./Styles/All/index.css"> <!-- Style sheet for the body structure -->
+        <link rel="stylesheet" type="text/css" href="./Styles/All/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
         
+        <?php
+            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
+            $detect = new Mobile_Detect;
+        ?>
         
-        
-        <link rel="stylesheet" type="text/css" href="./Styles/Desktop/index.css"> <!-- Style sheet for the body structure -->
-        <link rel="stylesheet" type="text/css" href="./Styles/Desktop/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
-        
-        <script src="./Scripts/index.js"></script>
+        <?php
+            if($emailIsOnTheBlackList) {
+                include 'messages.php';
+                echo displayBlacklistMessage();
+            } else if ($userHasSentTooManyMessages) {
+                include 'messages.php';
+                echo displayWarningMessage();
+            }
+        ?>
+        <script src="./Scripts/index.js"></script>)
     </header>
     <body>
         <div id="header"> <!-- To hold the login buttons and labels that take you to different sections of the page -->
@@ -23,11 +53,6 @@
                     <a href="#aboutSection">About</a> <!-- Takes you to the section outlining what Pipeline is -->
                     <a href="#howItWorksSection">How It Works</a> <!-- Takes you to the section outlining how Pipeline works -->
                     <a href="#topSection">Top</a> <!-- Takes you to the top graphic -->
-        <?php
-            // Include and instantiate the class.
-            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
-            $detect = new Mobile_Detect;
-        ?>
                 </div>
             </div>
         </div>
@@ -48,7 +73,6 @@
                 
                 <!-- Label for the section -->
                 <h3>How It Works</h3>
-                
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id mollis augue, a viverra nibh. Pellentesque scelerisque sodales elit sed aliquam. Curabitur eu facilisis diam. Duis nunc dolor, cursus sagittis turpis vel, vulputate malesuada erat. Sed interdum purus quis augue semper, nec auctor tellus facilisis. Etiam ultrices rutrum quam, quis consequat velit posuere eget. Maecenas dignissim, augue nec aliquet finibus, velit risus vehicula nibh, in tempus purus justo eu nunc. Sed in sagittis augue, ac dictum nunc. Ut scelerisque eros sit amet metus porttitor volutpat. Mauris efficitur tristique dui nec commodo. Phasellus faucibus feugiat cursus.</p>
 
                 <p>Sed sit amet sapien libero. Aenean ut turpis quis ipsum iaculis varius. Praesent ac erat in purus semper sagittis. Nunc nec dolor laoreet, consectetur sem sed, consequat justo. Ut at tincidunt dolor, sit amet vulputate enim. Donec sagittis lectus in nibh vestibulum porta. Fusce pretium eget eros eu scelerisque. Vestibulum eget lorem posuere, feugiat tellus eu, pretium nibh. Aenean ut porttitor dui. In hac habitasse platea dictumst. Etiam id bibendum sem.</p>
@@ -58,9 +82,7 @@
             <div id="aboutSection" class="allTextSections textSectionWithLightBackground"> 
                 
                 <h3>ABOUT PIPELINE</h3> <!-- Label for the section -->
-                
                 <p>Pipeline is a private and secure project listing platform which allows its invite-only user base to post and catalogue the following:</p>
-                
                 <ol>
                     <li> Projects for sale, projects seeking financing and projects seeking joint venture partners</li>
                     <li> To offer Financing to companies looking to expand, purchase assets or fund an acquisition, in the form of debt, equity, profit sharing, off-take agreements or a combination</li>
@@ -85,18 +107,18 @@
             
             <!-- Allows the user to make a message outlining any questions they have and sends it -->
             <div id="contactSection">
-                <form class="cf">
+                <form class="cf" action="" method="post">
                 <h3>CONTACT US</h3>
                 <h4>Got any questions? Submit a form to the admin and we will get back to you right away!</h4>
                   <div class="half left cf">
-                    <input type="text" id="input-name" placeholder="Name">
-                    <input type="email" id="input-email" placeholder="Email">
-                    <input type="text" id="input-subject" placeholder="Subject">
+                    <input name="name" type="text" id="input-name" placeholder="Name" required>
+                    <input name="email" type="email" id="input-email" placeholder="Email" required>
+                    <input name="subject" type="text" id="input-subject" placeholder="Subject" required>
                   </div>
                   <div class="half right cf">
-                    <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
+                    <textarea name="message" type="text" id="input-message" placeholder="Message" required></textarea>
                   </div>
-                  <input type="submit" value="Submit" id="submitButton">
+                  <input type="submit" value="Submit" id="submitButton" name="submitMessage">
                 </form>
             </div>
         </div>

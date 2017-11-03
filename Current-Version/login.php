@@ -1,36 +1,97 @@
 <?php
-    $user = 'admin';
-    $db_password = 'C%&YQf&0WB55LRc5iIsVpT6tG45Qn3&iD03KfccfC';
-    $db = 'Pipeline_V2_Database';
-    $host = 'pipeline-v2-database.c5klbzwvfdnx.us-west-2.rds.amazonaws.com';
-    $port = 3306;
+    require_once("../../configdb.php");
 
-    $link = mysqli_init();
-    $success = mysqli_real_connect($link, $host, $user, $db_password, $db, $port);
-    if ($success == false) {
-        exit("Can't connect to the database at all!");
-    }
-    if (isset($_POST["submitLogin"])) {
-        $loginEmail = $_POST["email"];
-        $password = $_POST["password"];
+    $forgotPassword = false;
+    $incorrectLoginInfo = false;
+    $requestInvitation = false;
+    $emailDoesNotExist = false;
+    $requestSent = false;
+    $interests = array();
+
+    if (isset($_POST["submitForgotPassword"])) {
+        $emailAddress = mysqli_real_escape_string($link, $_POST["email"]);
+        $sql = "SELECT * FROM TempUsers WHERE BINARY email='$emailAddress'";
+        $result = $link->query($sql);
+        if ($result->num_rows == 0) {
+            $emailDoesNotExist = true;
+        } else {
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $msg = "Your password is: " . $row["password"];
+            $headers = array(
+                'From: No reply',
+                'Content-Type: text/html'
+            );
+            mail($emailAddress,"Pipeline Password",$msg, $headers);
+            header("location: index.php");
+            die();
+        }
+    } else if (isset($_POST["submitRequestInvitation"])) {
+        $email = mysqli_real_escape_string($link, $_POST["email"]);
+        $firstName = mysqli_real_escape_string($link, $_POST["firstName"]);
+        $middleName = mysqli_real_escape_string($link, $_POST["middleName"]);
+        $lastName = mysqli_real_escape_string($link, $_POST["lastName"]);
+        $linkedInURL = mysqli_real_escape_string($link, $_POST["linkedInURL"]);
+        $typeOfUser = mysqli_real_escape_string($link, $_POST["radios"]);
+        if(!empty($_POST['interests'])) {
+            $i = 0;
+            foreach($_POST['interests'] as $selected){
+                $interests[$i++] = $selected;
+            }
+        }
+        include "okToSend.php";
+        if ($okToSend) {
+            $sql = "INSERT INTO Requests(email, firstName, middleName, lastName, linkedInURL, typeOfUser) VALUES ('$email', '$firstName', '$middleName', '$lastName', '$linkedInURL', '$typeOfUser')";
+            $result = $link->query($sql);
+            for ($i = 0; $i < count($interests); $i++) {
+                $sql = "INSERT INTO RequestToInterests VALUES ('$email', '$interests[$i]')";
+                $result = $link->query($sql);
+            }
+            $requestSent = true;
+            
+        }
+    } else if (isset($_POST["submitLogin"])) {
+        $loginEmail = mysqli_real_escape_string ($link, $_POST["email"]);
+        $password = mysqli_real_escape_string ($link, $_POST["password"]);
         $sql = "SELECT * FROM TempUsers WHERE BINARY email='$loginEmail' AND BINARY password='$password'";
         $result = $link->query($sql);
         if ($result->num_rows == 0) {
-                echo "Incorrect user id or password<br>";
+                $incorrectLoginInfo = true;
         } else {
+            session_start();
+            $_SESSION["userEmail"] = $loginEmail;
             header("location: home.php");
             die();
         }
+    } else if (isset($_POST["forgotPassword"])) {
+        $forgotPassword = true;
+    } else if (isset($_POST["requestInvitation"])) {
+        $sql = "SELECT * FROM Interests";
+        $result = $link->query($sql);
+        $index = 0;
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $interests[$index++] = $row["interest"];
+        }
+        $requestInvitation = true;
     }
 ?>
 <!DOCTYPE HTML>
 <html>
     <header>
         <title>Login</title> <!-- Decided by Davin, open to change -->
-        <link rel="stylesheet" type="text/css" href="Styles/Desktop/login.css">
+        <link rel="stylesheet" type="text/css" href="Styles/All/login.css">
         
         <?php
             include 'favicon.php';
+            if ($emailIsOnTheBlackList) {
+                include 'messages.php';
+                echo displayBlacklistMessage();
+            } else if ($requestSent) {
+                include 'messages.php';
+                echo displayRequestSentMessage();
+            } else if ($emailDoesNotExist) {
+                include 'messages.php';
+                echo displayYouDoNotHaveAnAccountMessage();
+            }
         ?>
     </header>
     <body>
@@ -40,24 +101,12 @@
         <div id="content">
             <h1>
                 <?php 
-                    $forgotPassword = false;
-                    $requestInvitation = false;
-                    if (isset($_POST["forgotPassword"])) {
+                    if ($forgotPassword) {
                         echo "Forgot Password";
-                        $forgotPassword = true;
-                    } else if (isset($_POST["requestInvitation"])) {
+                    } else if ($requestInvitation) {
                         echo "Request Invitation";
-                        $requestInvitation = true;
-                    } else if (isset($_POST["submitLogin"])) {
-                        $loginEmail = $_POST["email"];
-                        $password = $_POST["password"];
-                        $sql = "SELECT * FROM TempUsers WHERE BINARY email='$loginEmail' AND BINARY password='$password'";
-                        $result = $link->query($sql);
-                        if ($result->num_rows == 0) {
-                                echo "Incorrect user id or password<br>";
-                        } else {
-                            echo "It worked";
-                        }
+                    } else if ($incorrectLoginInfo) {
+                        echo "Incorrect user id or password<br>";
                     } else {
                         echo "Login";
                     } 
@@ -65,44 +114,62 @@
             </h1>
             <form class="cf" method="post" action="">
                 <div id="formBox">
-                    <input type="email" id="input-email" name="email" placeholder="Email"><br>
+                    <input type="email" id="input-email" name="email" placeholder="Email" required><br>
                     <?php 
-                        if ($forgotPassword) {
-                            echo "";
-                            echo "<input type=\"submit\" name=\"submitForgotPassword\" value=\"Submit\" id=\"submitButton\">";
-                        } else if($requestInvitation) {
-                            echo "<input type=\"text\" id=\"input-first-name\" placeholder=\"First Name\">";
-                            echo "<input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\">";
-                            echo "<input type=\"text\" id=\"input-last-name\" placeholder=\"Last Name\">";
-                            echo "<input type=\"text\" id=\"input-linkedin-url\" placeholder=\"LinkedIn URL\">";
+                        if ($requestInvitation) {
+                            /* Contact information */
+                            echo "<input type=\"text\" id=\"input-first-name\" placeholder=\"First Name\" name=\"firstName\" required>";
+                            echo "<input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\" name=\"middleName\" required>";
+                            echo "<input type=\"text\" id=\"input-last-name\" placeholder=\"Last Name\" name=\"lastName\" required>";
+                            echo "<input type=\"url\" id=\"input-linkedin-url\" placeholder=\"LinkedIn URL\" name=\"linkedInURL\" required>";
                             echo "<h2>You are an:</h2>";
-                            echo "<input type=\"radio\" name=\"individualOrOrganization\" value=\"individual\"> Individual";
-                            echo "<input type=\"radio\" name=\"individualOrOrganization\" value=\"organization\"> Organanization";
-                            echo "<input type=\"submit\" name=\"submitRequestInvitation\" value=\"Submit\" id=\"submitButton\">";
+                            echo "<label class=\"radio\"><input id=\"radio1\" type=\"radio\" name=\"radios\" value=\"individual\" checked required><span class=\"outer\"><span class=\"inner\"></span></span>Individual</label><br>";
+                            echo "<label class=\"radio\"><input id=\"radio2\" type=\"radio\" name=\"radios\" value=\"organization\"><span class=\"outer\"><span class=\"inner\"></span></span>Organization</label><br>";
+                            
+                            /* Interests */
+                            echo "<h2>What are your interests</h2>";
+                            echo "<div class=\"cntr\">";
+                            for ($i = 0; $i < count($interests); $i++) {
+                                echo "<label for=\"checkbox" . $i . "\" class=\"label-cbx\">";
+                                    echo "<input id=\"checkbox" . $i . "\" type=\"checkbox\" class=\"invisible\" name=\"interests[]\" value=\"" . $interests[$i] . "\">";
+                                        echo "<div class=\"checkbox\">";
+                                            echo "<svg width=\"20px\" height=\"20px\" viewBox=\"0 0 20 20\">";
+                                                echo "<path d=\"M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z\"></path>
+                <polyline points=\"4 11 8 15 16 6\"></polyline>";
+                                            echo "</svg>";
+                                        echo "</div>";
+                                    echo "<span>" . $interests[$i] . "</span>";
+                                echo "</label><br><br>";
+                            }
+                        } else if ($forgotPassword) {
                         } else {
                             echo "<input type=\"password\" name=\"password\" id=\"input-name\" placeholder=\"Password\">";
-                            echo "<input type=\"submit\" name=\"submitLogin\" value=\"Submit\" id=\"submitButton\">";
-                        }
-                    ?>
-                    <?php
-                        if (($forgotPassword) || ($requestInvitation)) {
-                            echo "";
+                        }  
+                        /* Submit Button */
+                        if ($forgotPassword) {
+                            echo "<input type=\"submit\" name=\"submitForgotPassword\" value=\"Send Password\" id=\"submitButton\">";
+                        } else if ($requestInvitation) {
+                            echo "<input type=\"submit\" name=\"submitRequestInvitation\" value=\"Send Request\" id=\"submitButton\">";
                         } else {
-                            echo "<div id=\"rememberMeSection\"><input type=\"checkbox\" checked/><label for=\"rememberMe\">Remember Me</label></div>";
+                            echo "<input type=\"submit\" name=\"submitLogin\" value=\"Login\" id=\"submitButton\">";
                         }
                     ?>
-
-                    <div id="additionalOptions">
-                        <button id="requestInvitationBtn" class="alternativeOptions" type="submit" name="requestInvitation">Request Invitation</button>
-                        <?php
-                            if ($forgotPassword) {
-                                echo 
-                                    "<button id=\"alternativeTwoBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"login\">Login</button>";
-                            } else {
-                                echo "<button id=\"alternativeTwoBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"forgotPassword\">Forgot Password</button>";
-                            }
-                        ?>
-                    </div>
+                </div>
+            </form>
+            <form class="cf" method="post" action="">
+                <div id="additionalOptions">
+                    <?php
+                        if ($forgotPassword) {
+                            echo "<button id=\"requestInvitationBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"requestInvitation\">Request Invitation</button>";
+                            echo "<button id=\"alternativeTwoBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"login\">Login</button>";
+                        } else if ($requestInvitation) {
+                            echo "<button id=\"loginBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"login\">Login</button>";
+                            echo "<button id=\"alternativeTwoBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"forgotPassword\">Forgot Password</button>";
+                        } else {
+                            echo "<button id=\"requestInvitationBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"requestInvitation\">Request Invitation</button>";
+                            echo "<button id=\"alternativeTwoBtn\" class=\"alternativeOptions\" type=\"submit\" name=\"forgotPassword\">Forgot Password</button>";
+                        }
+                    ?>
                 </div>
             </form>
         </div>
