@@ -1,13 +1,13 @@
 <?php
-    require_once("../../configdb.php");
+    require_once("../../include/configdb.php");
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;
     $requestInvitation = false;
     $emailDoesNotExist = false;
     $requestSent = false;
+    $passwordSent = false;
     $interests = array();
-
     if (isset($_POST["submitForgotPassword"])) {
         $emailAddress = mysqli_real_escape_string($link, $_POST["email"]);
         $sql = "SELECT * FROM TempUsers WHERE BINARY email='$emailAddress'";
@@ -15,15 +15,18 @@
         if ($result->num_rows == 0) {
             $emailDoesNotExist = true;
         } else {
+        	$emailAddress = mysqli_real_escape_string($link, $_POST["email"]);
+        	$sql = "SELECT * FROM TempUsers WHERE BINARY email='$emailAddress'";
+        	$result = $link->query($sql);
             $row = $result->fetch_array(MYSQLI_ASSOC);
-            $msg = "Your password is: " . $row["password"];
-            $headers = array(
-                'From: No reply',
-                'Content-Type: text/html'
-            );
-            mail($emailAddress,"Pipeline Password",$msg, $headers);
-            header("location: index.php");
-            die();
+            $to      = $emailAddress;
+            $subject = 'Your Pipeline Password';
+            $message = 'Your password is ' . $row['password'];
+            $headers = 'From: no-reply@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+
+            mail($to, $subject, $message, $headers);
+            $passwordSent = true;
         }
     } else if (isset($_POST["submitRequestInvitation"])) {
         $email = mysqli_real_escape_string($link, $_POST["email"]);
@@ -91,6 +94,9 @@
             } else if ($emailDoesNotExist) {
                 include 'messages.php';
                 echo displayYouDoNotHaveAnAccountMessage();
+            } else if ($passwordSent) {
+                include 'messages.php';
+                echo displayPasswordSentMessage();
             }
         ?>
     </header>

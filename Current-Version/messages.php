@@ -15,6 +15,10 @@
         $result = "<script>alert(\"You Do Not Have An Account With Us.\")</script>";
         return $result;
     }
+    function displayPasswordSentMessage() {
+        $result = "<script>alert(\"Password has been sent to you.\")</script>";
+        return $result;
+    }
     function displayMessage($msg) {
         $result = "<script>alert(" . $msg . ")</script>";
         return $result;
