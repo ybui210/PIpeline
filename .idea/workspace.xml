@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/home.php" afterPath="$PROJECT_DIR$/Current-Version/home.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/createListing.php" afterPath="$PROJECT_DIR$/Current-Version/createListing.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,21 +36,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Current-Version/home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="68" column="71" lean-forward="false" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
+            <state relative-caret-position="260">
+              <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="68" selection-end-column="110" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createListing.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="createListing.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="216" column="78" lean-forward="false" selection-start-line="216" selection-start-column="78" selection-end-line="216" selection-end-column="78" />
+            <state relative-caret-position="311">
+              <caret line="68" column="104" lean-forward="false" selection-start-line="68" selection-start-column="104" selection-end-line="68" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -142,8 +144,8 @@
         <option value="$PROJECT_DIR$/Current-Version/login.php" />
         <option value="$PROJECT_DIR$/Current-Version/Styles/home.css" />
         <option value="$PROJECT_DIR$/Current-Version/index.php" />
-        <option value="$PROJECT_DIR$/Current-Version/createListing.php" />
         <option value="$PROJECT_DIR$/Current-Version/home.php" />
+        <option value="$PROJECT_DIR$/Current-Version/createListing.php" />
       </list>
     </option>
   </component>
@@ -242,12 +244,12 @@
       <updated>1508645540297</updated>
       <workItem from="1508645545387" duration="909000" />
       <workItem from="1509230677811" duration="11030000" />
-      <workItem from="1509869261523" duration="9524000" />
+      <workItem from="1509869261523" duration="9713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21463000" />
+    <option name="totallyTimeSpent" value="21652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -256,7 +258,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17423134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08784773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12664714" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0851735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -440,18 +442,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
+    <entry file="file://$PROJECT_DIR$/Current-Version/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="216" column="78" lean-forward="false" selection-start-line="216" selection-start-column="78" selection-end-line="216" selection-end-column="78" />
+        <state relative-caret-position="260">
+          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="68" selection-end-column="110" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Current-Version/home.php">
+    <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="68" column="71" lean-forward="false" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
+        <state relative-caret-position="311">
+          <caret line="68" column="104" lean-forward="false" selection-start-line="68" selection-start-column="104" selection-end-line="68" selection-end-column="104" />
           <folding />
         </state>
       </provider>

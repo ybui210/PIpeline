@@ -61,6 +61,12 @@
                         <li><a href="#">Active Listing</a></li>
                         <li><a href="createListing.php">Create Listing</a></li>
                         <li><a href="#">News</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Profile</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Notifications</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">System History</a></li>
+                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Social Connections</a></li>
 
                     </ul>
                     <form class="navbar-form navbar-left">
