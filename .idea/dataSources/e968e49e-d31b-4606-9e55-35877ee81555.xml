@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Pipeline_V2_Database@pipeline-v2-database.c5klbzwvfdnx.us-west-2.rds.amazonaws.com">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="Pipeline_V2_Database">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="innodb"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sys"/>
+    <table id="8" parent="2" name="Blacklist"/>
+    <table id="9" parent="2" name="Interests"/>
+    <table id="10" parent="2" name="Messages"/>
+    <table id="11" parent="2" name="RequestToInterests"/>
+    <table id="12" parent="2" name="Requests"/>
+    <table id="13" parent="2" name="SuspectedSpammers"/>
+    <table id="14" parent="2" name="TempUsers"/>
+    <column id="15" parent="8" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="8" name="whenAdded">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="17" parent="9" name="interest">
+      <Position>1</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="10" name="name">
+      <Position>1</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="10" name="email">
+      <Position>2</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="10" name="subject">
+      <Position>3</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="10" name="message">
+      <Position>4</Position>
+      <DataType>varchar(16384)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="10" name="readStatus">
+      <Position>5</Position>
+      <DataType>char(0)|0</DataType>
+    </column>
+    <column id="23" parent="11" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="11" name="interest">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="12" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="12" name="firstName">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="12" name="middleName">
+      <Position>3</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="12" name="lastName">
+      <Position>4</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="12" name="linkedInURL">
+      <Position>5</Position>
+      <DataType>varchar(256)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="12" name="typeOfUser">
+      <Position>6</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="12" name="readStatus">
+      <Position>7</Position>
+      <DataType>char(0)|0</DataType>
+    </column>
+    <column id="32" parent="13" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="13" name="numberOfMessagesSent">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="34" parent="13" name="whenLastMessageWasSent">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="35" parent="13" name="numberOfWarningsSent">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="36" parent="13" name="whenLastWarningWasSent">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="37" parent="14" name="email">
+      <Position>1</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="38" parent="14" name="password">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+  </database-model>
+</dataSource>

@@ -59,7 +59,7 @@
                           <ul class="nav navbar-nav">
                               <li class="active"><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
                               <li><a href="#">Active Listing</a></li>
-                              <li><a href="#">Create Listing</a></li>
+                              <li><a href="createListing.php">Create Listing</a></li>
                               <li><a href="#">News</a></li>
 
                           </ul>
