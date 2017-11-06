@@ -1,5 +1,7 @@
 <?php
-    require_once("../configdb.php");
+
+    /*require_once("../configdb.php");*/
+    require_once("../../include/configdb.php");
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;
@@ -15,17 +17,79 @@
         if ($result->num_rows == 0) {
             $emailDoesNotExist = true;
         } else {
-        	$emailAddress = mysqli_real_escape_string($link, $_POST["email"]);
-        	$sql = "SELECT * FROM TempUsers WHERE BINARY email='$emailAddress'";
-        	$result = $link->query($sql);
             $row = $result->fetch_array(MYSQLI_ASSOC);
-            $to      = $emailAddress;
             $subject = 'Your Pipeline Password';
-            $message = 'Your password is ' . $row['password'];
-            $headers = 'From: no-reply@gmail.com' . "\r\n" .
+            $message = "
+                    <html>
+                    <header>
+                    <style>
+                    html, body {
+                    font-family: \"Helvetica Neue\", HelveticaNeue, \"TeX Gyre Heros\", TeXGyreHeros, FreeSans, \"Nimbus Sans L\", \"Liberation Sans\", Arimo, Helvetica, Arial, sans-serif;
+                    height:100%;
+                    }
+                    body {
+                    margin: 0px;
+                    }
+                    #header {
+                    height: 10vh;
+                    background-color: #136cb2;
+                    margin: 0;
+                    text-align: center;
+                    }
+                    h1 {
+                    color: #FFF;
+                    line-height: 10vh;
+                    }
+                    #mainSection {
+                    color: #777;
+                    text-align: center;
+                    }
+                    #passwordHeader {
+                    font-size: 2em;
+                    }
+                    #password {
+                    font-size: 2em;
+                    }
+                    </style>
+                    </header>
+                    <body>
+                    <div id=\"header\">
+                    <h1>Pipeline</h1>
+                    </div>
+                    <div id=\"mainSection\">
+                    <p id=\"passwordHeader\">Your password is:</p>
+                    <p id=\"password\">" . $row["password"] . "</p><!--19 -->
+                    </div>
+        
+                    <script>
+                    var password = document.getElementById(\"password\");
+                    if (password.innerHTML.length > 90) {
+                    password.style.fontSize = \"0.1em\";
+                    } else if (password.innerHTML.length > 80) {
+                    password.style.fontSize = \"0.7em\";
+                    } else if (password.innerHTML.length > 70) {
+                    password.style.fontSize = \"0.8em\";
+                    } else if (password.innerHTML.length > 60) {
+                    password.style.fontSize = \"0.9em\";
+                    } else if (password.innerHTML.length > 50) {
+                    password.style.fontSize = \"1em\";
+                    } else if (password.innerHTML.length > 40) {
+                    password.style.fontSize = \"1.2em\";
+                    } else if (password.innerHTML.length > 30) {
+                    password.style.fontSize = \"1.5em\";
+                    } else if (password.innerHTML.length > 20) {
+                    password.style.fontSize = \"1.8em\";
+                    }
+                    </script>
+                    </body>
+                    </html>
+                    ";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= 'From: no-reply@gmail.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
 
-            mail($to, $subject, $message, $headers);
+            mail($emailAddress, $subject, $message, $headers);
             $passwordSent = true;
         }
     } else if (isset($_POST["submitRequestInvitation"])) {
@@ -46,8 +110,12 @@
             $sql = "INSERT INTO Requests(email, firstName, middleName, lastName, linkedInURL, typeOfUser) VALUES ('$email', '$firstName', '$middleName', '$lastName', '$linkedInURL', '$typeOfUser')";
             $result = $link->query($sql);
             for ($i = 0; $i < count($interests); $i++) {
-                $sql = "INSERT INTO RequestToInterests VALUES ('$email', '$interests[$i]')";
+                $sql = "SELECT * FROM RequestToInterests WHERE BINARY email='$email' AND BINARY interest='$interests[$i]'";
                 $result = $link->query($sql);
+                if ($result->num_rows == 0) {
+                    $sql = "INSERT INTO RequestToInterests VALUES ('$email', '$interests[$i]')";
+                    $result = $link->query($sql);
+                }
             }
             $requestSent = true;
             
