@@ -1,3 +1,5 @@
+<?php include '../configdb.php';
+?>
 <!DOCTYPE html>
   <html>
     <head>

@@ -1,3 +1,36 @@
+<?php
+
+include '../configdb.php';
+
+if ( isset( $_POST['submit'] ) ) {
+    $intro =  ($_POST["intro"]);
+    $jurisdiction =  ($_POST["jurisdiction"]);
+    $investmentType =  ($_POST["investmentType"]);
+    $commodities =  ($_POST["commodities"]);
+    $depositType =  ($_POST["depositType"]);
+    $developmentStage =  ($_POST["developmentStage"]);
+    $resourceSize =  ($_POST["resourceSize"]);
+    $acquisitionStrategy =  ($_POST["acqusitionStrategy"]);
+    $dueDilligence =  ($_POST["dueDilligence"]);
+    $purchaserInfo =  ($_POST["purchaserInfo"]);
+    $minPrice =  ($_POST["minPrice"]);
+    $maxPrice =  ($_POST["maxPrice"]);
+    $details =  ($_POST["details"]);
+
+    $sql = "INSERT INTO Listings (introduction, jurisdiction, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
+priceBracketMax, additionalDetails)
+    VALUES ('$intro', '$jurisdiction', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details')";
+    if ($link->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $link->error;
+    }
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,18 +151,18 @@
 
             <h1>Create a New Listing</h1>
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="createListing.php" method="POST">
                 <div class="form-group">
                     <label for="intro" class="col-sm-2 control-label">Listing Introduction</label>
                     <div class="col-sm-4">
-                        <textarea type="text" class="form-control" id="intro" rows="5"></textarea>
+                        <textarea type="text" class="form-control" id="intro" rows="5" name="intro"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="jurisdiction" class="col-sm-2 control-label">Jurisdiction</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="jurisdiction">
+                        <select class="form-control" id="jurisdiction" name="jurisdiction">
                             <option>Canada</option>
                             <option>USA</option>
                             <option>Middle East</option>
@@ -145,7 +178,7 @@
                 <div class="form-group">
                     <label for="investmentType" class="col-sm-2 control-label">Investment Type</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="investmentType">
+                        <select class="form-control" id="investmentType" name="investmentType">
                             <option>Business for Sale</option>
                             <option>Joint Partnership</option>
                             <option>Public Equity</option>
@@ -157,76 +190,76 @@
                 <div class="form-group">
                     <label for="commodities" class="col-sm-2 control-label">Commodities</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="commodities"></input>
+                        <input type="text" class="form-control" id="commodities" name="commodities"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="depositType" class="col-sm-2 control-label">Deposit Type</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="depositType"></input>
+                        <input type="text" class="form-control" id="depositType" name="depositType"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="developmentStage" class="col-sm-2 control-label">Development Stage</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="developmentStage"></input>
+                        <input type="text" class="form-control" id="developmentStage" name="developmentStage"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="resourceSize" class="col-sm-2 control-label">Resource Size</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="resourceSize"></input>
+                        <input type="text" class="form-control" id="resourceSize" name="resourceSize"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="acquisitionStrategy" class="col-sm-2 control-label">Acquisition Strategy</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="acquisitionStrategy"></input>
+                        <input type="text" class="form-control" id="acquisitionStrategy" name="acqusitionStrategy"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="dueDilligence" class="col-sm-2 control-label">Due Dilligence</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="dueDilligence"></input>
+                        <input type="text" class="form-control" id="dueDilligence" name="dueDilligence"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="purchaserInfo" class="col-sm-2 control-label">Purchaser Information</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="purchaserInfo"></input>
+                        <input type="text" class="form-control" id="purchaserInfo" name="purchaserInfo"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="price" class="col-sm-2 control-label">Price Bracket</label>
+                    <label for="minPrice" class="col-sm-2 control-label">Price Bracket</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="price"></input>
+                        <input type="text" class="form-control" id="minPrice" name="minPrice"></input>
                         <p>to</p>
-                        <input type="text" class="form-control" id="toprice"></input>
+                        <input type="text" class="form-control" id="maxPrice" name="maxPrice"></input>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="photos" class="col-sm-2 control-label">Photos</label>
-                    <input type="file" id="photos">
+                    <label for="photos" class="col-sm-2 control-label" >Photos</label>
+                    <input type="file" id="photos" name="photos">
                 </div>
 
                 <div class="form-group">
                     <label for="details" class="col-sm-2 control-label">Additional Details</label>
                     <div class="col-sm-4">
-                        <textarea type="text" class="form-control" id="details" rows="5"></textarea>
+                        <textarea type="text" class="form-control" id="details" rows="5" name="details"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default" name="submit" >Submit</button>
                     </div>
                 </div>
             </form>
