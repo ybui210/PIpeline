@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/createListing.php" afterPath="$PROJECT_DIR$/Current-Version/createListing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/home.php" afterPath="$PROJECT_DIR$/Current-Version/home.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,10 +68,27 @@
       <file leaf-file-name="createListing.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
               <folding>
-                <marker date="1509938455096" expanded="true" signature="679:1075" ph="INSERT INTO Listings... " />
+                <marker date="1509942734857" expanded="true" signature="1162:1558" ph="INSERT INTO Listings... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+              <folding>
+                <marker date="1509869115506" expanded="true" signature="400:458" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509869115506" expanded="true" signature="686:744" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509869115506" expanded="true" signature="1972:2148" ph="INSERT INTO Requests... " />
+                <marker date="1509869115506" expanded="true" signature="2274:2340" ph="INSERT INTO RequestToInterests... " />
+                <marker date="1509869115506" expanded="true" signature="2671:2759" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509869115506" expanded="true" signature="3200:3223" ph="SELECT * FRO... Interests" />
               </folding>
             </state>
           </provider>
@@ -95,6 +109,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>mysql_real_escape_string</find>
+      <find>USER</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,12 +224,12 @@
       <workItem from="1509230677811" duration="11030000" />
       <workItem from="1509869261523" duration="12096000" />
       <workItem from="1509928858979" duration="885000" />
-      <workItem from="1509932166076" duration="5510000" />
+      <workItem from="1509932166076" duration="6646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30430000" />
+    <option name="totallyTimeSpent" value="31566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-282" y="-1088" width="1936" height="1056" extended-state="6" />
@@ -316,13 +331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Current-Version/Styles/login.css" />
     <entry file="file://$PROJECT_DIR$/Current-Version/Styles/index.css" />
     <entry file="file://$PROJECT_DIR$/Current-Version/Styles/home.css">
@@ -408,12 +416,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
+    <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
           <folding>
-            <marker date="1509938455096" expanded="true" signature="679:1075" ph="INSERT INTO Listings... " />
+            <marker date="1509869115506" expanded="true" signature="400:458" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509869115506" expanded="true" signature="686:744" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509869115506" expanded="true" signature="1972:2148" ph="INSERT INTO Requests... " />
+            <marker date="1509869115506" expanded="true" signature="2274:2340" ph="INSERT INTO RequestToInterests... " />
+            <marker date="1509869115506" expanded="true" signature="2671:2759" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509869115506" expanded="true" signature="3200:3223" ph="SELECT * FRO... Interests" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <marker date="1509942734857" expanded="true" signature="1162:1558" ph="INSERT INTO Listings... " />
           </folding>
         </state>
       </provider>

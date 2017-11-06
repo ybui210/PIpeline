@@ -1,21 +1,29 @@
 <?php
 
+session_start();
+if(!isset($_SESSION["userEmail"])){
+    /*header("Location: login.php");*/
+    exit;
+}
+$userid = $_SESSION["userEmail"];
+print_r($userid);
+
 include '../configdb.php';
 
 if ( isset( $_POST['submit'] ) ) {
-    $intro =  ($_POST["intro"]);
-    $jurisdiction =  ($_POST["jurisdiction"]);
-    $investmentType =  ($_POST["investmentType"]);
-    $commodities =  ($_POST["commodities"]);
-    $depositType =  ($_POST["depositType"]);
-    $developmentStage =  ($_POST["developmentStage"]);
-    $resourceSize =  ($_POST["resourceSize"]);
-    $acquisitionStrategy =  ($_POST["acqusitionStrategy"]);
-    $dueDilligence =  ($_POST["dueDilligence"]);
-    $purchaserInfo =  ($_POST["purchaserInfo"]);
-    $minPrice =  ($_POST["minPrice"]);
-    $maxPrice =  ($_POST["maxPrice"]);
-    $details =  ($_POST["details"]);
+    $intro =  mysqli_real_escape_string($_POST["intro"]);
+    $jurisdiction =  mysqli_real_escape_string($_POST["jurisdiction"]);
+    $investmentType =  mysqli_real_escape_string ($_POST["investmentType"]);
+    $commodities =  mysqli_real_escape_string($_POST["commodities"]);
+    $depositType =  mysqli_real_escape_string($_POST["depositType"]);
+    $developmentStage = mysqli_real_escape_string ($_POST["developmentStage"]);
+    $resourceSize =  mysqli_real_escape_string($_POST["resourceSize"]);
+    $acquisitionStrategy =  mysqli_real_escape_string($_POST["acqusitionStrategy"]);
+    $dueDilligence =  mysqli_real_escape_string($_POST["dueDilligence"]);
+    $purchaserInfo =  mysqli_real_escape_string($_POST["purchaserInfo"]);
+    $minPrice =  mysqli_real_escape_string($_POST["minPrice"]);
+    $maxPrice =  mysqli_real_escape_string($_POST["maxPrice"]);
+    $details =  mysqli_real_escape_string($_POST["details"]);
 
     $sql = "INSERT INTO Listings (introduction, jurisdiction, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
 priceBracketMax, additionalDetails)
