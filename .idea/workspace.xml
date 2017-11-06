@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/e968e49e-d31b-4606-9e55-35877ee81555.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/createListing.php" afterPath="$PROJECT_DIR$/Current-Version/createListing.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Current-Version/login.php" afterPath="$PROJECT_DIR$/Current-Version/login.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +41,19 @@
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
         <item name="Pipeline_V2_Database@pipeline-v2-database.c5klbzwvfdnx.us-west-2.rds.amazonaws.com" type="e3449647:DbNodeDescriptor" />
         <item name="Pipeline_V2_Database" type="e3449647:DbNodeDescriptor" />
+        <item name="ListingImages" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="Pipeline_V2_Database@pipeline-v2-database.c5klbzwvfdnx.us-west-2.rds.amazonaws.com" type="e3449647:DbNodeDescriptor" />
+        <item name="Pipeline_V2_Database" type="e3449647:DbNodeDescriptor" />
         <item name="Listings" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="Pipeline_V2_Database@pipeline-v2-database.c5klbzwvfdnx.us-west-2.rds.amazonaws.com" type="e3449647:DbNodeDescriptor" />
+        <item name="Pipeline_V2_Database" type="e3449647:DbNodeDescriptor" />
+        <item name="ListingToCommodities" type="e3449647:DbNodeDescriptor" />
       </path>
     </expand>
     <select />
@@ -68,11 +82,31 @@
       <file leaf-file-name="createListing.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+            <state relative-caret-position="442">
+              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
               <folding>
-                <marker date="1509942734857" expanded="true" signature="1162:1558" ph="INSERT INTO Listings... " />
+                <marker date="1509946120634" expanded="true" signature="1556:2018" ph="INSERT INTO Listings... " />
+                <marker date="1509946120634" expanded="true" signature="2257:2281" ph="..." />
+                <marker date="1509946120634" expanded="true" signature="2264:2281" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TempUsers" pinned="false" current-in-tab="false">
+        <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.TempUsers">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Users" pinned="false" current-in-tab="false">
+        <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.Users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -80,26 +114,16 @@
       <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+            <state relative-caret-position="119">
+              <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="49" />
               <folding>
-                <marker date="1509869115506" expanded="true" signature="400:458" ph="SELECT * FRO... TempUsers" />
-                <marker date="1509869115506" expanded="true" signature="686:744" ph="SELECT * FRO... TempUsers" />
-                <marker date="1509869115506" expanded="true" signature="1972:2148" ph="INSERT INTO Requests... " />
-                <marker date="1509869115506" expanded="true" signature="2274:2340" ph="INSERT INTO RequestToInterests... " />
-                <marker date="1509869115506" expanded="true" signature="2671:2759" ph="SELECT * FRO... TempUsers" />
-                <marker date="1509869115506" expanded="true" signature="3200:3223" ph="SELECT * FRO... Interests" />
+                <marker date="1509942839270" expanded="true" signature="389:447" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509942839270" expanded="true" signature="675:733" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509942839270" expanded="true" signature="1961:2137" ph="INSERT INTO Requests... " />
+                <marker date="1509942839270" expanded="true" signature="2263:2329" ph="INSERT INTO RequestToInterests... " />
+                <marker date="1509942839270" expanded="true" signature="2660:2748" ph="SELECT * FRO... TempUsers" />
+                <marker date="1509942839270" expanded="true" signature="3189:3212" ph="SELECT * FRO... Interests" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Listings" pinned="false" current-in-tab="false">
-        <entry file="das://src:table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.Listings">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -110,7 +134,11 @@
     <findStrings>
       <find>mysql_real_escape_string</find>
       <find>USER</find>
+      <find>mysqli_real_escape_string($_POST</find>
     </findStrings>
+    <replaceStrings>
+      <replace>mysqli_real_escape_string($link,$_POST</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -118,11 +146,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Current-Version/login.php" />
         <option value="$PROJECT_DIR$/Current-Version/Styles/home.css" />
         <option value="$PROJECT_DIR$/Current-Version/index.php" />
         <option value="$PROJECT_DIR$/Current-Version/home.php" />
         <option value="src:table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.Listings" />
+        <option value="$PROJECT_DIR$/Current-Version/login.php" />
         <option value="$PROJECT_DIR$/Current-Version/createListing.php" />
       </list>
     </option>
@@ -224,16 +252,15 @@
       <workItem from="1509230677811" duration="11030000" />
       <workItem from="1509869261523" duration="12096000" />
       <workItem from="1509928858979" duration="885000" />
-      <workItem from="1509932166076" duration="6646000" />
+      <workItem from="1509932166076" duration="10305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31566000" />
+    <option name="totallyTimeSpent" value="35225000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-282" y="-1088" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123958334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -361,13 +388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.TempUsers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Current-Version/home.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -401,6 +421,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <marker date="1509942839270" expanded="true" signature="389:447" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509942839270" expanded="true" signature="675:733" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509942839270" expanded="true" signature="1961:2137" ph="INSERT INTO Requests... " />
+            <marker date="1509942839270" expanded="true" signature="2263:2329" ph="INSERT INTO RequestToInterests... " />
+            <marker date="1509942839270" expanded="true" signature="2660:2748" ph="SELECT * FRO... TempUsers" />
+            <marker date="1509942839270" expanded="true" signature="3189:3212" ph="SELECT * FRO... Interests" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.TempUsers">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/86266b33/e968e49e-d31b-4606-9e55-35877ee81555/Pipeline_V2_Database.ListingToCommodities">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/configdb.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -416,27 +472,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Current-Version/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-          <folding>
-            <marker date="1509869115506" expanded="true" signature="400:458" ph="SELECT * FRO... TempUsers" />
-            <marker date="1509869115506" expanded="true" signature="686:744" ph="SELECT * FRO... TempUsers" />
-            <marker date="1509869115506" expanded="true" signature="1972:2148" ph="INSERT INTO Requests... " />
-            <marker date="1509869115506" expanded="true" signature="2274:2340" ph="INSERT INTO RequestToInterests... " />
-            <marker date="1509869115506" expanded="true" signature="2671:2759" ph="SELECT * FRO... TempUsers" />
-            <marker date="1509869115506" expanded="true" signature="3200:3223" ph="SELECT * FRO... Interests" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        <state relative-caret-position="442">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
           <folding>
-            <marker date="1509942734857" expanded="true" signature="1162:1558" ph="INSERT INTO Listings... " />
+            <marker date="1509946120634" expanded="true" signature="1556:2018" ph="INSERT INTO Listings... " />
+            <marker date="1509946120634" expanded="true" signature="2257:2281" ph="..." />
+            <marker date="1509946120634" expanded="true" signature="2264:2281" ph="..." />
           </folding>
         </state>
       </provider>

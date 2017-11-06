@@ -1,5 +1,5 @@
 <?php
-    require_once("../../include/configdb.php");
+    require_once("../configdb.php");
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;

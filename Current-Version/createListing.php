@@ -2,37 +2,59 @@
 
 session_start();
 if(!isset($_SESSION["userEmail"])){
-    /*header("Location: login.php");*/
+    header("Location: login.php");
     exit;
 }
+
 $userid = $_SESSION["userEmail"];
-print_r($userid);
+
 
 include '../configdb.php';
 
-if ( isset( $_POST['submit'] ) ) {
-    $intro =  mysqli_real_escape_string($_POST["intro"]);
-    $jurisdiction =  mysqli_real_escape_string($_POST["jurisdiction"]);
-    $investmentType =  mysqli_real_escape_string ($_POST["investmentType"]);
-    $commodities =  mysqli_real_escape_string($_POST["commodities"]);
-    $depositType =  mysqli_real_escape_string($_POST["depositType"]);
-    $developmentStage = mysqli_real_escape_string ($_POST["developmentStage"]);
-    $resourceSize =  mysqli_real_escape_string($_POST["resourceSize"]);
-    $acquisitionStrategy =  mysqli_real_escape_string($_POST["acqusitionStrategy"]);
-    $dueDilligence =  mysqli_real_escape_string($_POST["dueDilligence"]);
-    $purchaserInfo =  mysqli_real_escape_string($_POST["purchaserInfo"]);
-    $minPrice =  mysqli_real_escape_string($_POST["minPrice"]);
-    $maxPrice =  mysqli_real_escape_string($_POST["maxPrice"]);
-    $details =  mysqli_real_escape_string($_POST["details"]);
+$valueError = 0;
+$intro =  "";
+$jurisdiction =   "";
+$investmentType =   "";
+$commodities =   "";
+$depositType =   "";
+$developmentStage = "";
+$resourceSize =   "";
+$acquisitionStrategy =   "";
+$dueDilligence =  "";
+$purchaserInfo =   "";
+$minPrice =   "";
+$maxPrice =   "";
+$details =   "";
 
-    $sql = "INSERT INTO Listings (introduction, jurisdiction, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
-priceBracketMax, additionalDetails)
-    VALUES ('$intro', '$jurisdiction', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details')";
-    if ($link->query($sql) === TRUE) {
-        echo "New record created successfully";
+
+if ( isset( $_POST['submit'] ) ) {
+    $intro =  mysqli_real_escape_string($link, $_POST["intro"]);
+    $jurisdiction =  mysqli_real_escape_string($link,$_POST["jurisdiction"]);
+    $investmentType =  mysqli_real_escape_string($link,$_POST["investmentType"]);
+    $commodities =  mysqli_real_escape_string($link,$_POST["commodities"]);
+    $depositType =  mysqli_real_escape_string($link,$_POST["depositType"]);
+    $developmentStage = mysqli_real_escape_string($link, $_POST["developmentStage"]);
+    $resourceSize =  mysqli_real_escape_string($link,$_POST["resourceSize"]);
+    $acquisitionStrategy =  mysqli_real_escape_string($link,$_POST["acqusitionStrategy"]);
+    $dueDilligence =  mysqli_real_escape_string($link,$_POST["dueDilligence"]);
+    $purchaserInfo =  mysqli_real_escape_string($link,$_POST["purchaserInfo"]);
+    $minPrice =  mysqli_real_escape_string($link,$_POST["minPrice"]);
+    $maxPrice =  mysqli_real_escape_string($link,$_POST["maxPrice"]);
+    $details =  mysqli_real_escape_string($link,$_POST["details"]);
+
+    if($minPrice>=0 && $maxPrice>=0){
+        $sql = "INSERT INTO Listings (introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
+        priceBracketMax, additionalDetails, email)
+        VALUES ('$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid' )";
+        if ($link->query($sql) === TRUE) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $link->error;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $link->error;
+        $valueError=1;
+        echo "valueError is set";
     }
+
 }
 
 
@@ -163,7 +185,7 @@ priceBracketMax, additionalDetails)
                 <div class="form-group">
                     <label for="intro" class="col-sm-2 control-label">Listing Introduction</label>
                     <div class="col-sm-4">
-                        <textarea type="text" class="form-control" id="intro" rows="5" name="intro"></textarea>
+                        <textarea type="text" class="form-control" id="intro" rows="5" name="intro"><?php echo $intro ?></textarea>
                     </div>
                 </div>
 
@@ -226,7 +248,7 @@ priceBracketMax, additionalDetails)
                 <div class="form-group">
                     <label for="acquisitionStrategy" class="col-sm-2 control-label">Acquisition Strategy</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="acquisitionStrategy" name="acqusitionStrategy"></input>
+                        <input type="text" class="form-control" id="acquisitionStrategy" name="acqusitionStrategy" value=""></input>
                     </div>
                 </div>
 
@@ -247,10 +269,16 @@ priceBracketMax, additionalDetails)
                 <div class="form-group">
                     <label for="minPrice" class="col-sm-2 control-label">Price Bracket</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="minPrice" name="minPrice"></input>
+                        <input type="number" class="form-control" id="minPrice" name="minPrice"></input>
                         <p>to</p>
-                        <input type="text" class="form-control" id="maxPrice" name="maxPrice"></input>
+                        <input type="number" class="form-control" id="maxPrice" name="maxPrice"></input>
+                        <?php
+                        if($valueError == 1){
+                            echo "Value must be a positive integer.";
+                        }
+                        ?>
                     </div>
+
                 </div>
 
                 <div class="form-group">
