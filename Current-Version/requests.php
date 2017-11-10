@@ -21,6 +21,8 @@
     <head>
 
         <link href="Styles/home.css" rel="stylesheet" />
+        <link href="Styles/All/requests.css" rel="stylesheet" />
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -30,34 +32,7 @@
     </head>
 
     <body>
-      <!--Import jQuery before materialize.js-->
-
-    
-<!--
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo right">Logo</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="">Profile</a></li>
-                    <li><a href="">Dashboard</a></li>
-                    <li><a href="">My Listings</a></li>
-                    <li><a href="">Saved Listings</a></li>
-                    <li><a href="">Drafts</a></li>
-                </ul>
-            </div>
-        </nav>
--->
-        
-        <!--<div class="w3-sidebar w3-bar-block" style="width:25%"> 
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-        </div>
-
-        <div style="margin-left:25%">
-            ... page content ...
-        </div>-->
-        <div class="container-fluid" >
+        <div class="container-fluid">
           <div class="row">
               <nav class="navbar navbar-default">
                   <div class="container-fluid">
@@ -96,34 +71,13 @@
                       </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
               </nav>
-              <!--
-              <nav class="navbar navbar-inverse topNavBarDiv">
-                  <div class="container-fluid">
-                      <div class="navbar-header">
-                          <a class="navbar-brand" href="#">Pipeline</a>
-                      </div>
-                      <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Browse Listings</a></li>
-                          <li><a href="#">Active Listings</a></li>
-                          <li><a href="createListing.php">Create Listing</a></li>
-                          <li><a href="#">News</a></li>
-                      </ul>
-                      <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                          <button type="submit" class="btn btn-default">Submit</button>
-                      </form>
-                  </div>
-              </nav>-->
-
           </div>
 
           <div class="row">
             <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
 
                 <nav class="nav nav-pills nav-stacked leftNavbar">
-                  <li class="active"><a href="home.php">Account</a></li>
+                  <li><a href="home.php">Account</a></li>
                   <li><a href="">Password</a></li>
                   <li><a href="">Profile</a></li>
                   <li><a href="">Notifications</a></li>
@@ -143,9 +97,9 @@
                             $result = $link->query($sql);
                             $row = $result->fetch_array(MYSQLI_ASSOC);
                             if ($row["COUNT(*)"] == 0) {
-                                echo "<li><a href=\"requests.php\">Requests</a></li>";
+                                echo "<li class=\"active\"><a href=\"requests.php\">Requests</a></li>";
                             } else {
-                                echo "<li><a href=\"requests.php\"><b>Requests " . $row["COUNT(*)"] . "</b></a></li>";
+                                echo "<li class=\"active\"><a href=\"requests.php\"><b>Requests " . $row["COUNT(*)"] . "</b></a></li>";
                             }
                         }
                     ?>
@@ -159,6 +113,84 @@
             </div>
           </div>
         </div>
+        <table id="table">
+            <tr>
+                <th class="nameColumn">Name</th>
+                <th class="typeColumn">Type of User</th>
+                <th class="whenColumn">When</th>
+            </tr>
+            <?php
+                function getMonth($monthNumber) {
+                    if ($monthNumber == 0) {
+                        return "Jan.";
+                    } else if ($monthNumber == 1) {
+                        return "Feb.";
+                    } else if ($monthNumber == 2) {
+                        return "Mar.";
+                    } else if ($monthNumber == 3) {
+                        return "Apr.";
+                    } else if ($monthNumber == 4) {
+                        return "May";
+                    } else if ($monthNumber == 5) {
+                        return "June";
+                    } else if ($monthNumber == 6) {
+                        return "July";
+                    } else if ($monthNumber == 7) {
+                        return "Aug.";
+                    } else if ($monthNumber == 8) {
+                        return "Sept.";
+                    } else if ($monthNumber == 9) {
+                        return "Oct.";
+                    } else if ($monthNumber == 10) {
+                        return "Nov.";
+                    } else {
+                        return "Dec.";
+                    }
+                }
+                $sql = "SELECT * FROM Requests";
+                $result = $link->query($sql);
+                $numberOfRequests = $result->num_rows;
+                for ($i = 0; $i < $numberOfRequests; $i++) {
+                    $row = $result->fetch_array(MYSQLI_ASSOC);
+                    echo "<tr>";
+                    echo "<td>" . $row["firstName"] . " ";
+                    if ($row["middleName"] != "") {
+                        echo $row["middleName"] . " ";
+                    }
+                    echo $row["lastName"] . "</td>";
+                    echo "<td>" . $row["typeOfUser"] . "</td>";
+                    $whenSent = strtotime($row["whenSent"]);
+                    $time = gmdate('Y', $whenSent) . "-" . gmdate('m', $whenSent) . "-" . gmdate('d', $whenSent) . " " . gmdate('h', $whenSent) . ":" . gmdate('i', $whenSent) . ":" . gmdate('s', $whenSent);
+                    $datetime1 = new DateTime($time);
+                    $currentDateAndTime = new DateTime(gmdate());
+                    $interval = $datetime1->diff($currentDateAndTime);
+                    echo $datetime1->format('h : i : s') . "<br>";
+                    echo $currentDateAndTime->format('h : i : s') . "<br>";
+                    if ($interval->format('Y') != 0) {
+                        echo "<td>" . $datetime1->format('M d Y') . "</td>";
+                    } else {
+                        if ($interval->format('%m') != 0) {
+                            echo "<td>" . $interval->format('%m months ago') . "</td>";
+                        } else {
+                            if ($interval->format('%a') > 0) {
+                                echo "<td>" . $interval->format('%a days ago') . "</td>";
+                            } else {
+                                if ($interval->format('%h') > 0) {
+                                    echo "<td>" . $interval->format('%h hours ago') . "</td>";
+                                } else {
+                                    if ($interval->format('%i') > 0) {
+                                        echo "<td>" . $interval->format('%i minutes ago') . "</td>";
+                                    } else {
+                                        echo "<td>" . $interval->format('%s seconds ago') . "</td>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    echo "</tr>";
+                }
+            ?>
+        </table>
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

@@ -1,0 +1,23 @@
+#table {
+    float: left;
+    width: 100%;
+}
+th {
+}
+tr {
+    line-height: 40px;
+    border-bottom: 1px solid #AAA;
+}
+tr:hover:not(:first-child) {
+    background-color: #EEE;
+    cursor: pointer;
+}
+.nameColumn {
+    width: 25%;
+}
+.typeColumn {
+    width: 50%;
+}
+.whenColumn {
+    width: 25%;
+}

@@ -1,7 +1,7 @@
 <?php
 
-    /*require_once("../configdb.php");*/
-    require_once("../../include/configdb.php");
+    require_once("../configdb.php");
+    /*require_once("../../include/configdb.php");*/
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;
@@ -12,7 +12,7 @@
     $interests = array();
     if (isset($_POST["submitForgotPassword"])) {
         $emailAddress = mysqli_real_escape_string($link, $_POST["email"]);
-        $sql = "SELECT * FROM TempUsers WHERE BINARY email='$emailAddress'";
+        $sql = "SELECT * FROM Users WHERE BINARY email='$emailAddress'";
         $result = $link->query($sql);
         if ($result->num_rows == 0) {
             $emailDoesNotExist = true;
@@ -123,7 +123,7 @@
     } else if (isset($_POST["submitLogin"])) {
         $loginEmail = mysqli_real_escape_string ($link, $_POST["email"]);
         $password = mysqli_real_escape_string ($link, $_POST["password"]);
-        $sql = "SELECT * FROM TempUsers WHERE BINARY email='$loginEmail' AND BINARY password='$password'";
+        $sql = "SELECT * FROM Users WHERE BINARY email='$loginEmail' AND BINARY password='$password'";
         $result = $link->query($sql);
         if ($result->num_rows == 0) {
                 $incorrectLoginInfo = true;
