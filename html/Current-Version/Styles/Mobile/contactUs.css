@@ -19,9 +19,10 @@ input, textarea {
     cursor: pointer;
     width: 100vw;
     height: 10vh;
-    font-size: 1em;
+    font-size: 3vh;
 }
   
 textarea {
     height: 20vh;
+    font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
 }
