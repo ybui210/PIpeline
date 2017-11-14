@@ -1,6 +1,5 @@
 <?php 
-    require_once("../../include/configdb.php");
-    /*require_once("../configdb.php");*/
+   require_once("../../include/configdb.php");
 ?>
 <!DOCTYPE html>
 
@@ -27,11 +26,11 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Browse Listings</a></li>
-                    <li><a href="latestListings.php">Active Listings</a></li>
+                    <li><a href="#">Active Listings</a></li>
                     <li><a href="createListing.php">Create Listing</a></li>
                     <li><a href="#">News</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" method="post" action="searchListings.php">
+                 <form class="navbar-form navbar-left" method="post" action="searchListings.php">
                     <div class="form-group">
                         <input name="searchkey" type="text" class="form-control" placeholder="Search">
                     </div>
@@ -45,8 +44,8 @@
         <div class="col-sm-3 col-lg-2 navBarDiv">
             <nav class="nav nav-pills nav-stacked leftNavbar">
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li class="active"><a href="myListings.php">My Listings</a></li>
+                <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="myListings.php">My Listings</a></li>
                 <li><a href="savedListings.php">Saved Listings</a></li>
                 <li><a href="">Drafts</a></li>
             </nav>
@@ -54,9 +53,9 @@
         
         <!************************************/>
         <div class="col-sm-6 col-lg-10">
-            <h1>My Listings</h1>
+            <h1>Latest Listings</h1>
             <?php
-            $sql = "SELECT listingId, name, introduction FROM Listings;";
+            $sql = "SELECT listingId, name, introduction FROM Listings";
             $result = $link->query($sql);
             //for ($i=0; $i<5; $i++){
             while ($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -69,34 +68,22 @@
                     <div class="w3-card-4" margin="10">
 
                         <header class="w3-container w3-light-grey">
-                            <h4>NAME<?php echo $name;?></h4>
+                          <h4>NAME<?php echo $name;?></h4>
                         </header>
 
-                        <div class="w3-container">
-                            <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
-                            <p><?php echo $intro; ?>
-                            </p>
-                            <div>
-                                <form method="post" action="removeEditListing.php">
-                                    <button type="submit" name="Remove" value="<?php echo $id;?>" class="w3-right w3-button w3-red">Remove</button>
-                                    <button type="submit" name="Edit" value="<?php echo $id;?>" class="w3-right w3-button w3-green">Edit</button>
-                            
-                                </form>
-                            </div>
+                        <div class="w3-container" style="height:70px">
+                          <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
+                          <p><?php echo $intro; ?></p>
                         </div>
-                                                        
-                        </div>
-                        
-                </div>
+                    </div>
 
-                
+                </div>
             <?php
             }}
             ?>
-            </div>
         </div>
     </div>
-
+</div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>

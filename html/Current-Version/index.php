@@ -1,5 +1,4 @@
 <?php
-    /*require_once("../configdb.php");*/
     require_once("../../include/configdb.php");
     function sendMessage($n, $e, $s, $m, $l) {
         $sql = "INSERT INTO Messages(name, email, subject, message) VALUES ('$n', '$e', '$s', '$m')";

@@ -1,6 +1,6 @@
 <?php
 
-include '../configdb.php';
+require_once("../../include/configdb.php");
 
 
 
@@ -112,8 +112,34 @@ include '../configdb.php';
         </div>
         <div class="col-sm-9 col-lg-10">
             <div class="">
+                <h1>Listings pending Review</h1>
+                <?php
+                $sql = "SELECT * FROM Listings WHERE status = 'reviewed'";
+                $result = $link->query($sql);
+
+                while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                    $id = $row["listingID"];
+                    $name = $row["name"];
+                    $intro = $row["introduction"];
+                    ?>
+                    <div class="row">
+                        <a href="adminReviewPage.php?name=<?php echo $name ?>">
+                            <div class="w3-card-4" margin="10">
+                                <header class="w3-container w3-light-grey">
+                                    <h4><?php echo $name; ?></h4>
+                                </header>
+                                <div class="w3-container" style="height:70px">
+                                    <p><?php echo $intro; ?></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                }
 
 
+
+                ?>
 
             </div>
             <!-- your page content -->

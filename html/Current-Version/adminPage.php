@@ -1,13 +1,14 @@
 <?php
 
-/*include '../configdb.php';*/
 require_once("../../include/configdb.php");
 
-?>
 
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
+
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -64,15 +65,8 @@ require_once("../../include/configdb.php");
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li ><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Active Listing</a></li>
                         <li class="active"><a href="createListing.php">Create Listing</a></li>
                         <li><a href="#">News</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Profile</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Notifications</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">System History</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Social Connections</a></li>
 
                     </ul>
                     <form class="navbar-form navbar-left">
@@ -111,17 +105,14 @@ require_once("../../include/configdb.php");
         <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
 
             <nav class="nav nav-pills nav-stacked leftNavbar">
-                <li><a href="">Account</a></li>
-                <li ><a href="">Password</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="">Notifications</a></li>
-                <li><a href="">System History</a></li>
-                <li><a href="">Social Connections</a></li>
+                <li><a href="">Users</a></li>
+                <li ><a href="">All Listings</a></li>
+                <li><a href="">Listings pending Review</a></li>
             </nav>
         </div>
         <div class="col-sm-9 col-lg-10">
             <div class="">
-                <p>Thank you for your submission. You will be notified once the listing is approved and posted.</p>
+
 
 
             </div>

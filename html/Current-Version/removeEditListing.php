@@ -1,5 +1,5 @@
 <?php
-require_once("../configdb.php");
+require_once("../../include/configdb.php");
     if (isset($_POST["Remove"]))
     {
         $id = $_POST["Remove"];

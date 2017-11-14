@@ -9,7 +9,7 @@ if(!isset($_SESSION["userEmail"])){
 $userid = $_SESSION["userEmail"];
 
 
-include '../configdb.php';
+require_once("../../include/configdb.php");
 
 $valueError = 0;
 $nameListing = "";

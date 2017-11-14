@@ -1,6 +1,6 @@
 <?php 
-    /*require_once("../../include/configdb.php");*/
-    require_once("../configdb.php");
+    require_once("../../include/configdb.php");
+    $keyword = $_POST["searchkey"];
 ?>
 <!DOCTYPE html>
 
@@ -31,7 +31,7 @@
                     <li><a href="createListing.php">Create Listing</a></li>
                     <li><a href="#">News</a></li>
                 </ul>
-                 <form class="navbar-form navbar-left" method="post" action="searchListings.php">
+                <form class="navbar-form navbar-left" method="post" action="searchListings.php">
                     <div class="form-group">
                         <input name="searchkey" type="text" class="form-control" placeholder="Search">
                     </div>
@@ -54,33 +54,35 @@
         
         <!************************************/>
         <div class="col-sm-6 col-lg-10">
-            <h1>Latest Listings</h1>
+            <h1>Search result for "<?php echo $keyword;?>"</h1>
             <?php
-            $sql = "SELECT listingId, name, introduction FROM Listings";
+            
+            $sql = "SELECT * FROM Listings";
             $result = $link->query($sql);
-            //for ($i=0; $i<5; $i++){
+            
+            //go through each listings
             while ($row = $result->fetch_array(MYSQLI_ASSOC)){
-                $id = $row["listingId"];
-                $name = $row["name"];
-                $intro = $row["introduction"];
-                if ($intro != null){
-                ?>
-                <div class="row">
-                    <div class="w3-card-4" margin="10">
+                //go through each column in a listing
+                foreach($row as $key => $value) {
+                    if (strpos(strtolower($value), strtolower($keyword))!== false){
+                    ?>
+                    <div class="row">
+                        <div class="w3-card-4" margin="10">
 
-                        <header class="w3-container w3-light-grey">
-                          <h4>NAME<?php echo $name;?></h4>
-                        </header>
+                            <header class="w3-container w3-light-grey">
+                              <h4>NAME<?php echo $row["name"];?></h4>
+                            </header>
 
-                        <div class="w3-container" style="height:70px">
-                          <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
-                          <p><?php echo $intro; ?></p>
+                            <div class="w3-container" style="height:70px">
+                              <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
+                              <p><?php echo $row["introduction"]; ?></p>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-            <?php
-            }}
+                    </div>
+                <?php
+            break;}}}
+            
             ?>
         </div>
     </div>

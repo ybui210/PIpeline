@@ -1,5 +1,4 @@
 <?php
-    /*include '../configdb.php';*/
     require_once("../../include/configdb.php");
     $admin = false;
     session_start();
