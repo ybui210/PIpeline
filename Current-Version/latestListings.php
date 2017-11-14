@@ -3,9 +3,11 @@
     require_once("../configdb.php");
 ?>
 <!DOCTYPE html>
-<html>
-<head>
 
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,34 +17,7 @@
 </head>
 
 <body>
-   
-<!--Import jQuery before materialize.js-->
 
-
-<!--
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo right">Logo</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="">Profile</a></li>
-                    <li><a href="">Dashboard</a></li>
-                    <li><a href="">My Listings</a></li>
-                    <li><a href="">Saved Listings</a></li>
-                    <li><a href="">Drafts</a></li>
-                </ul>
-            </div>
-        </nav>
--->
-
-<!--<div class="w3-sidebar w3-bar-block" style="width:25%">
-    <a href="#" class="w3-bar-item w3-button">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
-
-<div style="margin-left:25%">
-    ... page content ...
-</div>-->
 <div class="container-fluid" >
     <div class="row">
         <nav class="navbar navbar-inverse topNavBarDiv">
@@ -56,9 +31,9 @@
                     <li><a href="createListing.php">Create Listing</a></li>
                     <li><a href="#">News</a></li>
                 </ul>
-                <form class="navbar-form navbar-left">
+                 <form class="navbar-form navbar-left" method="post" action="searchListings.php">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input name="searchkey" type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -76,10 +51,37 @@
                 <li><a href="">Drafts</a></li>
             </nav>
         </div>
+        
+        <!************************************/>
         <div class="col-sm-6 col-lg-10">
             <h1>Latest Listings</h1>
-            
+            <?php
+            $sql = "SELECT listingId, name, introduction FROM Listings";
+            $result = $link->query($sql);
+            //for ($i=0; $i<5; $i++){
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $id = $row["listingId"];
+                $name = $row["name"];
+                $intro = $row["introduction"];
+                if ($intro != null){
+                ?>
+                <div class="row">
+                    <div class="w3-card-4" margin="10">
 
+                        <header class="w3-container w3-light-grey">
+                          <h4>NAME<?php echo $name;?></h4>
+                        </header>
+
+                        <div class="w3-container" style="height:70px">
+                          <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
+                          <p><?php echo $intro; ?></p>
+                        </div>
+                    </div>
+
+                </div>
+            <?php
+            }}
+            ?>
         </div>
     </div>
 </div>
