@@ -1,7 +1,7 @@
 <?php
 
-    require_once("../configdb.php");
-    /*require_once("../../include/configdb.php");*/
+    /*require_once("../configdb.php");*/
+    require_once("../../include/configdb.php");
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;
@@ -149,7 +149,7 @@
 <html>
     <header>
         <title>Login</title> <!-- Decided by Davin, open to change -->
-        <link rel="stylesheet" type="text/css" href="Styles/All/login.css">
+        <link rel="stylesheet" type="text/css" href="Styles/login.css">
         
         <?php
             include 'favicon.php';
@@ -165,6 +165,12 @@
             } else if ($passwordSent) {
                 include 'messages.php';
                 echo displayPasswordSentMessage();
+            }
+        
+            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
+            $detect = new Mobile_Detect;
+            if ($detect->isMobile()) {
+                echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/Mobile/login.css\">";
             }
         ?>
     </header>

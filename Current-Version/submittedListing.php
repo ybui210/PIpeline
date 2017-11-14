@@ -1,6 +1,7 @@
 <?php
 
-include '../configdb.php';
+/*include '../configdb.php';*/
+require_once("../../include/configdb.php");
 
 ?>
 

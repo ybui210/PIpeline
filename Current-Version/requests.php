@@ -1,5 +1,6 @@
 <?php
-    include '../configdb.php';
+    /*include '../configdb.php';*/
+    require_once("../../include/configdb.php");
     $admin = false;
     session_start();
     if (isset($_SESSION["userEmail"])) {
@@ -164,8 +165,6 @@
                     $datetime1 = new DateTime($time);
                     $currentDateAndTime = new DateTime(gmdate());
                     $interval = $datetime1->diff($currentDateAndTime);
-                    echo $datetime1->format('h : i : s') . "<br>";
-                    echo $currentDateAndTime->format('h : i : s') . "<br>";
                     if ($interval->format('Y') != 0) {
                         echo "<td>" . $datetime1->format('M d Y') . "</td>";
                     } else {

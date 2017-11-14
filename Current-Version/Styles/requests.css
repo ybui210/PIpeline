@@ -1,0 +1,17 @@
+.unread {
+    font-weight: 600;
+}
+.read {
+    background-color: #EFEFEF;
+}
+tr:hover:not(:first-child) {
+    cursor: pointer;
+}
+tr {
+    border-bottom: 1px solid black;
+    line-height: 3vh;
+}
+#table {
+    margin: 0;
+    width: 100%;
+}

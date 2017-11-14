@@ -10,16 +10,13 @@ html, body {
     position: fixed;
     z-index: 1;
 }
-#loginSection {
-    width: auto;
-    width: 100px;
-}
 #loginButton {
     margin: 0;
     padding: 0;
 }
 
 #options a {
+    font-size: 2.5em;
     margin-bottom: 2vh;
 }
 
@@ -34,18 +31,20 @@ html, body {
 }
 
 #loginButton {
-    width: 100px; /* Sets the width and automatically the height */
-    margin-bottom: -20px; /* Makes the button align with the options */
-    margin-left: 10vw; /* Puts some distance between the button and the left side of the window */
+    width: 40vw; /* Sets the width and automatically the height */
+    margin-bottom: -4vh; /* Makes the button align with the options */
+    margin-left: 5vw; /* Puts some distance between the button and the left side of the window */
 }
 
 #options {
     margin-right: 7vw;/* Puts some distance between the options and the right side of the window */
+    font-size: 2.5vh;
 }
 
 #options a {
     float: right; /* Makes the options go to the right */
     margin-right: 4vw; /* Puts some distance between the each of the options */
+    font-size: 1em;
 }
 
 #topSection {
@@ -81,22 +80,15 @@ html, body {
 
 #contactSection {
     background-color:#FFFFFF;
-    padding: 10px;
 }
 
 #submitMessageButton {
     background-color: #468cc7;
     color: white;
-    width: 100px;
-    height: 33px;
+    width: 100%;
+    height: 100px;
     border-radius: 5px;
     float: right;
-}
-
-#submitMessageButton:hover {
-    cursor: pointer;
-    background-color: #EEE;
-    transition: 0.3s;
 }
 
 .demo a {
@@ -106,9 +98,6 @@ html, body {
   transform: translate(0, -50%);
   color: #fff;
   transition: opacity .3s;
-}
-.demo a:hover {
-  opacity: .5;
 }
 
 #downButtonSection a {
@@ -142,7 +131,7 @@ html, body {
 }
 h1 {
     font-weight: 400;
-    font-size: 10vh;
+    font-size: 8vh;
     margin-bottom: 0;
     line-height: auto;
 }
@@ -155,17 +144,13 @@ h2 {
 
 h3 {
     text-align: center;
+    font-size: 4vh;
 }
 
 h4 {
     color: #000;
     font-weight: 400;
-}
-
-p {
-    width: 90%;
-    position: relative;
-    margin: 0 auto;
+    font-size: 2vh;
 }
 
 /* All links will have the same font colour as the other text in its div */
