@@ -1,43 +1,16 @@
 <?php
-
-include '../configdb.php';
 /**
  * Created by PhpStorm.
  * User: Andra
  * Date: 2017-11-13
- * Time: 11:43 AM
+ * Time: 9:02 PM
  */
-
-$id = mysqli_real_escape_string($link, $_GET["id"]);
-
-$sql = "SELECT * FROM Listings WHERE listingID = $id";
-$result = $link->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    $row = $result->fetch_assoc();
-}
-
-if ( isset( $_POST['submit'] ) ) {
-
-    $listingId = mysqli_real_escape_string($link, $_POST["listingId"]);
-    $sql = "UPDATE Listings SET status='reviewed' WHERE listingID= '$listingId' ";
-
-    if ($link->query($sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error updating record: " . $link->error;
-    }
-
-    header("Location: submittedListing.php");
-}
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -95,7 +68,7 @@ if ( isset( $_POST['submit'] ) ) {
                     <ul class="nav navbar-nav">
                         <li ><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Active Listing</a></li>
-                        <li class="active"><a href="createListing.php">Create Listing</a></li>
+                        <li><a href="createListing.php">Create Listing</a></li>
                         <li><a href="#">News</a></li>
                         <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
                         <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
@@ -141,63 +114,19 @@ if ( isset( $_POST['submit'] ) ) {
         <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
 
             <nav class="nav nav-pills nav-stacked leftNavbar">
-                <li><a href="">Account</a></li>
-                <li ><a href="">Password</a></li>
+                <li class="active"><a href="home.php">Account</a></li>
+                <li><a href="">Password</a></li>
                 <li><a href="">Profile</a></li>
                 <li><a href="">Notifications</a></li>
                 <li><a href="">System History</a></li>
                 <li><a href="">Social Connections</a></li>
+                <?php
+
+                ?>
             </nav>
         </div>
         <div class="col-sm-9 col-lg-10">
-            <div class="">
-                <h1>Review Your Listing</h1>
-                <dl class="dl-horizontal">
-                    <dt>Name</dt>
-                    <dd><?php echo $row["name"]?></dd>
-                    <div>
-                        <dt>Listing Introduction</dt>
-                        <dd><?php echo $row["introduction"]?></dd>
-                    </div>
-                    <div>
-                        <dt>Jurisdiction</dt>
-                        <dd><?php echo $row["jurisdiction"]?></dd>
-                    </div>
-
-                    <dt>Deposit Type</dt>
-                    <dd><?php echo $row["depositType"]?></dd>
-                    <dt>Development Stage</dt>
-                    <dd><?php echo $row["developmentStage"]?></dd>
-                    <dt>Resource Size</dt>
-                    <dd><?php echo $row["resourceSize"]?></dd>
-                    <dt>Acquisition Strategy</dt>
-                    <dd><?php echo $row["acquisitionStrategy"]?></dd>
-                    <dt>Due Dilligence</dt>
-                    <dd><?php echo $row["dueDiligence"]?></dd>
-                    <dt>Purchaser Information</dt>
-                    <dd><?php echo $row["purchaserInformation"]?></dd>
-                    <dt>Price Bracket</dt>
-                    <dd><?php echo $row["priceBracketMin"]?></dd>
-                    <dd>to</dd>
-                    <dd><?php echo $row["priceBracketMax"]?></dd>
-                    <dt>Photos</dt>
-                    <dd></dd>
-                    <dt>Additional Details</dt>
-                    <dd><?php echo $row["additionalDetails"]?></dd>
-                    <br>
-                    <dt></dt>
-                    <form action="reviewListing.php" method="POST">
-                        <input type="hidden" name="listingId" value="<?php echo $id ?>">
-                        <dd><button type="submit" class="btn btn-default" name="submit" >Submit</button></dd>
-                    </form>
-
-                </dl>
-
-
-
-
-
-
+            <div class="row header">
 
             </div>
             <!-- your page content -->

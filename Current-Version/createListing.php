@@ -12,6 +12,7 @@ $userid = $_SESSION["userEmail"];
 include '../configdb.php';
 
 $valueError = 0;
+$nameListing = "";
 $intro =  "";
 $jurisdiction =   "";
 $investmentType =   "";
@@ -28,6 +29,7 @@ $details =   "";
 
 
 if ( isset( $_POST['submit'] ) ) {
+    $nameListing = mysqli_real_escape_string($link, $_POST["name"]);
     $intro =  mysqli_real_escape_string($link, $_POST["intro"]);
     $jurisdiction =  mysqli_real_escape_string($link,$_POST["jurisdiction"]);
     $investmentType =  mysqli_real_escape_string($link,$_POST["investmentType"]);
@@ -43,9 +45,9 @@ if ( isset( $_POST['submit'] ) ) {
     $details =  mysqli_real_escape_string($link,$_POST["details"]);
 
     if($minPrice>=0 && $maxPrice>=0){
-        $sql = "INSERT INTO Listings (introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
+        $sql = "INSERT INTO Listings (name, introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
         priceBracketMax, additionalDetails, email, status)
-        VALUES ('$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid', 'draft' )";
+        VALUES ('$nameListing', '$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid', 'draft' )";
         if ($link->query($sql) === TRUE) {
         } else {
             echo "Error: " . $sql . "<br>" . $link->error;
@@ -186,6 +188,12 @@ if ( isset( $_POST['submit'] ) ) {
             <h1>Create a New Listing</h1>
 
             <form class="form-horizontal" action="createListing.php" method="POST">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="intro" class="col-sm-2 control-label">Listing Introduction</label>
                     <div class="col-sm-4">

@@ -1,27 +1,19 @@
 <?php
-
-include '../configdb.php';
 /**
  * Created by PhpStorm.
  * User: Andra
  * Date: 2017-11-13
- * Time: 11:43 AM
+ * Time: 8:15 PM
  */
 
-$id = mysqli_real_escape_string($link, $_GET["id"]);
+include '../configdb.php';
 
-$sql = "SELECT * FROM Listings WHERE listingID = $id";
-$result = $link->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    $row = $result->fetch_assoc();
-}
+$varName = $_GET['name'];
 
 if ( isset( $_POST['submit'] ) ) {
 
     $listingId = mysqli_real_escape_string($link, $_POST["listingId"]);
-    $sql = "UPDATE Listings SET status='reviewed' WHERE listingID= '$listingId' ";
+    $sql = "UPDATE Listings SET status='approved' WHERE listingID= '$listingId' ";
 
     if ($link->query($sql) === TRUE) {
         echo "Record updated successfully";
@@ -29,7 +21,7 @@ if ( isset( $_POST['submit'] ) ) {
         echo "Error updating record: " . $link->error;
     }
 
-    header("Location: submittedListing.php");
+    header("Location: adminViewListings.php");
 }
 
 
@@ -38,6 +30,7 @@ if ( isset( $_POST['submit'] ) ) {
 <!DOCTYPE html>
 <html>
 <head>
+
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -94,15 +87,8 @@ if ( isset( $_POST['submit'] ) ) {
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li ><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Active Listing</a></li>
                         <li class="active"><a href="createListing.php">Create Listing</a></li>
                         <li><a href="#">News</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Profile</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Notifications</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">System History</a></li>
-                        <li class="hidden-lg hidden-md hidden-sm"><a href="">Social Connections</a></li>
 
                     </ul>
                     <form class="navbar-form navbar-left">
@@ -141,62 +127,78 @@ if ( isset( $_POST['submit'] ) ) {
         <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
 
             <nav class="nav nav-pills nav-stacked leftNavbar">
-                <li><a href="">Account</a></li>
-                <li ><a href="">Password</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="">Notifications</a></li>
-                <li><a href="">System History</a></li>
-                <li><a href="">Social Connections</a></li>
+                <li><a href="">Users</a></li>
+                <li ><a href="">All Listings</a></li>
+                <li><a href="">Listings pending Review</a></li>
             </nav>
         </div>
         <div class="col-sm-9 col-lg-10">
             <div class="">
+
                 <h1>Review Your Listing</h1>
                 <dl class="dl-horizontal">
+
+                    <h1><?php echo $varName?></h1>
+                    <?php
+                    $sql = "SELECT * FROM Listings WHERE name = '$varName'";
+                    $result = $link->query($sql);
+
+                    $row = $result->fetch_array(MYSQLI_ASSOC);
+                    $id = $row["listingID"];
+                    $name = $row["name"];
+                    $intro = $row["introduction"];
+                    $jurisdiction = $row["jurisdiction"];
+                    $depositType = $row["depositType"];
+                    $developmentStage = $row["developmentStage"];
+                    $resourceSize = $row["resourceSize"];
+                    $acquisitionStrategy = $row["acquisitionStrategy"];
+                    $dueDilligence = $row["dueDiligence"];
+                    $purchaserInfo = $row["purchaserInformation"];
+                    $priceBracketMin = $row["priceBracketMin"];
+                    $priceBracketMax = $row["priceBracketMax"];
+                    $additionalDetails = $row["additionalDetails"];
+
+                    ?>
+
                     <dt>Name</dt>
-                    <dd><?php echo $row["name"]?></dd>
+                    <dd><?php echo $name?></dd>
                     <div>
                         <dt>Listing Introduction</dt>
-                        <dd><?php echo $row["introduction"]?></dd>
+                        <dd><?php echo $intro?></dd>
                     </div>
                     <div>
                         <dt>Jurisdiction</dt>
-                        <dd><?php echo $row["jurisdiction"]?></dd>
+                        <dd><?php echo $jurisdiction?></dd>
                     </div>
 
                     <dt>Deposit Type</dt>
-                    <dd><?php echo $row["depositType"]?></dd>
+                    <dd><?php echo $depositType?></dd>
                     <dt>Development Stage</dt>
-                    <dd><?php echo $row["developmentStage"]?></dd>
+                    <dd><?php echo $developmentStage?></dd>
                     <dt>Resource Size</dt>
-                    <dd><?php echo $row["resourceSize"]?></dd>
+                    <dd><?php echo $resourceSize?></dd>
                     <dt>Acquisition Strategy</dt>
-                    <dd><?php echo $row["acquisitionStrategy"]?></dd>
+                    <dd><?php echo $acquisitionStrategy?></dd>
                     <dt>Due Dilligence</dt>
-                    <dd><?php echo $row["dueDiligence"]?></dd>
+                    <dd><?php echo $dueDilligence?></dd>
                     <dt>Purchaser Information</dt>
-                    <dd><?php echo $row["purchaserInformation"]?></dd>
+                    <dd><?php echo $purchaserInfo?></dd>
                     <dt>Price Bracket</dt>
-                    <dd><?php echo $row["priceBracketMin"]?></dd>
+                    <dd><?php echo $priceBracketMin?></dd>
                     <dd>to</dd>
-                    <dd><?php echo $row["priceBracketMax"]?></dd>
+                    <dd><?php echo $priceBracketMax?></dd>
                     <dt>Photos</dt>
                     <dd></dd>
                     <dt>Additional Details</dt>
-                    <dd><?php echo $row["additionalDetails"]?></dd>
+                    <dd><?php echo $additionalDetails?></dd>
                     <br>
                     <dt></dt>
-                    <form action="reviewListing.php" method="POST">
+                    <form action="adminReviewPage.php" method="POST">
                         <input type="hidden" name="listingId" value="<?php echo $id ?>">
-                        <dd><button type="submit" class="btn btn-default" name="submit" >Submit</button></dd>
+                        <dd><button type="submit" class="btn btn-default" name="submit" >Approve</button></dd>
                     </form>
 
                 </dl>
-
-
-
-
-
 
 
             </div>
