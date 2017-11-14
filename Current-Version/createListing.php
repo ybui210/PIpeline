@@ -44,8 +44,8 @@ if ( isset( $_POST['submit'] ) ) {
 
     if($minPrice>=0 && $maxPrice>=0){
         $sql = "INSERT INTO Listings (introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
-        priceBracketMax, additionalDetails, email)
-        VALUES ('$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid' )";
+        priceBracketMax, additionalDetails, email, status)
+        VALUES ('$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid', 'draft' )";
         if ($link->query($sql) === TRUE) {
         } else {
             echo "Error: " . $sql . "<br>" . $link->error;
@@ -54,6 +54,10 @@ if ( isset( $_POST['submit'] ) ) {
         $valueError=1;
         echo "valueError is set";
     }
+
+    $id = mysqli_insert_id($link);
+
+    header("Location: reviewListing.php?id=$id");
 
 }
 
@@ -120,9 +124,9 @@ if ( isset( $_POST['submit'] ) ) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Active Listing</a></li>
-                        <li><a href="createListing.php">Create Listing</a></li>
+                        <li class="active"><a href="createListing.php">Create Listing</a></li>
                         <li><a href="#">News</a></li>
                         <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
                         <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
@@ -169,7 +173,7 @@ if ( isset( $_POST['submit'] ) ) {
 
             <nav class="nav nav-pills nav-stacked leftNavbar">
                 <li><a href="">Account</a></li>
-                <li class="active"><a href="">Password</a></li>
+                <li ><a href="">Password</a></li>
                 <li><a href="">Profile</a></li>
                 <li><a href="">Notifications</a></li>
                 <li><a href="">System History</a></li>
@@ -295,7 +299,7 @@ if ( isset( $_POST['submit'] ) ) {
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" name="submit" >Submit</button>
+                        <button type="submit" class="btn btn-default" name="submit" >Review and Submit your Listing</button>
                     </div>
                 </div>
             </form>
