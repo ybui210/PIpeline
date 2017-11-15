@@ -18,11 +18,12 @@ input, textarea {
     background-color: #136cb2;
     cursor: pointer;
     width: 100vw;
-    height: 10vh;
-    font-size: 3vh;
+    height: 5em;
+    font-size: 2.5em;
 }
   
 textarea {
     height: 20vh;
+    font-size: 2vh;
     font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
 }

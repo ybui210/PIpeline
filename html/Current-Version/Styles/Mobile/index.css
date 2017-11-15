@@ -31,14 +31,14 @@ html, body {
 }
 
 #loginButton {
-    width: 40vw; /* Sets the width and automatically the height */
-    margin-bottom: -4vh; /* Makes the button align with the options */
+    width: 20em; /* Sets the width and automatically the height */
+    margin-bottom: -4em; /* Makes the button align with the options */
     margin-left: 5vw; /* Puts some distance between the button and the left side of the window */
 }
 
 #options {
     margin-right: 7vw;/* Puts some distance between the options and the right side of the window */
-    font-size: 2.5vh;
+    font-size: 2.5em;
 }
 
 #options a {
@@ -86,7 +86,7 @@ html, body {
     background-color: #468cc7;
     color: white;
     width: 100%;
-    height: 100px;
+    height: 10vh;
     border-radius: 5px;
     float: right;
 }
@@ -107,22 +107,22 @@ html, body {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 10vw;
-    height: 10vw;
-    margin-left: -5vw;
+    width: 5em;
+    height: 5em;
+    margin-left: -2em;
     border: 4px solid #fff;
     border-radius: 100%;
     box-sizing: border-box;
-    margin-top: 25vh;
+    margin-top: 20px;
 }
 #downButtonSection a span::after {
   position: absolute;
   top: 50%;
   left: 50%;
   content: '';
-  width: 3vw;
-  height: 3vw;
-  margin: -2vw 0 0 -1.5vw;
+  width: 2em;
+  height: 2em;
+  margin: -1.5em 0 0 -1em;
   border-left: 4px solid #fff;
   border-bottom: 4px solid #fff;
   -webkit-transform: rotate(-45deg);
@@ -131,26 +131,27 @@ html, body {
 }
 h1 {
     font-weight: 400;
-    font-size: 8vh;
+    font-size: 9em;
     margin-bottom: 0;
     line-height: auto;
 }
 
 h2 {
     font-weight: 300;
-    font-size: 3vh;
+    font-size: 4em;
     line-height: auto;
+    margin-top: 0;
 }
 
 h3 {
     text-align: center;
-    font-size: 4vh;
+    font-size: 3em;
 }
 
 h4 {
     color: #000;
     font-weight: 400;
-    font-size: 2vh;
+    font-size: 2em;
 }
 
 /* All links will have the same font colour as the other text in its div */
