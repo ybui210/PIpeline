@@ -38,7 +38,7 @@ input {
 }
 
 label {
-    font-size: 5vh;
+    font-size: 4em;
 }
 
 *:focus {
@@ -61,16 +61,6 @@ label {
 #submitButton:hover {
     background-color: #AAA;
     transition: 0.3s;
-}
-
-#rememberMeSection {
-    margin: 10px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #EEE;
-}
-
-#rememberMeSection label {
-    font-size: 1em;
 }
 
 #additionalOptions {
@@ -102,7 +92,7 @@ a {
     user-select: none;
     cursor: pointer;
     margin-bottom: 0;
-    font-size: 2.5vh;
+    font-size: 3em;
     line-height: 25px;
 }
 .label-cbx input:checked + .checkbox {
@@ -119,10 +109,11 @@ a {
 }
 .label-cbx .checkbox {
     float: left;
-    margin-right: 8px;
+    margin-right: 0.8em;
     border: 2px solid #AAA;
     border-radius: 3px;
-    height: 20px;
+    height: 1.3em;
+    width: 1.3em;
 }
 .label-cbx .checkbox svg path {
     z-index: 1;
@@ -130,8 +121,8 @@ a {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 71px;
-    stroke-dashoffset: 71px;
+    stroke-dasharray: 4em;
+    stroke-dashoffset: 4em;
 }
 .label-cbx .checkbox svg polyline {
     fill: none;
@@ -139,8 +130,8 @@ a {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 18px;
-    stroke-dashoffset: 18px;
+    stroke-dasharray: 1.3em;
+    stroke-dashoffset: 1.3em;
     transition: all 0.3s ease;
 }
 .label-cbx > span {
@@ -149,6 +140,11 @@ a {
 }
 .invisible {
     display: none;
+}
+
+svg {
+    width: 1.3em;
+    height: 1.3em;
 }
 
 @-webkit-keyframes cardEnter {
@@ -214,8 +210,8 @@ a {
 .radio {
   display: inline-block;
   padding-right: 20px;
-  font-size: 3vh;
-  line-height: 6.1vh;
+  font-size: 3em;
+  line-height: 2em;
   cursor: pointer;
 }
 .radio:hover .inner {
@@ -234,7 +230,7 @@ a {
   opacity: 1;
 }
 .radio input:checked + .outer {
-  border: 3px solid #f08b3b;
+  border: 10px solid #f08b3b;
 }
 .radio input:focus + .outer .inner {
   -webkit-transform: scale(1);
@@ -243,24 +239,24 @@ a {
   background-color: #e67012;
 }
 .radio .outer {
-  height: 2vh;
-  width: 2vh;
+  height: 1em;
+  width: 1em;
   display: block;
   float: left;
   margin: 10px 9px 10px 10px;
-  border: 3px solid #0c70b4;
+  border: 10px solid #0c70b4;
   border-radius: 50%;
   background-color: #fff;
 }
 .radio .inner {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  height: 1.4vh;
-  width: 1.4vh;
+  height: 0.7em;
+  width: 0.7em;
   -webkit-transform: scale(0);
   transform: scale(0);
   display: block;
-  margin: 2px;
+  margin: 7px;
   border-radius: 50%;
   background-color: #f08b3b;
   opacity: 0;

@@ -209,16 +209,16 @@
                             echo "<h2>What are your interests</h2>";
                             echo "<div class=\"cntr\">";
                             for ($i = 0; $i < count($interests); $i++) {
-                                echo "<label for=\"checkbox" . $i . "\" class=\"label-cbx\">";
-                                    echo "<input id=\"checkbox" . $i . "\" type=\"checkbox\" class=\"invisible\" name=\"interests[]\" value=\"" . $interests[$i] . "\">";
-                                        echo "<div class=\"checkbox\">";
-                                            echo "<svg width=\"20px\" height=\"20px\" viewBox=\"0 0 20 20\">";
-                                                echo "<path d=\"M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z\"></path>
-                <polyline points=\"4 11 8 15 16 6\"></polyline>";
-                                            echo "</svg>";
-                                        echo "</div>";
-                                    echo "<span>" . $interests[$i] . "</span>";
-                                echo "</label><br><br>";
+                                echo "<label for=\"checkbox" . $i . "\" class=\"label-cbx\">
+                                        <input id=\"checkbox" . $i . "\" type=\"checkbox\" class=\"invisible\" name=\"interests[]\" value=\"" . $interests[$i] . "\">
+                                        <div class=\"checkbox\">
+                                            <svg viewBox=\"0 0 20 20\">
+                                                <path d=\"M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z\"></path>
+                                                <polyline points=\"4 11 8 15 16 6\"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span>" . $interests[$i] . "</span>
+                                    </label><br><br>";
                             }
                         } else if ($forgotPassword) {
                         } else {
