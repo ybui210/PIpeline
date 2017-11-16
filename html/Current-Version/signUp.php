@@ -25,7 +25,8 @@
                 $lastName = $row["lastName"];
                 $type = $row["type"];
                 $individualOrOrganization = $row["individualOrOrganization"];
-                $sql = "INSERT INTO Users(email, password, firstName, middleName, lastName, type, individualOrOrganization) VALUES('$email', '$password', '$firstName', '$middleName', '$lastName', '$type', '$individualOrOrganization')";
+                $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 9]);
+                $sql = "INSERT INTO Users(email, password, firstName, middleName, lastName, type, individualOrOrganization) VALUES('$email', '$hash', '$firstName', '$middleName', '$lastName', '$type', '$individualOrOrganization')";
                 $result = $link->query($sql);
                 
                 /* Get all the user's interests from the RequestToInterests table and put it into the UserToInterests table */
@@ -47,6 +48,11 @@
                 $sql = "DELETE FROM Requests WHERE BINARY email='$email'";
                 $result = $link->query($sql);
                 
+                /* Delete the sign up link */
+                $signUpLink = $_GET["signUpLink"];
+                $sql = "DELETE FROM SignUpLinks WHERE BINARY link='$signUpLink'";
+                $result = $link->query($sql);
+                
                 /* Redirect to the logged in home page */
                 session_start();
                 $_SESSION["userEmail"] = $email;
@@ -65,9 +71,6 @@
             header("location: index.php");
             die();
         }
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        session_start();
-        $_SESSION["signUpLink"] = $signUpLink;
     } else {
         header("location: index.php");
         die();
