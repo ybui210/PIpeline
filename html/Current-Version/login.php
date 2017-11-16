@@ -97,7 +97,8 @@
         $middleName = mysqli_real_escape_string($link, $_POST["middleName"]);
         $lastName = mysqli_real_escape_string($link, $_POST["lastName"]);
         $linkedInURL = mysqli_real_escape_string($link, $_POST["linkedInURL"]);
-        $typeOfUser = mysqli_real_escape_string($link, $_POST["radios"]);
+        $individualOrOrganization = mysqli_real_escape_string($link, $_POST["individualOrOrganization"]);
+        $type = mysqli_real_escape_string($link, $_POST["type"]);
         if(!empty($_POST['interests'])) {
             $i = 0;
             foreach($_POST['interests'] as $selected){
@@ -106,12 +107,21 @@
         }
         include "okToSend.php";
         if ($okToSend) {
-            $sql = "INSERT INTO Requests(email, firstName, middleName, lastName, linkedInURL, typeOfUser) VALUES ('$email', '$firstName', '$middleName', '$lastName', '$linkedInURL', '$typeOfUser')";
+            $sql = "SELECT * FROM Requests WHERE BINARY email='$email'";
             $result = $link->query($sql);
-            for ($i = 0; $i < count($interests); $i++) {
-                $sql = "SELECT * FROM RequestToInterests WHERE BINARY email='$email' AND BINARY interest='$interests[$i]'";
+            if ($result->num_rows == 0) {
+                $sql = "INSERT INTO Requests(email, firstName, middleName, lastName, linkedInURL, whenSent, individualOrOrganization, type) VALUES ('$email', '$firstName', '$middleName', '$lastName', '$linkedInURL', NOW(), '$individualOrOrganization', '$type')";
                 $result = $link->query($sql);
-                if ($result->num_rows == 0) {
+                for ($i = 0; $i < count($interests); $i++) {
+                    $sql = "INSERT INTO RequestToInterests VALUES ('$email', '$interests[$i]')";
+                    $result = $link->query($sql);
+                }
+            } else {
+                $sql = "UPDATE Requests SET firstName='$firstName', middleName='$middleName', lastName='$lastName', linkedInURL='$linkedInURL', individualOrOrganization='$individualOrOrganization', type='$type' WHERE email='$email'";
+                $result = $link->query($sql);
+                $sql = "DELETE FROM RequestToInterests WHERE BINARY email='$email'";
+                $result = $link->query($sql);
+                for ($i = 0; $i < count($interests); $i++) {
                     $sql = "INSERT INTO RequestToInterests VALUES ('$email', '$interests[$i]')";
                     $result = $link->query($sql);
                 }
@@ -197,14 +207,17 @@
                     <?php 
                         if ($requestInvitation) {
                             /* Contact information */
-                            echo "<input type=\"text\" id=\"input-first-name\" placeholder=\"First Name\" name=\"firstName\" required>";
-                            echo "<input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\" name=\"middleName\" required>";
-                            echo "<input type=\"text\" id=\"input-last-name\" placeholder=\"Last Name\" name=\"lastName\" required>";
-                            echo "<input type=\"url\" id=\"input-linkedin-url\" placeholder=\"LinkedIn URL\" name=\"linkedInURL\" required>";
+                            echo "<input type=\"text\" id=\"input-first-name\" placeholder=\"First Name\" name=\"firstName\" required>
+                                    <input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\" name=\"middleName\" required>
+                                    <input type=\"text\" id=\"input-last-name\" placeholder=\"Last Name\" name=\"lastName\" required>
+                                    <input type=\"url\" id=\"input-linkedin-url\" placeholder=\"LinkedIn URL\" name=\"linkedInURL\" required>";
                             echo "<h2>You are an:</h2>";
-                            echo "<label class=\"radio\"><input id=\"radio1\" type=\"radio\" name=\"radios\" value=\"individual\" checked required><span class=\"outer\"><span class=\"inner\"></span></span>Individual</label><br>";
-                            echo "<label class=\"radio\"><input id=\"radio2\" type=\"radio\" name=\"radios\" value=\"organization\"><span class=\"outer\"><span class=\"inner\"></span></span>Organization</label><br>";
-                            
+                            echo "<label class=\"radio\"><input id=\"radio1\" type=\"radio\" name=\"individualOrOrganization\" value=\"individual\" checked required><span class=\"outer\"><span class=\"inner\"></span></span>Individual</label><br>
+                                <label class=\"radio\"><input id=\"radio2\" type=\"radio\" name=\"individualOrOrganization\" value=\"organization\"><span class=\"outer\"><span class=\"inner\"></span></span>Organization</label><br>";
+                            echo "<h2>You wish to join as a(n):</h2>";
+                            echo "<label class=\"radio\"><input id=\"radio3\" type=\"radio\" name=\"type\" value=\"creator\" checked required><span class=\"outer\"><span class=\"inner\"></span></span>Creator</label><br>
+                                <label class=\"radio\"><input id=\"radio4\" type=\"radio\" name=\"type\" value=\"investor\"><span class=\"outer\"><span class=\"inner\"></span></span>Investor</label><br>
+                                <label class=\"radio\"><input id=\"radio4\" type=\"radio\" name=\"type\" value=\"both\"><span class=\"outer\"><span class=\"inner\"></span></span>Both</label><br>";
                             /* Interests */
                             echo "<h2>What are your interests</h2>";
                             echo "<div class=\"cntr\">";
