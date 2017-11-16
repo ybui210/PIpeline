@@ -119,7 +119,6 @@
                     interest. Secondly, it's a resource for users looking for either a project in which to invest, or an opportunity
                     where they might be able to connect a buyer and seller and earn a commission.
                 </p>
-                
             </div>
             
             <!-- Allows the user to make a message outlining any questions they have and sends it -->

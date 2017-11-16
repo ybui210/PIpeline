@@ -17,7 +17,30 @@
             $emailDoesNotExist = true;
         } else {
             $row = $result->fetch_array(MYSQLI_ASSOC);
-            $subject = 'Your Pipeline Password';
+            $linkURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $linkURL = substr($linkURL, 0, -9);
+            $linkURL .= "resetPassword.php?resetPasswordLink=";
+            $length = 50;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $uniqueLinkFound = false;
+            while (!$uniqueLinkFound) {
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                $sql = "SELECT * FROM ResetPasswordLinks WHERE link='$randomString'";
+                $result = $link->query($sql);
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+                if ($row->num_rows == 0) {
+                    $uniqueLinkFound = true;
+                }
+            }
+            $expirationDate = date("Y-m-d H:i:s", strtotime("+7 day"));
+            $sql = "INSERT INTO ResetPasswordLinks(link, expirationDate) VALUES('$randomString', '$expirationDate')";
+            $result = $link->query($sql);
+            $linkURL .= $randomString;
+            $subject = 'Reset Pipeline Password';
             $message = "
                     <html>
                     <header>
@@ -56,8 +79,8 @@
                     <h1>Pipeline</h1>
                     </div>
                     <div id=\"mainSection\">
-                    <p id=\"passwordHeader\">Your password is:</p>
-                    <p id=\"password\">" . $row["password"] . "</p><!--19 -->
+                    <p id=\"passwordHeader\">Reset your password at this link:</p>
+                    <p id=\"password\"><a href=\"" . $linkURL . "\">" . $linkURL . "</a></p><!--19 -->
                     </div>
         
                     <script>
@@ -127,20 +150,25 @@
                 }
             }
             $requestSent = true;
-            
         }
     } else if (isset($_POST["submitLogin"])) {
         $loginEmail = mysqli_real_escape_string ($link, $_POST["email"]);
         $password = mysqli_real_escape_string ($link, $_POST["password"]);
-        $sql = "SELECT * FROM Users WHERE BINARY email='$loginEmail' AND BINARY password='$password'";
+        $sql = "SELECT password FROM Users WHERE BINARY email='$loginEmail'";
         $result = $link->query($sql);
         if ($result->num_rows == 0) {
-                $incorrectLoginInfo = true;
+            $incorrectLoginInfo = true;
         } else {
-            session_start();
-            $_SESSION["userEmail"] = $loginEmail;
-            header("location: home.php");
-            die();
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $hash = $row["password"];
+            if (password_verify($password, $hash)) {
+                session_start();
+                $_SESSION["userEmail"] = $loginEmail;
+                header("location: home.php");
+                die();
+            } else {
+                $incorrectLoginInfo = true;
+            }
         }
     } else if (isset($_POST["forgotPassword"])) {
         $forgotPassword = true;
