@@ -115,7 +115,7 @@
                     ";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= 'From: daniel@pipeline-listings.com' . "\r\n" .
+                $headers .= 'From: daniel@pipeline-listings.com' . "\r\n" . 'Reply-To: daniel@pipeline-listings.com' . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
 
                 mail($emailAddress, $subject, $message, $headers);
