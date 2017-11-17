@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require_once("../configdb.php");
+require_once("../../include/configdb.php");
 
 // validation part
 $userid = $_SESSION["userEmail"];

@@ -1,5 +1,5 @@
 <?php
-require_once("../configdb.php");
+require_once("../../include/configdb.php");
 session_start();
 
 // validation part
