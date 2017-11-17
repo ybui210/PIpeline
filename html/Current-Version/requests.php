@@ -123,6 +123,60 @@
                 $result = $link->query($sql);
             }
         } else {
+            $requestID = $_POST["requestID"];
+            $sql = "SELECT * FROM Requests WHERE requestID='$requestID'";
+            $result = $link->query($sql);
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $emailAddress = $row["email"];
+            $subject = 'Pipeline Request Denied';
+            $message = "
+                    <html>
+                        <header>
+                            <style>
+                                html, body {
+                                    font-family: \"Helvetica Neue\", HelveticaNeue, \"TeX Gyre Heros\", TeXGyreHeros, FreeSans, \"Nimbus Sans L\", \"Liberation Sans\", Arimo, Helvetica, Arial, sans-serif;
+                                    height:100%;
+                                }
+                                body {
+                                    margin: 0px;
+                                }
+                                #header {
+                                    height: 10vh;
+                                    background-color: #136cb2;
+                                    margin: 0;
+                                    text-align: center;
+                                }
+                                h1 {
+                                    color: #FFF;
+                                    line-height: 10vh;
+                                }
+                                #mainSection {
+                                    color: #777;
+                                    text-align: center;
+                                }
+                                #passwordHeader {
+                                    font-size: 2em;
+                                }
+                                #password {
+                                    font-size: 2em;
+                                }
+                            </style>
+                        </header>
+                        <body>
+                            <div id=\"header\">
+                                <h1>Pipeline</h1>
+                            </div>
+                            <div id=\"mainSection\">
+                                <p id=\"passwordHeader\">Your request was unfortunately denied</p>
+                            </div>
+                        </body>
+                    </html>
+                ";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= 'From: daniel@pipeline-listings.com' . "\r\n" . 'Reply-To: daniel@pipeline-listings.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            mail($emailAddress, $subject, $message, $headers);
             $requestEmail = $_POST["email"];
             $sql = "DELETE FROM RequestToInterests WHERE email='$requestEmail'";
             $result = $link->query($sql);
