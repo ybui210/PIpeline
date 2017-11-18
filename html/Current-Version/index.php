@@ -1,6 +1,7 @@
 <?php
     require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
+    require_once("../../include/okToSend.php");
     function sendMessage($n, $e, $s, $m, $l) {
         $sql = "INSERT INTO Messages(name, email, subject, message) VALUES ('$n', '$e', '$s', '$m')";
         $result = $l->query($sql);
@@ -12,7 +13,6 @@
         $email = mysqli_real_escape_string($link, $_POST["email"]);
         $subject = mysqli_real_escape_string($link, $_POST["subject"]);
         $message = mysqli_real_escape_string($link, $_POST["message"]);
-        include "okToSend.php";
         if($okToSend) {
             sendMessage($name, $email, $subject, $message, $link);
         }

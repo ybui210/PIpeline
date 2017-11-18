@@ -1,34 +1,32 @@
 <?php
     require_once("../../include/configdb.php");
-    require_once("../../include/sideBar.php");
+    require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
     session_start();
 
-// validation part
-$userid = $_SESSION["userEmail"];
-/*if(!isset($userid)) {
-    header("Location:login.php");
-    exit;
-}*/
+    // validation part
+    $userid = $_SESSION["userEmail"];
+    /*if(!isset($userid)) {
+        header("Location:login.php");
+        exit;
+    }*/
 
-if (isset($_POST['submit'])) {
-    $account =  mysqli_real_escape_string($link, $_POST["account"]);
-    $birthday =  mysqli_real_escape_string($link, $_POST["birthday"]);
-    $locations =  mysqli_real_escape_string($link, $_POST["locations"]);
-    $bio =  mysqli_real_escape_string($link, $_POST["bio"]);
-    $gender =  mysqli_real_escape_string($link, $_POST["gender"]);
-    $link =  mysqli_real_escape_string($link, $_POST["link"]);
+    if (isset($_POST['submit'])) {
+        $account =  mysqli_real_escape_string($link, $_POST["account"]);
+        $birthday =  mysqli_real_escape_string($link, $_POST["birthday"]);
+        $locations =  mysqli_real_escape_string($link, $_POST["locations"]);
+        $bio =  mysqli_real_escape_string($link, $_POST["bio"]);
+        $gender =  mysqli_real_escape_string($link, $_POST["gender"]);
+        $link =  mysqli_real_escape_string($link, $_POST["link"]);
 
-$sql = "UPDATE Users SET location='$locations', bio='$bio', gender='$gender' WHERE email='$userid'";
+        $sql = "UPDATE Users SET location='$locations', bio='$bio', gender='$gender' WHERE email='$userid'";
 
-if ($link->query($sql) === TRUE) {
-    echo "Updated";
+        if ($link->query($sql) === TRUE) {
+            echo "Updated";
         } else {
             echo "Error: " . $sql . "<br>" . $link->error;
         }
-    
-} 
-
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,102 +44,11 @@ if ($link->query($sql) === TRUE) {
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
-
     <body>
-        <!--Import jQuery before materialize.js-->
-
-
-        <!--
-<nav>
-<div class="nav-wrapper">
-<a href="#" class="brand-logo right">Logo</a>
-<ul id="nav-mobile" class="left hide-on-med-and-down">
-<li><a href="">Profile</a></li>
-<li><a href="">Dashboard</a></li>
-<li><a href="">My Listings</a></li>
-<li><a href="">Saved Listings</a></li>
-<li><a href="">Drafts</a></li>
-</ul>
-</div>
-</nav>
--->
-
-        <!--<div class="w3-sidebar w3-bar-block" style="width:25%"> 
-<a href="#" class="w3-bar-item w3-button">Link 1</a>
-<a href="#" class="w3-bar-item w3-button">Link 2</a>
-<a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
-
-<div style="margin-left:25%">
-... page content ...
-</div>-->
         <div class="container-fluid" >
+            <?php displayNavBar($userType); ?>
             <div class="row">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Pipeline</a>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
-                                <li><a href="#">Active Listing</a></li>
-                                <li><a href="createListing.php">Create Listing</a></li>
-                                <li><a href="#">News</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">Password</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">Profile</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">Notifications</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">System History</a></li>
-                                <li class="hidden-lg hidden-md hidden-sm"><a href="">Social Connections</a></li>
-
-                            </ul>
-                            <form class="navbar-form navbar-left">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-                <!--
-<nav class="navbar navbar-inverse topNavBarDiv">
-<div class="container-fluid">
-<div class="navbar-header">
-<a class="navbar-brand" href="#">Pipeline</a>
-</div>
-<ul class="nav navbar-nav">
-<li class="active"><a href="#">Browse Listings</a></li>
-<li><a href="#">Active Listings</a></li>
-<li><a href="createListing.php">Create Listing</a></li>
-<li><a href="#">News</a></li>
-</ul>
-<form class="navbar-form navbar-left">
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search">
-</div>
-<button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
-</nav>-->
-
-            </div>
-
-            <div class="row">
-                <?php
-                    displaySideBar("Profile", $userType);
-                ?>
-
+                <?php displaySideBar("Profile", $userType); ?>
                 <!-- your page content -->
                 <div class="col-sm-9 col-lg-10">
                     <div class="updateProfile">
@@ -203,10 +110,7 @@ if ($link->query($sql) === TRUE) {
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
-        
-
     </body>
 </html>

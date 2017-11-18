@@ -2,6 +2,7 @@
     require_once("Mobile-Detect-2.8.26/Mobile_Detect.php");
     require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
+    require_once("../../include/okToSend.php");
 
     $forgotPassword = false;
     $incorrectLoginInfo = false;
@@ -129,7 +130,6 @@
                 $interests[$i++] = $selected;
             }
         }
-        include "okToSend.php";
         if ($okToSend) {
             $sql = "SELECT * FROM Requests WHERE BINARY email='$email'";
             $result = $link->query($sql);
