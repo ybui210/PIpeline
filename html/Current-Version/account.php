@@ -1,8 +1,8 @@
 <?php 
 session_start();
-
-require_once("../../include/configdb.php");
-require_once("../../include/sideBar.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
 
 // validation part
 $userid = $_SESSION["userEmail"];
@@ -47,33 +47,6 @@ if ($link->query($sql) === TRUE) {
     </head>
 
     <body>
-        <!--Import jQuery before materialize.js-->
-
-
-        <!--
-<nav>
-<div class="nav-wrapper">
-<a href="#" class="brand-logo right">Logo</a>
-<ul id="nav-mobile" class="left hide-on-med-and-down">
-<li><a href="">Profile</a></li>
-<li><a href="">Dashboard</a></li>
-<li><a href="">My Listings</a></li>
-<li><a href="">Saved Listings</a></li>
-<li><a href="">Drafts</a></li>
-</ul>
-</div>
-</nav>
--->
-
-        <!--<div class="w3-sidebar w3-bar-block" style="width:25%"> 
-<a href="#" class="w3-bar-item w3-button">Link 1</a>
-<a href="#" class="w3-bar-item w3-button">Link 2</a>
-<a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
-
-<div style="margin-left:25%">
-... page content ...
-</div>-->
         <div class="container-fluid" >
             <div class="row">
                 <nav class="navbar navbar-default">
@@ -113,33 +86,11 @@ if ($link->query($sql) === TRUE) {
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
                 </nav>
-                <!--
-<nav class="navbar navbar-inverse topNavBarDiv">
-<div class="container-fluid">
-<div class="navbar-header">
-<a class="navbar-brand" href="#">Pipeline</a>
-</div>
-<ul class="nav navbar-nav">
-<li class="active"><a href="#">Browse Listings</a></li>
-<li><a href="#">Active Listings</a></li>
-<li><a href="createListing.php">Create Listing</a></li>
-<li><a href="#">News</a></li>
-</ul>
-<form class="navbar-form navbar-left">
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search">
-</div>
-<button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
-</nav>-->
-
             </div>
-
             <div class="row">
             
             <?php
-                displaySideBar("Account", $admin);
+                displaySideBar("Account", $userType);
               ?>
 
                 <!-- your page content -->

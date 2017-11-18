@@ -1,6 +1,7 @@
 <?php
-    include("../../include/configdb.php");
-    include("../../include/sideBar.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
     $admin = false;
     session_start();
     if (isset($_SESSION["userEmail"])) {

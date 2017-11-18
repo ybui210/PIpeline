@@ -1,7 +1,8 @@
 <?php
-require_once("../../include/configdb.php");
-require_once("../../include/sideBar.php");
-session_start();
+    require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
+    session_start();
 
 // validation part
 $userid = $_SESSION["userEmail"];
@@ -138,7 +139,7 @@ if ($link->query($sql) === TRUE) {
 
             <div class="row">
                 <?php
-                    displaySideBar("Profile", $admin);
+                    displaySideBar("Profile", $userType);
                 ?>
 
                 <!-- your page content -->

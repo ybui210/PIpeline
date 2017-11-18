@@ -1,7 +1,8 @@
 <?php
-require_once("../../include/configdb.php");
-require_once("../../include/sideBar.php");
-session_start();
+    require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
+    session_start();
 
 // validation part
 /*$userid = $_SESSION["userEmail"];
@@ -26,35 +27,7 @@ if(!isset($userid)) {
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
-
     <body>
-        <!--Import jQuery before materialize.js-->
-
-
-        <!--
-<nav>
-<div class="nav-wrapper">
-<a href="#" class="brand-logo right">Logo</a>
-<ul id="nav-mobile" class="left hide-on-med-and-down">
-<li><a href="">Profile</a></li>
-<li><a href="">Dashboard</a></li>
-<li><a href="">My Listings</a></li>
-<li><a href="">Saved Listings</a></li>
-<li><a href="">Drafts</a></li>
-</ul>
-</div>
-</nav>
--->
-
-        <!--<div class="w3-sidebar w3-bar-block" style="width:25%"> 
-<a href="#" class="w3-bar-item w3-button">Link 1</a>
-<a href="#" class="w3-bar-item w3-button">Link 2</a>
-<a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
-
-<div style="margin-left:25%">
-... page content ...
-</div>-->
         <div class="container-fluid" >
             <div class="row">
                 <nav class="navbar navbar-default">
@@ -100,7 +73,7 @@ if(!isset($userid)) {
             <div class="row">
             
             <?php
-                displaySideBar("Notifications", $admin);
+                displaySideBar("Notifications", $userType);
               ?>
 
                 <!-- your page content -->
