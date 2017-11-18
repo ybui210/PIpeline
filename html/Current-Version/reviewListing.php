@@ -1,6 +1,6 @@
 <?php
-
-require_once("../../include/configdb.php");
+    require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
 /**
  * Created by PhpStorm.
  * User: Andra
@@ -38,6 +38,8 @@ if ( isset( $_POST['submit'] ) ) {
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Review Listing</title>
+    <?php echo getFavicon(); ?>
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">

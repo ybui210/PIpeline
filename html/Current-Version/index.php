@@ -1,4 +1,5 @@
 <?php
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     function sendMessage($n, $e, $s, $m, $l) {
         $sql = "INSERT INTO Messages(name, email, subject, message) VALUES ('$n', '$e', '$s', '$m')";
@@ -21,13 +22,7 @@
 <html>
     <header>
         <title>Welcome to Pipeline</title> <!-- Decided by Davin, open to change -->
-        
-        <?php
-            include 'favicon.php';
-        ?>
-         <!-- Style sheet for the body structure -->
-         <!-- Style sheet for the Contact Us structure -->
-        
+        <?php echo getFavicon(); ?>
         <?php
             require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
             $detect = new Mobile_Detect;
@@ -42,10 +37,10 @@
         
         <?php
             if($emailIsOnTheBlackList) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayBlacklistMessage();
             } else if ($userHasSentTooManyMessages) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayWarningMessage();
             }
         ?>

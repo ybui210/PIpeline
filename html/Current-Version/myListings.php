@@ -1,4 +1,5 @@
 <?php 
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
 ?>
 <!DOCTYPE html>
@@ -6,6 +7,8 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">    
 <head>
+    <title>My Listings</title>
+    <?php echo getFavicon(); ?>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->

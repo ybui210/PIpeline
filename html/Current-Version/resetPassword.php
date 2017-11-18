@@ -1,4 +1,6 @@
 <?php
+    require_once("Mobile-Detect-2.8.26/Mobile_Detect.php");
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     $sql = "DELETE FROM ResetPasswordLinks WHERE expirationDate < now()";
     $result = $link->query($sql);
@@ -58,11 +60,10 @@
 <html>
     <header>
         <title>Reset Password</title> <!-- Decided by Davin, open to change -->
+        <?php echo getFavicon(); ?>
         <link rel="stylesheet" type="text/css" href="Styles/login.css">
         
         <?php
-            include 'favicon.php';
-            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
             $detect = new Mobile_Detect;
             if ($detect->isMobile()) {
                 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/Mobile/login.css\">";

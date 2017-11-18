@@ -6,36 +6,34 @@
  * Time: 8:15 PM
  */
 
-require_once("../../include/configdb.php");
+    require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
 
-$varName = $_GET['name'];
+    $varName = $_GET['name'];
 
-if ( isset( $_POST['submit'] ) ) {
+    if ( isset( $_POST['submit'] ) ) {
 
-    $listingId = mysqli_real_escape_string($link, $_POST["listingId"]);
-    $sql = "UPDATE Listings SET status='approved' WHERE listingID= '$listingId' ";
+        $listingId = mysqli_real_escape_string($link, $_POST["listingId"]);
+        $sql = "UPDATE Listings SET status='approved' WHERE listingID= '$listingId' ";
 
-    if ($link->query($sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error updating record: " . $link->error;
+        if ($link->query($sql) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $link->error;
+        }
+
+        header("Location: adminViewListings.php");
     }
-
-    header("Location: adminViewListings.php");
-}
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-
+    <title>Review Listings</title>
+    <?php echo getFavicon(); ?>
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>

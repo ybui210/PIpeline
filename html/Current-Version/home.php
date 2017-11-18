@@ -1,4 +1,5 @@
 <?php
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     require_once("../../include/sideBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
@@ -6,12 +7,12 @@
 <!DOCTYPE html>
   <html>
     <head>
-
+        <title>Home</title>
+        <?php echo getFavicon(); ?>
+        
         <link href="Styles/home.css" rel="stylesheet" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>

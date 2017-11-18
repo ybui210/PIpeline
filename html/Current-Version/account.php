@@ -1,43 +1,35 @@
 <?php 
-session_start();
+    session_start();
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     require_once("../../include/sideBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
-// validation part
-$userid = $_SESSION["userEmail"];
-/*if(!isset($userid)) {
-    header("Location:login.php");
-    exit;
-}
-*/
-if (isset($_POST['submit'])) {
-    $email =  mysqli_real_escape_string($link, $_POST["email"]);
-    $phone =  mysqli_real_escape_string($link, $_POST["phone "]);
-    $time_zone =  mysqli_real_escape_string($link, $_POST["time_zone"]);
-    $privacy =  mysqli_real_escape_string($link, $_POST["privacy"]);
+    $userid = $_SESSION["userEmail"];
+    if (isset($_POST['submit'])) {
+        $email =  mysqli_real_escape_string($link, $_POST["email"]);
+        $phone =  mysqli_real_escape_string($link, $_POST["phone "]);
+        $time_zone =  mysqli_real_escape_string($link, $_POST["time_zone"]);
+        $privacy =  mysqli_real_escape_string($link, $_POST["privacy"]);
 
-$sql = "UPDATE Users SET email='$email', phone='$phone', time_zone='$time_zone', privacy='$privacy' WHERE email='$userid'";
+        $sql = "UPDATE Users SET email='$email', phone='$phone', time_zone='$time_zone', privacy='$privacy' WHERE email='$userid'";
 
-if ($link->query($sql) === TRUE) {
-    echo "Updated";
+        if ($link->query($sql) === TRUE) {
+            echo "Updated";
         } else {
             echo "Error: " . $sql . "<br>" . $link->error;
         }
-    
-} 
-
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Account</title>
+        <?php echo getFavicon(); ?>
         <link href="Styles/home.css" rel="stylesheet" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 

@@ -1,4 +1,5 @@
 <?php
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     require_once("../../include/sideBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
@@ -190,6 +191,8 @@
 <!DOCTYPE html>
   <html>
     <head>
+        <title>Requests</title>
+        <?php echo getFavicon(); ?>
         <link href="Styles/home.css" rel="stylesheet" />
         <link href="Styles/requests.css" rel="stylesheet" />
         

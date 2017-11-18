@@ -1,5 +1,6 @@
 <?php
-
+    require_once("Mobile-Detect-2.8.26/Mobile_Detect.php");
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
 
     $forgotPassword = false;
@@ -189,22 +190,22 @@
         <link rel="stylesheet" type="text/css" href="Styles/login.css">
         
         <?php
-            include 'favicon.php';
+            echo getFavicon();
+        
             if ($emailIsOnTheBlackList) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayBlacklistMessage();
             } else if ($requestSent) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayRequestSentMessage();
             } else if ($emailDoesNotExist) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayYouDoNotHaveAnAccountMessage();
             } else if ($passwordSent) {
-                include 'messages.php';
+                include '../../include/modalBoxMessages.php';
                 echo displayPasswordSentMessage();
             }
         
-            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
             $detect = new Mobile_Detect;
             if ($detect->isMobile()) {
                 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/Mobile/login.css\">";
