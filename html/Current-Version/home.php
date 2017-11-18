@@ -1,5 +1,6 @@
 <?php
     require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
     $admin = false;
     session_start();
     if (isset($_SESSION["userEmail"])) {
@@ -73,61 +74,14 @@
                       </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
               </nav>
-              <!--
-              <nav class="navbar navbar-inverse topNavBarDiv">
-                  <div class="container-fluid">
-                      <div class="navbar-header">
-                          <a class="navbar-brand" href="#">Pipeline</a>
-                      </div>
-                      <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Browse Listings</a></li>
-                          <li><a href="#">Active Listings</a></li>
-                          <li><a href="createListing.php">Create Listing</a></li>
-                          <li><a href="#">News</a></li>
-                      </ul>
-                      <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                          <button type="submit" class="btn btn-default">Submit</button>
-                      </form>
-                  </div>
-              </nav>-->
 
           </div>
 
           <div class="row">
-            <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                <nav class="nav nav-pills nav-stacked leftNavbar">
-                  <li class="active"><a href="home.php">Account</a></li>
-                  <li><a href="">Password</a></li>
-                  <li><a href="">Profile</a></li>
-                  <li><a href="">Notifications</a></li>
-                  <li><a href="">System History</a></li>
-                  <li><a href="">Social Connections</a></li>
-                    <?php
-                        if ($admin) {
-                            $sql = "SELECT COUNT(*) FROM Messages WHERE readStatus IS NULL";
-                            $result = $link->query($sql);
-                            $row = $result->fetch_array(MYSQLI_ASSOC);
-                            if ($row["COUNT(*)"] == 0) {
-                                echo "<li><a href=\"\">Messages</a></li>";
-                            } else {
-                                echo "<li><a href=\"\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
-                            }
-                            $sql = "SELECT COUNT(*) FROM Requests WHERE readStatus IS NULL";
-                            $result = $link->query($sql);
-                            $row = $result->fetch_array(MYSQLI_ASSOC);
-                            if ($row["COUNT(*)"] == 0) {
-                                echo "<li><a href=\"requests.php\">Requests</a></li>";
-                            } else {
-                                echo "<li><a href=\"requests.php\"><b>Requests " . $row["COUNT(*)"] . "</b></a></li>";
-                            }
-                        }
-                    ?>
-                </nav>
-              </div>
+            
+            <?php
+                displaySideBar("Home", $admin);
+              ?>
               <div class="col-sm-9 col-lg-10">
                   <div class="row header">
 

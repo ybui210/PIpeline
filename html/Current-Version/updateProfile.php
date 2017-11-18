@@ -1,5 +1,6 @@
 <?php
-require_once("../configdb.php");
+require_once("../../include/configdb.php");
+require_once("../../include/sideBar.php");
 session_start();
 
 // validation part
@@ -136,17 +137,9 @@ if ($link->query($sql) === TRUE) {
             </div>
 
             <div class="row">
-                <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                    <nav class="nav nav-pills nav-stacked leftNavbar">
-                        <li><a href="account.php">Account</a></li>
-                        <li><a href="changePassword.php">Password</a></li>
-                        <li  class="active"><a href="updateProfile.php">Profile</a></li>
-                        <li><a href="notificationPreferens.php">Notifications</a></li>
-                        <li><a href="">System History</a></li>
-                        <li><a href="">Social Connections</a></li>
-                    </nav>
-                </div>
+                <?php
+                    displaySideBar("Profile", $admin);
+                ?>
 
                 <!-- your page content -->
                 <div class="col-sm-9 col-lg-10">

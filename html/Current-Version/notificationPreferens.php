@@ -1,5 +1,6 @@
 <?php
 require_once("../../include/configdb.php");
+require_once("../../include/sideBar.php");
 session_start();
 
 // validation part
@@ -93,41 +94,14 @@ if(!isset($userid)) {
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
                 </nav>
-                <!--
-<nav class="navbar navbar-inverse topNavBarDiv">
-<div class="container-fluid">
-<div class="navbar-header">
-<a class="navbar-brand" href="#">Pipeline</a>
-</div>
-<ul class="nav navbar-nav">
-<li class="active"><a href="#">Browse Listings</a></li>
-<li><a href="#">Active Listings</a></li>
-<li><a href="createListing.php">Create Listing</a></li>
-<li><a href="#">News</a></li>
-</ul>
-<form class="navbar-form navbar-left">
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search">
-</div>
-<button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
-</nav>-->
 
             </div>
 
             <div class="row">
-                <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                    <nav class="nav nav-pills nav-stacked leftNavbar">
-                        <li><a href="account.php">Account</a></li>
-                        <li><a href="changePassword.php">Password</a></li>
-                        <li><a href="updateProfile.php">Profile</a></li>
-                        <li  class="active"><a href="notificationPreferens.php">Notifications</a></li>
-                        <li><a href="">System History</a></li>
-                        <li><a href="">Social Connections</a></li>
-                    </nav>
-                </div>
+            
+            <?php
+                displaySideBar("Notifications", $admin);
+              ?>
 
                 <!-- your page content -->
                 <div class="col-sm-9 col-lg-10">

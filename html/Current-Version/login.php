@@ -152,9 +152,9 @@
             $requestSent = true;
         }
     } else if (isset($_POST["submitLogin"])) {
-        $loginEmail = mysqli_real_escape_string ($link, $_POST["email"]);
-        $password = mysqli_real_escape_string ($link, $_POST["password"]);
-        $sql = "SELECT password FROM Users WHERE BINARY email='$loginEmail'";
+        $loginEmail = mysqli_real_escape_string($link, $_POST["email"]);
+        $password = mysqli_real_escape_string($link, $_POST["password"]);
+        $sql = "SELECT * FROM Users WHERE BINARY email='$loginEmail'";
         $result = $link->query($sql);
         if ($result->num_rows == 0) {
             $incorrectLoginInfo = true;
@@ -226,7 +226,7 @@
                         echo "Incorrect user id or password<br>";
                     } else {
                         echo "Login";
-                    } 
+                    }
                 ?>
             </h1>
             <form class="cf" method="post" action="">

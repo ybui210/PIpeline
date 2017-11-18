@@ -1,5 +1,6 @@
 <?php
     require_once("../../include/configdb.php");
+    require_once("../../include/sideBar.php");
     $admin = false;
     session_start();
     $requestID = "";
@@ -107,37 +108,10 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                <nav class="nav nav-pills nav-stacked leftNavbar">
-                  <li><a href="home.php">Account</a></li>
-                  <li><a href="">Password</a></li>
-                  <li><a href="">Profile</a></li>
-                  <li><a href="">Notifications</a></li>
-                  <li><a href="">System History</a></li>
-                  <li><a href="">Social Connections</a></li>
-                    <?php
-                        if ($admin) {
-                            $sql = "SELECT COUNT(*) FROM Messages WHERE readStatus IS NULL";
-                            $result = $link->query($sql);
-                            $row = $result->fetch_array(MYSQLI_ASSOC);
-                            if ($row["COUNT(*)"] == 0) {
-                                echo "<li><a href=\"\">Messages</a></li>";
-                            } else {
-                                echo "<li><a href=\"\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
-                            }
-                            $sql = "SELECT COUNT(*) FROM Requests WHERE readStatus IS NULL";
-                            $result = $link->query($sql);
-                            $row = $result->fetch_array(MYSQLI_ASSOC);
-                            if ($row["COUNT(*)"] == 0) {
-                                echo "<li class=\"active\"><a href=\"requests.php\">Requests</a></li>";
-                            } else {
-                                echo "<li class=\"active\"><a href=\"requests.php\"><b>Requests " . $row["COUNT(*)"] . "</b></a></li>";
-                            }
-                        }
-                    ?>
-                </nav>
-              </div>
+            
+            <?php
+                displaySideBar("Requests", $admin);
+              ?>
               <div class="col-sm-9 col-lg-10">
                   <div class="row header">
 
