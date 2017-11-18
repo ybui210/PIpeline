@@ -67,16 +67,6 @@ if (isset($_POST['submit'])) {
         echo 'wrong password';
     }
 }
-
-
-
-
-
-
-
-
-
-
 /*
     $sql = "SELECT email, password FROM Users";
     $result = $link->query($sql);
@@ -172,7 +162,5 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </div>
-
-
     </body>
 </html>
