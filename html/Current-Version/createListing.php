@@ -155,27 +155,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="acquisitionStrategy" class="col-sm-2 control-label">Acquisition Strategy</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="acquisitionStrategy" name="acqusitionStrategy" value="" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dueDilligence" class="col-sm-2 control-label">Due Dilligence</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="dueDilligence" name="dueDilligence" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="purchaserInfo" class="col-sm-2 control-label">Purchaser Information</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="purchaserInfo" name="purchaserInfo" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="minPrice" class="col-sm-2 control-label">Price Bracket</label>
                         <div class="col-sm-4">
                             <input type="number" class="form-control" id="minPrice" name="minPrice" />

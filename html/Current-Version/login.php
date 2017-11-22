@@ -237,7 +237,7 @@
                         if ($requestInvitation) {
                             /* Contact information */
                             echo "<input type=\"text\" id=\"input-first-name\" placeholder=\"First Name\" name=\"firstName\" required>
-                                    <input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\" name=\"middleName\" required>
+                                    <input type=\"text\" id=\"input-middle-name\" placeholder=\"Middle Name\" name=\"middleName\">
                                     <input type=\"text\" id=\"input-last-name\" placeholder=\"Last Name\" name=\"lastName\" required>
                                     <input type=\"url\" id=\"input-linkedin-url\" placeholder=\"LinkedIn URL\" name=\"linkedInURL\" required>";
                             echo "<h2>You are an:</h2>";
