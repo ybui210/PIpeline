@@ -10,8 +10,8 @@
         header("Location:login.php");
         exit;
     }*/
-
-    if (isset($_POST['submit'])) {
+    /* Done */
+    if (isset($_POST['submitUpdateProfile'])) {
         $account =  mysqli_real_escape_string($link, $_POST["account"]);
         $birthday =  mysqli_real_escape_string($link, $_POST["birthday"]);
         $locations =  mysqli_real_escape_string($link, $_POST["locations"]);

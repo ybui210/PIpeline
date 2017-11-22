@@ -2,8 +2,8 @@
     require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
-    $admin = false;
     session_start();
+    $admin = false;
     $requestID = "";
     $email = "";
     $firstName = "";
@@ -55,7 +55,7 @@
     }
 ?>
 <!DOCTYPE html>
-  <html>
+<html>
     <head>
         <title>Request Details</title>
         <?php echo getFavicon(); ?>
@@ -130,10 +130,7 @@
             </div>
           </div>
         </div>
-        
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     </body>
-  </html>
+</html>

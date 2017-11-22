@@ -20,9 +20,6 @@
                         <li><a href=\"createListing.php\">Create Listing</a></li>
                         <li><a href=\"#\">News</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"account.php\">Account</a></li>
-                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"changePassword.php\">Password</a></li>
-                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"updateProfile.php\">Profile</a></li>
-                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"notificationPreferens.php\">Notifications</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\">System History</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\">Social Connections</a></li>";
 
@@ -72,24 +69,6 @@
             echo "<li class=\"active\"><a href=\"account.php\">Account</a></li>";
         } else {
             echo "<li><a href=\"account.php\">Account</a></li>";
-        }
-
-        if ($selected == "Password") {
-            echo "<li class=\"active\"><a href=\"changePassword.php\">Password</a></li>";
-        } else {
-            echo "<li><a href=\"changePassword.php\">Password</a></li>";
-        }
-
-        if ($selected == "Profile") {
-            echo "<li class=\"active\"><a href=\"updateProfile.php\">Profile</a></li>";
-        } else {
-            echo "<li><a href=\"updateProfile.php\">Profile</a></li>";
-        }
-
-        if ($selected == "Notifications") {
-            echo "<li class=\"active\"><a href=\"notificationPreferens.php\">Notifications</a></li>";
-        } else {
-            echo "<li><a href=\"notificationPreferens.php\">Notifications</a></li>";
         }
 
         if ($selected == "System History") {

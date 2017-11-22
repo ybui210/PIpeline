@@ -3,8 +3,8 @@
     require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
-    $admin = false;
     session_start();
+    $admin = false;
     if (isset($_SESSION["userEmail"])) {
         $userEmail = $_SESSION["userEmail"];
         $sql = "SELECT type FROM Users WHERE BINARY email='$userEmail'";
@@ -297,10 +297,7 @@
             </div>
           </div>
         </div>
-        
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     </body>
   </html>
