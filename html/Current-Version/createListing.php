@@ -68,17 +68,7 @@
         <?php displayNavBar($userType); ?>
 
         <div class="row">
-            <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                <nav class="nav nav-pills nav-stacked leftNavbar">
-                    <li><a href="">Account</a></li>
-                    <li ><a href="">Password</a></li>
-                    <li><a href="">Profile</a></li>
-                    <li><a href="">Notifications</a></li>
-                    <li><a href="">System History</a></li>
-                    <li><a href="">Social Connections</a></li>
-                </nav>
-            </div>
+            <?php displaySideBar("", $userType); ?>
             <div class="col-sm-9 col-lg-10">
                 <div class="">
 

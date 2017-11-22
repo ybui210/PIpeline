@@ -77,14 +77,36 @@
             $invalidPassword = true;
         }
     } else if (isset($_POST['submitUpdateProfile'])) {
-        $birthday =  mysqli_real_escape_string($link, $_POST["birthday"]);
+        $birthday =  $_POST["birthday"];
         $locations =  mysqli_real_escape_string($link, $_POST["locations"]);
         $bio =  mysqli_real_escape_string($link, $_POST["bio"]);
         $gender =  $_POST["gender"];
         $link =  mysqli_real_escape_string($link, $_POST["link"]);
-
-        $sql = "UPDATE Users SET gender='$gender' WHERE email='$userid'";
-        $result = $link->query($sql);
+        include("../../include/configdb.php");
+        if (strlen($birthday) != 0) {
+            $sql = "UPDATE Users SET birthday='$birthday' WHERE email='$userid'";
+            $result = $link->query($sql);
+        }
+        
+        if (strlen($locations) != 0) {
+            $sql = "UPDATE Users SET location='$locations' WHERE email='$userid'";
+            $result = $link->query($sql);
+        }
+        
+        if (strlen($bio) != 0) {
+            $sql = "UPDATE Users SET bio='$bio' WHERE email='$userid'";
+            $result = $link->query($sql);
+        }
+        
+        if (strlen($gender) != 0) {
+            $sql = "UPDATE Users SET gender='$gender' WHERE email='$userid'";
+            $result = $link->query($sql);
+        }
+        
+        if (strlen($link) != 0) {
+            $sql = "UPDATE Users SET linkedInURL='$link' WHERE email='$userid'";
+            $result = $link->query($sql);
+        }
     }
 ?>
 
@@ -206,6 +228,7 @@
                                 <label for="gender" class="col-sm-2 control-label">Gender</label>
                                 <div class="col-sm-4">
                                     <select class="form-control" id="gender" name="gender">
+                                        <option></option>
                                         <option>Male</option>
                                         <option>Female</option>
                                         <option>Other</option>
