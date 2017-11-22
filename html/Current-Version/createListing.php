@@ -1,6 +1,5 @@
 <?php
     require_once("../../include/favicon.php");
-    require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
@@ -20,6 +19,8 @@
     $maxPrice =   "";
     $details =   "";
 
+
+
     if ( isset( $_POST['submit'] ) ) {
         $nameListing = mysqli_real_escape_string($link, $_POST["name"]);
         $intro =  mysqli_real_escape_string($link, $_POST["intro"]);
@@ -29,27 +30,68 @@
         $depositType =  mysqli_real_escape_string($link,$_POST["depositType"]);
         $developmentStage = mysqli_real_escape_string($link, $_POST["developmentStage"]);
         $resourceSize =  mysqli_real_escape_string($link,$_POST["resourceSize"]);
-        $acquisitionStrategy =  mysqli_real_escape_string($link,$_POST["acqusitionStrategy"]);
-        $dueDilligence =  mysqli_real_escape_string($link,$_POST["dueDilligence"]);
-        $purchaserInfo =  mysqli_real_escape_string($link,$_POST["purchaserInfo"]);
         $minPrice =  mysqli_real_escape_string($link,$_POST["minPrice"]);
         $maxPrice =  mysqli_real_escape_string($link,$_POST["maxPrice"]);
         $details =  mysqli_real_escape_string($link,$_POST["details"]);
 
+        $target_dir = "uploads/";
+
+        $uploadOk = 1;
+
+
         if($minPrice>=0 && $maxPrice>=0){
-            $sql = "INSERT INTO Listings (name, introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, acquisitionStrategy, dueDiligence, purchaserInformation, priceBracketMin, 
+            $sql = "INSERT INTO Listings (name, introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, priceBracketMin, 
             priceBracketMax, additionalDetails, email, status)
-            VALUES ('$nameListing', '$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$acquisitionStrategy', '$dueDilligence', '$purchaserInfo', '$minPrice', '$maxPrice', '$details', '$userid', 'draft' )";
+            VALUES ('$nameListing', '$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$minPrice', '$maxPrice', '$details', '$userEmail', 'draft' )";
             if ($link->query($sql) === TRUE) {
             } else {
                 echo "Error: " . $sql . "<br>" . $link->error;
+                die();
             }
         } else {
             $valueError=1;
             echo "valueError is set";
         }
         $id = mysqli_insert_id($link);
+        $target_file = $target_dir .$id."-". basename($_FILES["photos"]["name"]);
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+
+
+
+
+// Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["photos"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+            die();
+// if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["photos"]["tmp_name"], $target_file)) {
+                echo "The file ". basename( $_FILES["photos"]["name"]). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+
         header("Location: reviewListing.php?id=$id");
+
     }
 ?>
 <!DOCTYPE html>
@@ -74,7 +116,7 @@
 
                 <h1>Create a New Listing</h1>
 
-                <form class="form-horizontal" action="createListing.php" method="POST">
+                <form class="form-horizontal" action="createListing.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">

@@ -1,8 +1,8 @@
 <?php
     require_once("../../include/favicon.php");
-    require_once("../../include/configdb.php");
+require_once("../../include/getUserTypeAndVerifyLogin.php");
     require_once("../../include/navBar.php");
-    require_once("../../include/getUserTypeAndVerifyLogin.php");
+
 ?>
 <!DOCTYPE html>
   <html>

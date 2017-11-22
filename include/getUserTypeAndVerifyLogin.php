@@ -1,5 +1,6 @@
 <?php
     include("configdb.php");
+    $userType = "";
     session_start();
     if (isset($_SESSION["userEmail"])) {
         $userEmail = $_SESSION["userEmail"];

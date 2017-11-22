@@ -1,6 +1,11 @@
 <?php
     require_once("../../include/favicon.php");
-    require_once("../../include/configdb.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
+
+if($userType != "admin"){
+    header("location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
