@@ -1,5 +1,6 @@
 <?php
     require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
@@ -116,7 +117,7 @@
 
                 <h1>Create a New Listing</h1>
 
-                <form class="form-horizontal" action="createListing.php" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="createListing.php" method="POST">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
