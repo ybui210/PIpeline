@@ -34,7 +34,7 @@
         $maxPrice =  mysqli_real_escape_string($link,$_POST["maxPrice"]);
         $details =  mysqli_real_escape_string($link,$_POST["details"]);
 
-        $target_dir = "uploads/";
+        $target_dir = "Uploads/";
 
         $uploadOk = 1;
 
