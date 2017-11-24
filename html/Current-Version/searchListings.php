@@ -15,7 +15,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-
+wa
 <body>
 
 <div class="container-fluid" >
@@ -70,7 +70,7 @@
                         <div class="w3-card-4" margin="10">
 
                             <header class="w3-container w3-light-grey">
-                              <h4>NAME<?php echo $row["name"];?></h4>
+                              <h4><?php echo $row["name"];?></h4>
                             </header>
 
                             <div class="w3-container" style="height:70px">
