@@ -1,5 +1,6 @@
 <?php
-echo "<!-- All this favicon code was taken from https://www.favicon-generator.org/ -->
+    function getFavicon() {
+        return "<!-- All this favicon code was taken from https://www.favicon-generator.org/ -->
         <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"./Images/Favicon/apple-icon-57x57.png\">
         <link rel=\"apple-touch-icon\" sizes=\"60x60\" href=\"./Images/Favicon/apple-icon-60x60.png\">
         <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"./Images/Favicon/apple-icon-72x72.png\">
@@ -17,4 +18,5 @@ echo "<!-- All this favicon code was taken from https://www.favicon-generator.or
         <meta name=\"msapplication-TileColor\" content=\"#ffffff\">
         <meta name=\"msapplication-TileImage\" content=\"/ms-icon-144x144.png\">
         <meta name=\"theme-color\" content=\"#ffffff\">";
+    }
 ?>

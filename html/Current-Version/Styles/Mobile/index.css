@@ -10,16 +10,13 @@ html, body {
     position: fixed;
     z-index: 1;
 }
-#loginSection {
-    width: auto;
-    width: 100px;
-}
 #loginButton {
     margin: 0;
     padding: 0;
 }
 
 #options a {
+    font-size: 2.5em;
     margin-bottom: 2vh;
 }
 
@@ -34,18 +31,20 @@ html, body {
 }
 
 #loginButton {
-    width: 100px; /* Sets the width and automatically the height */
-    margin-bottom: -20px; /* Makes the button align with the options */
-    margin-left: 10vw; /* Puts some distance between the button and the left side of the window */
+    width: 20em; /* Sets the width and automatically the height */
+    margin-bottom: -4em; /* Makes the button align with the options */
+    margin-left: 5vw; /* Puts some distance between the button and the left side of the window */
 }
 
 #options {
     margin-right: 7vw;/* Puts some distance between the options and the right side of the window */
+    font-size: 2.5em;
 }
 
 #options a {
     float: right; /* Makes the options go to the right */
     margin-right: 4vw; /* Puts some distance between the each of the options */
+    font-size: 1em;
 }
 
 #topSection {
@@ -81,22 +80,15 @@ html, body {
 
 #contactSection {
     background-color:#FFFFFF;
-    padding: 10px;
 }
 
 #submitMessageButton {
     background-color: #468cc7;
     color: white;
-    width: 100px;
-    height: 33px;
+    width: 100%;
+    height: 10vh;
     border-radius: 5px;
     float: right;
-}
-
-#submitMessageButton:hover {
-    cursor: pointer;
-    background-color: #EEE;
-    transition: 0.3s;
 }
 
 .demo a {
@@ -107,9 +99,6 @@ html, body {
   color: #fff;
   transition: opacity .3s;
 }
-.demo a:hover {
-  opacity: .5;
-}
 
 #downButtonSection a {
   padding-top: 0px;
@@ -118,54 +107,51 @@ html, body {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 46px;
-    height: 46px;
-    margin-left: -23px;
-    border: 1px solid #fff;
+    width: 5em;
+    height: 5em;
+    margin-left: -2em;
+    border: 4px solid #fff;
     border-radius: 100%;
     box-sizing: border-box;
-    margin-top: 25vh;
+    margin-top: 20px;
 }
 #downButtonSection a span::after {
   position: absolute;
   top: 50%;
   left: 50%;
   content: '';
-  width: 16px;
-  height: 16px;
-  margin: -12px 0 0 -8px;
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  width: 2em;
+  height: 2em;
+  margin: -1.5em 0 0 -1em;
+  border-left: 4px solid #fff;
+  border-bottom: 4px solid #fff;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   box-sizing: border-box;
 }
 h1 {
     font-weight: 400;
-    font-size: 10vh;
+    font-size: 9em;
     margin-bottom: 0;
     line-height: auto;
 }
 
 h2 {
     font-weight: 300;
-    font-size: 3vh;
+    font-size: 4em;
     line-height: auto;
+    margin-top: 0;
 }
 
 h3 {
     text-align: center;
+    font-size: 3em;
 }
 
 h4 {
     color: #000;
     font-weight: 400;
-}
-
-p {
-    width: 90%;
-    position: relative;
-    margin: 0 auto;
+    font-size: 2em;
 }
 
 /* All links will have the same font colour as the other text in its div */

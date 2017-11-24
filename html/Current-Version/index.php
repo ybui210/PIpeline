@@ -1,6 +1,9 @@
 <?php
-    require_once("../configdb.php");
-    /*require_once("../../include/configdb.php");*/
+    require_once("Mobile-Detect-2.8.26/Mobile_Detect.php");
+    require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/modalBoxMessages.php");
+    require_once("../../include/okToSend.php");
     function sendMessage($n, $e, $s, $m, $l) {
         $sql = "INSERT INTO Messages(name, email, subject, message) VALUES ('$n', '$e', '$s', '$m')";
         $result = $l->query($sql);
@@ -12,7 +15,6 @@
         $email = mysqli_real_escape_string($link, $_POST["email"]);
         $subject = mysqli_real_escape_string($link, $_POST["subject"]);
         $message = mysqli_real_escape_string($link, $_POST["message"]);
-        include "okToSend.php";
         if($okToSend) {
             sendMessage($name, $email, $subject, $message, $link);
         }
@@ -22,39 +24,47 @@
 <html>
     <header>
         <title>Welcome to Pipeline</title> <!-- Decided by Davin, open to change -->
-        
+        <?php echo getFavicon(); ?>
         <?php
-            include 'favicon.php';
-        ?>
-        <link rel="stylesheet" type="text/css" href="./Styles/All/index.css"> <!-- Style sheet for the body structure -->
-        <link rel="stylesheet" type="text/css" href="./Styles/All/contactUs.css"> <!-- Style sheet for the Contact Us structure -->
-        
-        <?php
-            require_once 'Mobile-Detect-2.8.26/Mobile_Detect.php';
             $detect = new Mobile_Detect;
+            if ($detect->isMobile()) {
+                echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/Mobile/index.css\">";
+                echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/Mobile/contactUs.css\">";
+            } else {
+                echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/index.css\">";
+                echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Styles/contactUs.css\">";
+            }
         ?>
         
         <?php
             if($emailIsOnTheBlackList) {
-                include 'messages.php';
                 echo displayBlacklistMessage();
             } else if ($userHasSentTooManyMessages) {
-                include 'messages.php';
                 echo displayWarningMessage();
             }
         ?>
-        <script src="./Scripts/index.js"></script>)
+        <script src="./Scripts/index.js"></script>
     </header>
     <body>
-        <div id="header"> <!-- To hold the login buttons and labels that take you to different sections of the page -->
-            <div id="navigationBar"> <!-- List of labels that can be clicked on and will take you to different sections of the page -->
+        <div id="header">
+            <div id="navigationBar">
                 <a href="login.php"><img id="loginButton" src="Images/Login-Button.png" /></a>
-                <div id="options">
-                    <a href="#contactSection">Contact</a> <!-- Takes you to the section where you can send messages regarding QUESTIONS about Pipeline -->
-                    <a href="#aboutSection">About</a> <!-- Takes you to the section outlining what Pipeline is -->
-                    <a href="#howItWorksSection">How It Works</a> <!-- Takes you to the section outlining how Pipeline works -->
-                    <a href="#topSection">Top</a> <!-- Takes you to the top graphic -->
-                </div>
+        <?php
+            if (!$detect->isMobile()) {
+                echo "<div id=\"options\">
+                        <a href=\"#contactSection\">Contact</a>
+                        <a href=\"#aboutSection\">About</a>
+                        <a href=\"#howItWorksSection\">How It Works</a>
+                        <a href=\"#topSection\">Top</a>
+                    </div>";
+            } else {
+                echo "<div id=\"options\">
+                        <a href=\"#contactSection\">Contact</a>
+                        <a href=\"#topSection\">Top</a>
+                    </div>";
+            }
+        ?>
+                            
             </div>
         </div>
         <!-- Holds all objects not in the header -->
@@ -103,7 +113,6 @@
                     interest. Secondly, it's a resource for users looking for either a project in which to invest, or an opportunity
                     where they might be able to connect a buyer and seller and earn a commission.
                 </p>
-                
             </div>
             
             <!-- Allows the user to make a message outlining any questions they have and sends it -->
