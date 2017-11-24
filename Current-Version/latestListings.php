@@ -69,7 +69,7 @@
                     <div class="w3-card-4" margin="10">
 
                         <header class="w3-container w3-light-grey">
-                          <h4>NAME<?php echo $name;?></h4>
+                          <h4><?php echo $name;?></h4>
                         </header>
 
                         <div class="w3-container" style="height:70px">

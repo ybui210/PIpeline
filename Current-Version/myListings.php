@@ -1,9 +1,41 @@
 <?php 
-    /*require_once("../../include/configdb.php");*/
-    require_once("../configdb.php");
+    require_once("../../include/configdb.php");
+    //require_once("../configdb.php");
+
+    session_start();
+
+    $admin = false;
+    $userEmail = $_SESSION["userEmail"];
+    
+    if (isset($_POST["Remove"]))
+    {
+        $id = $_POST["Remove"];
+        $sql = "DELETE FROM Listings WHERE listingId = ". $id .";";
+        $link->query($sql);
+        /*if ($link->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        }  else {
+    echo "Error deleting record: " . $link->error;
+    }*/
+
+      
+    }
+    
+if (isset($_POST["Edit"]))
+    {
+        header("Location: editListing.php");
+        exit;
+    }
+    $sql = "SELECT type FROM Users WHERE email='.$userEmail.'";
+    $result = $link->query($sql);
+    $row = $result->fetch_array(MYSQLI_ASSOC);
+    $userType = $row["type"];
+    if ($userType == "admin") {
+        $admin = true;
+    }
+
 ?>
 <!DOCTYPE html>
-
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">    
 <head>
@@ -65,29 +97,31 @@
                 $intro = $row["introduction"];
                 if ($intro != null){
                 ?>
+                <a style="display:block; text-decoration:none" href=<?php echo "reviewListing.php?id=".$id;?>>
                 <div class="row">
                     <div class="w3-card-4" margin="10">
 
                         <header class="w3-container w3-light-grey">
-                            <h4>NAME<?php echo $name;?></h4>
+                            <h4><?php if ($name==null) echo "N/A"; else echo $name;?></h4>
                         </header>
-
+                       
                         <div class="w3-container">
                             <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
                             <p><?php echo $intro; ?>
                             </p>
                             <div>
-                                <form method="post" action="removeEditListing.php">
+                                <form method="post" action="myListings.php">
                                     <button type="submit" name="Remove" value="<?php echo $id;?>" class="w3-right w3-button w3-red">Remove</button>
                                     <button type="submit" name="Edit" value="<?php echo $id;?>" class="w3-right w3-button w3-green">Edit</button>
-                            
+
                                 </form>
                             </div>
                         </div>
-                                                        
+                                                      
                         </div>
                         
                 </div>
+            </a>
 
                 
             <?php

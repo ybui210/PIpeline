@@ -76,7 +76,7 @@
                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav">
                               <li class="active"><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
-                              <li><a href="#">Active Listing</a></li>
+                              <li><a href="latestListings.php">Active Listing</a></li>
                               <li><a href="createListing.php">Create Listing</a></li>
                               <li><a href="#">News</a></li>
                               <li class="hidden-lg hidden-md hidden-sm"><a href="">Account</a></li>
@@ -87,12 +87,12 @@
                               <li class="hidden-lg hidden-md hidden-sm"><a href="">Social Connections</a></li>
 
                           </ul>
-                          <form class="navbar-form navbar-left">
-                              <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Search">
-                              </div>
-                              <button type="submit" class="btn btn-default">Submit</button>
-                          </form>
+                           <form class="navbar-form navbar-left" method="post" action="searchListings.php">
+                                <div class="form-group">
+                                    <input name="searchkey" type="text" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
                       </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
               </nav>
