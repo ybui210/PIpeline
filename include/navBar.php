@@ -20,8 +20,10 @@
                         <li><a href=\"createListing.php\">Create Listing</a></li>
                         <li><a href=\"#\">News</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"account.php\">Account</a></li>
-                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\">System History</a></li>
-                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\">Social Connections</a></li>";
+                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"connections.php\">Connections</a></li>
+                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"myListings.php\">My Listings</a></li>
+                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"savedListings.php\">Saved Listings</a></li>
+                        <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"drafts.php\">Drafts</a></li>";
 
         if ($userType == "admin") {
             include("configdb.php");
@@ -29,9 +31,9 @@
             $result = $link->query($sql);
             $row = $result->fetch_array(MYSQLI_ASSOC);
             if ($row["COUNT(*)"] == 0) {
-                echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\">Messages</a></li>";
+                echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"messages.php\">Messages</a></li>";
             } else {
-                echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
+                echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"messages.php\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
             }
             $sql = "SELECT COUNT(*) FROM Requests WHERE readStatus IS NULL";
             $result = $link->query($sql);
@@ -42,7 +44,7 @@
                 echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"requests.php\"><b>Requests " . $row["COUNT(*)"] . "</b></a></li>";
             }
         }
-        
+        echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"logout.php\">Logout</a></li>";
         echo "</ul>
                     <form class=\"navbar-form navbar-left\">
                         <div class=\"form-group\">
@@ -71,18 +73,30 @@
             echo "<li><a href=\"account.php\">Account</a></li>";
         }
 
-        if ($selected == "System History") {
-            echo "<li class=\"active\"><a href=\"\">System History</a></li>";
+        if ($selected == "Connections") {
+            echo "<li class=\"active\"><a href=\"connections.php\">Connections</a></li>";
         } else {
-            echo "<li><a href=\"\">System History</a></li>";
+            echo "<li><a href=\"connections.php\">Connections</a></li>";
         }
-
-        if ($selected == "Social Connections") {
-            echo "<li class=\"active\"><a href=\"\">Social Connections</a></li>";
+        
+        if ($selected == "My Listings") {
+            echo "<li class=\"active\"><a href=\"myListings.php\">My Listings</a></li>";
         } else {
-            echo "<li><a href=\"\">Social Connections</a></li>";
+            echo "<li><a href=\"myListings.php\">My Listings</a></li>";
         }
-
+        
+        if ($selected == "Saved Listings") {
+            echo "<li class=\"active\"><a href=\"savedListings.php\">Saved Listings</a></li>";
+        } else {
+            echo "<li><a href=\"savedListings.php\">Saved Listings</a></li>";
+        }
+        
+        if ($selected == "Drafts") {
+            echo "<li class=\"active\"><a href=\"drafts.php\">Drafts</a></li>";
+        } else {
+            echo "<li><a href=\"drafts.php\">Drafts</a></li>";
+        }
+        
         if ($userType == "admin") {
             include("configdb.php");
             $sql = "SELECT COUNT(*) FROM Messages WHERE readStatus IS NULL";
@@ -90,15 +104,15 @@
             $row = $result->fetch_array(MYSQLI_ASSOC);
             if ($row["COUNT(*)"] == 0) {
                 if ($selected == "Messages") {
-                    echo "<li class=\"active\"><a href=\"\">" . $userType . "Messages</a></li>";
+                    echo "<li class=\"active\"><a href=\"messages.php\">Messages</a></li>";
                 } else {
-                    echo "<li><a href=\"\">Messages</a></li>";
+                    echo "<li><a href=\"messages.php\">Messages</a></li>";
                 }
             } else {
                 if ($selected == "Messages") {
-                    echo "<li class=\"active\"><a href=\"\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
+                    echo "<li class=\"active\"><a href=\"messages.php\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
                 } else {
-                    echo "<li><a href=\"\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
+                    echo "<li><a href=\"messages.php\"><b>Messages " . $row["COUNT(*)"] . "</b></a></li>";
                 }
 
             }
@@ -120,6 +134,8 @@
                 }
             }
         }
+        
+        echo "<li><a href=\"logout.php\">Logout</a></li>";
 
         echo "</nav></div>";
     }
