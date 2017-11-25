@@ -2,6 +2,7 @@
     require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
     session_start();
     $admin = false;
     $requestID = "";
@@ -11,17 +12,8 @@
     $lastName= "";
     $linkedInURL = "";
     $typeOfUser = "";
-    if (isset($_SESSION["userEmail"])) {
-        $userEmail = $_SESSION["userEmail"];
-        $sql = "SELECT type FROM Users WHERE email='$userEmail'";
-        $result = $link->query($sql);
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        $userType = $row["type"];
-        if ($userType == "admin") {
-            $admin = true;
-        }
-    } else {
-        header("location: index.php");
+    if ($userType != "admin") {
+        header("location: home.php");
         die();
     }
     if (isset($_GET["requestID"])) {
@@ -72,7 +64,7 @@
         <div class="container-fluid">
           <?php displayNavBar($userType); ?>
           <div class="row">
-              <?php displaySideBar("Requests", $admin); ?>
+              <?php displaySideBar("Requests", $userType); ?>
               <div class="col-sm-9 col-lg-10">
                   <div class="row header">
 

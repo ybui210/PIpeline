@@ -5,12 +5,6 @@ require_once("../../include/configdb.php");
         $id = $_POST["Remove"];
         $sql = "DELETE FROM Listings WHERE listingId = ". $id .";";
         $link->query($sql);
-        /*if ($link->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        }  else {
-    echo "Error deleting record: " . $link->error;
-    }*/
-
         header("Location: myListings.php");
         exit;
     }

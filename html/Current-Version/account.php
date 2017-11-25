@@ -1,9 +1,10 @@
 <?php 
     require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
-    //session_start();
+    session_start();
     $userid = $_SESSION["userEmail"];
 
     $failedToUpdateAccount = false;

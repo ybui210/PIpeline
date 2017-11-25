@@ -206,7 +206,7 @@
         <div class="container-fluid">
           <?php displayNavBar($userType); ?>
           <div class="row">
-            <?php displaySideBar("Requests", $admin); ?>
+            <?php displaySideBar("Requests", $userType); ?>
               <div class="col-sm-9 col-lg-10">
                   <div class="row header">
 
@@ -222,7 +222,12 @@
                 $result = $link->query($sql);
                 $numberOfRequests = $result->num_rows;
                 for ($i = 0; $i < $numberOfRequests; $i++) {
-                    $row = $result->fetch_array(MYSQLI_ASSOC);
+                    $sql = "SELECT * FROM Requests WHERE inviteSent IS NULL";
+                    $result = $link->query($sql);
+                    $j = 0;
+                    do {
+                        $row = $result->fetch_array(MYSQLI_ASSOC);
+                    } while ($i != $j++);
                     if (is_null($row["readStatus"])) {
                         echo "<tr class=\"unread\" onclick=\"window.location = 'requestDetails.php?requestID=" . $row["requestID"] . "'\">";
                     } else {

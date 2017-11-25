@@ -23,7 +23,7 @@
 
           <div class="row">
             
-            <?php displaySideBar("Home", $userType); ?>
+            <?php displaySideBar("Connections", $userType); ?>
               <div class="col-sm-9 col-lg-10">
                   <div class="row header">
 
