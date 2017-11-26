@@ -10,6 +10,7 @@
 
     <title>View Listings</title>
     <?php echo getFavicon(); ?>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="Styles/home.css" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,7 +36,7 @@
                     $intro = $row["introduction"];
                     ?>
                     <div class="row">
-                        <a href="adminReviewPage.php?name=<?php echo $name ?>">
+                        <a href="adminReviewPage.php?id=<?php echo $id ?>">
                             <div class="w3-card-4" margin="10">
                                 <header class="w3-container w3-light-grey">
                                     <h4><?php echo $name; ?></h4>

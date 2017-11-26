@@ -11,7 +11,7 @@
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
-    $varName = $_GET['name'];
+    $listingIdFromViewListings = $_GET['id'];
 
     if ( isset( $_POST['submit'] ) ) {
 
@@ -49,9 +49,8 @@
                         <h1>Review Your Listing</h1>
                         <dl class="dl-horizontal">
 
-                            <h1><?php echo $varName?></h1>
                             <?php
-                            $sql = "SELECT * FROM Listings WHERE name = '$varName'";
+                            $sql = "SELECT * FROM Listings WHERE listingID = '$listingIdFromViewListings'";
                             $result = $link->query($sql);
 
                             $row = $result->fetch_array(MYSQLI_ASSOC);
