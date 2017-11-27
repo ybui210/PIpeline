@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Current-Version/adminReviewPage.php" afterPath="$PROJECT_DIR$/html/Current-Version/adminReviewPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Current-Version/adminViewListings.php" afterPath="$PROJECT_DIR$/html/Current-Version/adminViewListings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Current-Version/createListing.php" afterPath="$PROJECT_DIR$/html/Current-Version/createListing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/configdb.php" afterPath="$PROJECT_DIR$/include/configdb.php" />
-    </list>
+    <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -286,16 +280,15 @@
       <workItem from="1511551757368" duration="601000" />
       <workItem from="1511552801753" duration="1156000" />
       <workItem from="1511652157141" duration="4981000" />
-      <workItem from="1511727110699" duration="1483000" />
+      <workItem from="1511727110699" duration="1757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74835000" />
+    <option name="totallyTimeSpent" value="75109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19253294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
