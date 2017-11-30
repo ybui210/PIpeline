@@ -11,21 +11,19 @@
                         <span class=\"icon-bar\"></span>
                         <span class=\"icon-bar\"></span>
                     </button>
-                    <a class=\"navbar-brand\" href=\"#\">Pipeline</a>
+                    <a class=\"navbar-brand\" href=\"home.php\">Pipeline</a>
                 </div>
                 <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                     <ul class=\"nav navbar-nav\">
-                        <li ><a href=\"#\">Browse Listing <span class=\"sr-only\">(current)</span></a></li>
-                        <li><a href=\"#\">Active Listing</a></li>
+                        <li ><a href=\"latestListings.php\">Browse Listings<span class=\"sr-only\">(current)</span></a></li>
                         <li><a href=\"createListing.php\">Create Listing</a></li>
-                        <li><a href=\"#\">News</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"account.php\">Account</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"connections.php\">Connections</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"myListings.php\">My Listings</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"savedListings.php\">Saved Listings</a></li>
                         <li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"drafts.php\">Drafts</a></li>";
-
         if ($userType == "admin") {
+            echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"adminViewListings.php\">Listings Pending Review</a></li>";
             include("configdb.php");
             $sql = "SELECT COUNT(*) FROM Messages WHERE readStatus IS NULL";
             $result = $link->query($sql);
@@ -98,6 +96,11 @@
         }
         
         if ($userType == "admin") {
+            if ($selected == "Listings Pending Review") {
+                echo "<li class=\"active\"><a href=\"adminViewListings.php\">Listings Pending Review</a></li>";
+            } else {
+                echo "<li><a href=\"adminViewListings.php\">Listings Pending Review</a></li>";
+            }
             include("configdb.php");
             $sql = "SELECT COUNT(*) FROM Messages WHERE readStatus IS NULL";
             $result = $link->query($sql);
