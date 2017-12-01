@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a20e7b0-5d94-475d-ad2e-45305cbbcc7c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/Current-Version/Uploads/67-testImage.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/Current-Version/Uploads/68-testImage.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/Current-Version/Uploads/71-testImage.jpeg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Current-Version/createListing.php" afterPath="$PROJECT_DIR$/html/Current-Version/createListing.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,10 +79,10 @@
       <file leaf-file-name="createListing.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/Current-Version/createListing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
+            <state relative-caret-position="153">
               <caret line="41" column="81" lean-forward="false" selection-start-line="41" selection-start-column="81" selection-end-line="41" selection-end-column="81" />
               <folding>
-                <marker date="1512092000070" expanded="true" signature="1279:1575" ph="INSERT INTO Listings... " />
+                <marker date="1512103468818" expanded="true" signature="1279:1575" ph="INSERT INTO Listings... " />
               </folding>
             </state>
           </provider>
@@ -200,7 +196,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,6 +231,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,11 +279,12 @@
       <workItem from="1511652157141" duration="4981000" />
       <workItem from="1511727110699" duration="1757000" />
       <workItem from="1512091277017" duration="1340000" />
+      <workItem from="1512103311284" duration="161000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76449000" />
+    <option name="totallyTimeSpent" value="76610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -488,7 +485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="2" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -505,7 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -541,27 +536,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Current-Version/createListing.php" />
-    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/67-testImage.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/68-testImage.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/71-testImage.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/67-testImage.jpeg" />
+    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/68-testImage.jpeg" />
+    <entry file="file://$PROJECT_DIR$/html/Current-Version/Uploads/71-testImage.jpeg" />
     <entry file="file://$PROJECT_DIR$/html/Current-Version/createListing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
+        <state relative-caret-position="153">
           <caret line="41" column="81" lean-forward="false" selection-start-line="41" selection-start-column="81" selection-end-line="41" selection-end-column="81" />
           <folding>
-            <marker date="1512092000070" expanded="true" signature="1279:1575" ph="INSERT INTO Listings... " />
+            <marker date="1512103468818" expanded="true" signature="1279:1575" ph="INSERT INTO Listings... " />
           </folding>
         </state>
       </provider>

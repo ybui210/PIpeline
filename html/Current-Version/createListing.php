@@ -31,7 +31,7 @@
         $maxPrice =  mysqli_real_escape_string($link,$_POST["maxPrice"]);
         $details =  mysqli_real_escape_string($link,$_POST["details"]);
 
-        $target_dir = "Uploads/";
+        $target_dir = "uploads/";
 
         $uploadOk = 1;
 
@@ -52,35 +52,27 @@
         $id = mysqli_insert_id($link);
         $target_file = $target_dir .$id."-". basename($_FILES["photos"]["name"]);
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-        var_dump($_FILES);
 
 
 
 
 
 // Check if image file is a actual image or fake image
-        if($_FILES["photos"]["size"] != 0){
-            $check = getimagesize($_FILES["photos"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
+        $check = getimagesize($_FILES["photos"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
         }
-
 
         // Allow certain file formats
-
-        if($_FILES["photos"]["size"] != 0){
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif" ) {
-                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                $uploadOk = 0;
-            }
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
         }
-
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
@@ -121,7 +113,7 @@
 
                 <h1>Create a New Listing</h1>
 
-                <form class="form-horizontal" action="createListing.php" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="createListing.php" method="POST">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
@@ -139,6 +131,7 @@
                         <label for="jurisdiction" class="col-sm-2 control-label">Jurisdiction</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="jurisdiction" name="jurisdiction">
+                                <option>Any</option>
                                 <option>Canada</option>
                                 <option>USA</option>
                                 <option>Middle East</option>
