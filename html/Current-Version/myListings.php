@@ -18,21 +18,23 @@
     echo "Error deleting record: " . $link->error;
     }*/
 
-      
+    
     }
     
 if (isset($_POST["Edit"]))
     {
         header("Location: editListing.php");
         exit;
-    }
-    $sql = "SELECT type FROM Users WHERE email='.$userEmail.'";
-    $result = $link->query($sql);
-    $row = $result->fetch_array(MYSQLI_ASSOC);
-    $userType = $row["type"];
-    if ($userType == "admin") {
-        $admin = true;
-    }
+    } 
+$dir    = 'Uploads/';
+$files = scandir($dir);
+$sql = "SELECT type FROM Users WHERE email='.$userEmail.'";
+$result = $link->query($sql);
+$row = $result->fetch_array(MYSQLI_ASSOC);
+$userType = $row["type"];
+if ($userType == "admin") {
+    $admin = true;
+}
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +54,7 @@ if (isset($_POST["Edit"]))
 
 <div class="container-fluid" >
     <div class="row">
-        <nav class="navbar navbar-inverse topNavBarDiv">
+        <nav class="navbar navbar-inverse topNavBarDiv" style="margin-bottom: 0">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Pipeline</a>
@@ -74,7 +76,7 @@ if (isset($_POST["Edit"]))
     </div>
 
     <div class="row">
-        <div class="col-sm-3 col-lg-2 navBarDiv">
+        <div class="col-sm-3 col-lg-2 navBarDiv nav-pills nav-stacked">
             <nav class="nav nav-pills nav-stacked leftNavbar">
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
@@ -95,10 +97,20 @@ if (isset($_POST["Edit"]))
                 $id = $row["listingId"];
                 $name = $row["name"];
                 $intro = $row["introduction"];
+                $image = "Images/placeholder.png";
+                foreach ($files as $file)
+                {
+                    $idd = $id."-";
+                    if (substr($file, 0, strlen($id)+1) == ($idd))
+                    {
+                        $image = "Uploads/".$file;
+                        break;
+                    }
+                }
                 if ($intro != null){
                 ?>
-                <a style="display:block; text-decoration:none" href=<?php echo "reviewListing.php?id=".$id;?>>
-                <div class="row">
+                <a style="display:block; text-decoration:none; marginTop:10" href=<?php echo "reviewListing.php?id=".$id;?>>
+                <div class="row" style="marginTop:10">
                     <div class="w3-card-4" margin="10">
 
                         <header class="w3-container w3-light-grey">
@@ -106,7 +118,7 @@ if (isset($_POST["Edit"]))
                         </header>
                        
                         <div class="w3-container">
-                            <img src="Images/placeholder.png" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px">
+                            <img src="<?php echo $image;?>" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px; width:60px">
                             <p><?php echo $intro; ?>
                             </p>
                             <div>
