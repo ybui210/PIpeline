@@ -123,7 +123,7 @@ if(!isset($userid)) {
                     <div class="col-xs-12 hidden-xs" style=" margin-bottom: 10px;">
                         <div class="col-xs-1"></div>
                         <div class="col-xs-10">
-                            <object data="nda.pdf" type="application/pdf" width="100%" height="450px">
+                            <object data="uploads/nda.pdf" type="application/pdf" width="100%" height="450px">
                                 <a href="nda.pdf"></a>
                             </object>
                         </div>
@@ -132,7 +132,7 @@ if(!isset($userid)) {
                     <form action="NDA.php" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         <div class="col-sm-offset-4 col-lg-offset-5">
                             <div class="form-group">
-                                <a href="nda.jpg" download="nda.jpg" class="btn btn-success" role="button">Save The NDA File Into Your Computer</a>
+                                <a href="uploads/nda.jpg" download="nda.jpg" class="btn btn-success" role="button">Save The NDA File Into Your Computer</a>
                             </div>
                         </div>
                         <div class="col-sm-offset-4 col-lg-offset-5">
