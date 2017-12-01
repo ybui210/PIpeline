@@ -18,6 +18,7 @@
             if ($result->num_rows == 0) {
                 $invalidEmail = true;
             } else {
+                include("../../include/configdb.php");
                 /* Get all the info we need fro the Requests table */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
                 $firstName = $row["firstName"];

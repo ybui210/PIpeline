@@ -1,8 +1,9 @@
 <?php 
+    require_once("../../include/favicon.php");
     require_once("../../include/configdb.php");
-    //require_once("../configdb.php");
-
-    session_start();
+    require_once("../../include/navBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
+	session_start();
 
     $admin = false;
     $userEmail = $_SESSION["userEmail"];
@@ -53,6 +54,7 @@ if ($userType == "admin") {
 <body>
 
 <div class="container-fluid" >
+<<<<<<< HEAD
     <div class="row">
         <nav class="navbar navbar-inverse topNavBarDiv" style="margin-bottom: 0">
             <div class="container-fluid">
@@ -88,6 +90,12 @@ if ($userType == "admin") {
         
         <!************************************/>
         <div class="col-sm-6 col-lg-10">
+=======
+            <?php displayNavBar($userType); ?>
+            <div class="row">
+                <?php displaySideBar("My Listings", $userType); ?>
+                <div class="col-sm-6 col-lg-10">
+>>>>>>> b9807fdd295c4e99071cd3525760fb844a2674cf
             <h1>My Listings</h1>
             <?php
             $sql = "SELECT listingId, name, introduction FROM Listings;";
@@ -112,11 +120,9 @@ if ($userType == "admin") {
                 <a style="display:block; text-decoration:none; marginTop:10" href=<?php echo "reviewListing.php?id=".$id;?>>
                 <div class="row" style="marginTop:10">
                     <div class="w3-card-4" margin="10">
-
                         <header class="w3-container w3-light-grey">
                             <h4><?php if ($name==null) echo "N/A"; else echo $name;?></h4>
                         </header>
-                       
                         <div class="w3-container">
                             <img src="<?php echo $image;?>" alt="Image Unavailable" class="w3-left w3-circle" style="height:60px; width:60px">
                             <p><?php echo $intro; ?>
@@ -125,17 +131,12 @@ if ($userType == "admin") {
                                 <form method="post" action="myListings.php">
                                     <button type="submit" name="Remove" value="<?php echo $id;?>" class="w3-right w3-button w3-red">Remove</button>
                                     <button type="submit" name="Edit" value="<?php echo $id;?>" class="w3-right w3-button w3-green">Edit</button>
-
                                 </form>
                             </div>
-                        </div>
-                                                      
-                        </div>
-                        
+                        </div>                               
+                    </div>
                 </div>
             </a>
-
-                
             <?php
             }}
             ?>

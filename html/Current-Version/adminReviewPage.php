@@ -7,13 +7,11 @@
  */
 
     require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
-    if($userType != "admin"){
-        header("location: index.php");
-    }
-
-    $varName = $_GET['name'];
+    $listingIdFromViewListings = $_GET['id'];
 
     if ( isset( $_POST['submit'] ) ) {
 
@@ -43,56 +41,16 @@
     </head>
     <body>
         <div class="container-fluid" >
+            <?php displayNavBar($userType); ?>
             <div class="row">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Pipeline</a>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li ><a href="#">Browse Listing <span class="sr-only">(current)</span></a></li>
-                                <li class="active"><a href="createListing.php">Create Listing</a></li>
-                                <li><a href="#">News</a></li>
-
-                            </ul>
-                            <form class="navbar-form navbar-left">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-lg-2 navBarDiv hidden-xs">
-
-                    <nav class="nav nav-pills nav-stacked leftNavbar">
-                        <li><a href="">Users</a></li>
-                        <li ><a href="">All Listings</a></li>
-                        <li><a href="">Listings pending Review</a></li>
-                    </nav>
-                </div>
+                <?php displaySideBar("", $userType); ?>
                 <div class="col-sm-9 col-lg-10">
                     <div class="">
-
                         <h1>Review Your Listing</h1>
                         <dl class="dl-horizontal">
 
-                            <h1><?php echo $varName?></h1>
                             <?php
-                            $sql = "SELECT * FROM Listings WHERE name = '$varName'";
+                            $sql = "SELECT * FROM Listings WHERE listingID = '$listingIdFromViewListings'";
                             $result = $link->query($sql);
 
                             $row = $result->fetch_array(MYSQLI_ASSOC);

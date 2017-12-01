@@ -1,5 +1,6 @@
 <?php
     require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
     require_once("../../include/navBar.php");
     require_once("../../include/getUserTypeAndVerifyLogin.php");
 
@@ -26,10 +27,6 @@
         $intro =  mysqli_real_escape_string($link, $_POST["intro"]);
         $jurisdiction =  mysqli_real_escape_string($link,$_POST["jurisdiction"]);
         $investmentType =  mysqli_real_escape_string($link,$_POST["investmentType"]);
-        $commodities =  mysqli_real_escape_string($link,$_POST["commodities"]);
-        $depositType =  mysqli_real_escape_string($link,$_POST["depositType"]);
-        $developmentStage = mysqli_real_escape_string($link, $_POST["developmentStage"]);
-        $resourceSize =  mysqli_real_escape_string($link,$_POST["resourceSize"]);
         $minPrice =  mysqli_real_escape_string($link,$_POST["minPrice"]);
         $maxPrice =  mysqli_real_escape_string($link,$_POST["maxPrice"]);
         $details =  mysqli_real_escape_string($link,$_POST["details"]);
@@ -40,9 +37,9 @@
 
 
         if($minPrice>=0 && $maxPrice>=0){
-            $sql = "INSERT INTO Listings (name, introduction, jurisdiction, investmentType, depositType, developmentStage, resourceSize, priceBracketMin, 
+            $sql = "INSERT INTO Listings (name, introduction, jurisdiction, investmentType, priceBracketMin, 
             priceBracketMax, additionalDetails, email, status)
-            VALUES ('$nameListing', '$intro', '$jurisdiction', '$investmentType', '$depositType', '$developmentStage', '$resourceSize', '$minPrice', '$maxPrice', '$details', '$userEmail', 'draft' )";
+            VALUES ('$nameListing', '$intro', '$jurisdiction', '$investmentType', '$minPrice', '$maxPrice', '$details', '$userEmail', 'draft' )";
             if ($link->query($sql) === TRUE) {
             } else {
                 echo "Error: " . $sql . "<br>" . $link->error;
@@ -116,7 +113,7 @@
 
                 <h1>Create a New Listing</h1>
 
-                <form class="form-horizontal" action="createListing.php" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="createListing.php" method="POST">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
@@ -134,6 +131,7 @@
                         <label for="jurisdiction" class="col-sm-2 control-label">Jurisdiction</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="jurisdiction" name="jurisdiction">
+                                <option>Any</option>
                                 <option>Canada</option>
                                 <option>USA</option>
                                 <option>Middle East</option>
@@ -155,34 +153,6 @@
                                 <option>Public Equity</option>
                                 <option>Private Equity</option>
                             </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="commodities" class="col-sm-2 control-label">Commodities</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="commodities" name="commodities" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="depositType" class="col-sm-2 control-label">Deposit Type</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="depositType" name="depositType" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="developmentStage" class="col-sm-2 control-label">Development Stage</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="developmentStage" name="developmentStage" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="resourceSize" class="col-sm-2 control-label">Resource Size</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="resourceSize" name="resourceSize" />
                         </div>
                     </div>
 
