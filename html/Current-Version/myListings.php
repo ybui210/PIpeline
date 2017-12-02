@@ -13,6 +13,7 @@
         $id = $_POST["Remove"];
         $sql = "DELETE FROM Listings WHERE listingId = ". $id .";";
         $link->query($sql);
+<<<<<<< Updated upstream
         /*if ($link->query($sql) === TRUE) {
             echo "Record deleted successfully";
         }  else {
@@ -37,6 +38,9 @@ if ($userType == "admin") {
     $admin = true;
 }
 
+=======
+    }
+>>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html>
