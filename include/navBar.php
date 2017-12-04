@@ -44,9 +44,9 @@
         }
         echo "<li class=\"hidden-lg hidden-md hidden-sm\"><a href=\"logout.php\">Logout</a></li>";
         echo "</ul>
-                    <form class=\"navbar-form navbar-left\">
+                    <form method=\"post\" action=\"searchListings.php\" class=\"navbar-form navbar-left\">
                         <div class=\"form-group\">
-                            <input type=\"text\" class=\"form-control\" placeholder=\"Search\">
+                            <input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"searchkey\">
                         </div>
                         <button type=\"submit\" class=\"btn btn-default\">Submit</button>
                     </form>
