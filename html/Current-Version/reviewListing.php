@@ -85,10 +85,18 @@
                             <dd><?php echo $row["additionalDetails"]?></dd>
                             <br>
                             <dt></dt>
+                            <?php if ($_SESSION["view"]==1)
+                            { ?>
+                            <form action="editListing.php" method="POST">
+                                <button type="submit" class="btn btn-default btn-success" name="Edit" value="<?php echo $id;?>">Edit</button>
+                                <button type="submit" class="btn btn-default btn-danger" name="Remove" value="<?php echo $id;?>"> Delete</button>
+                            </form>
+                            <?php } else { ?>
                             <form action="reviewListing.php" method="POST">
                                 <input type="hidden" name="listingId" value="<?php echo $id ?>">
                                 <dd><button type="submit" class="btn btn-default" name="submit" >Submit</button></dd>
                             </form>
+                            <?php } ?>
                         </dl>
                     </div>
                     <!-- your page content -->

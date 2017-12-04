@@ -6,38 +6,42 @@ if(!isset($_SESSION["userEmail"])){
     exit;
 }
 include '../configdb.php';
-
-if(isset($_POST["Edit"]))
-{
-    $id = $_POST["Edit"];
-    //$sql = "SELECT * FROM Listings WHERE listingId = ". $id .";";
-    //$result->query($sql);
-    //$row = $result->fetch_array(MYSQLI_ASSOC);
-    //$name = $row["name"];
-    //$intro = $row["introduction"];
-    //$jur = $row["jurisdiction"];
-    //$depType = $row["depositType"];
-
+$_SESSION["view"]=0;
+if ( isset( $_POST['cancel'] ) ) {
+    header("Location: myListings.php");
+    exit;
 }
-
+if (isset($_POST["Remove"]))
+{
+    $id = $_POST["Remove"];
+    $sql = "DELETE FROM Listings WHERE listingId = ". $id .";";
+    $link->query($sql);
+    header("Location: myListings.php");
+    exit;
+}
+$valueError = 0;
+$id = $_POST["Edit"];
+$sql = "SELECT * FROM Listings WHERE listingId = ". $id .";";
+$result = $link->query($sql);
+$row = $result->fetch_array(MYSQLI_ASSOC);
+$name = $row["name"];
+//echo $id." ".$name;
+$intro = $row["introduction"];
+$jur = $row["jurisdiction"];
+$depType = $row["depositType"];
+$investmentType = $row["investmentType"];
+//$devStage = $row["developmentStage"];
+//$resourceSize = $row["resourceSize"];
+//$acquisitionStrategy = $row["acquisitionStrategy"];
+//$dueDilligence = $row["dueDiligence"];
+//$purchaserInfo = $row["purchaserInfo"];
+$minPrice = $row["priceBracketMin"];
+$maxPrice = $row["priceBracketMax"];
+$details = $row["additionalDetails"];
 
 $userid = $_SESSION["userEmail"];
 
-$valueError = 0;
-$nameListing = "";
-$intro =  "";
-$jurisdiction = "";
-$investmentType = "";
-$commodities = "";
-$depositType = "";
-$developmentStage = "";
-$resourceSize = "";
-$acquisitionStrategy = "";
-$dueDilligence = "";
-$purchaserInfo = "";
-$minPrice = "";
-$maxPrice = "";
-$details = "";
+
 
 if ( isset( $_POST['submit'] ) ) {
     $nameListing = mysqli_real_escape_string($link, $_POST["name"]);
@@ -156,20 +160,20 @@ if ( isset( $_POST['submit'] ) ) {
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="name" name="name"/>
+                        <input type="text" class="form-control" id="name" value="<?php echo $name;?>" name="name"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="intro" class="col-sm-2 control-label">Listing Introduction</label>
-                    <div class="col-sm-4">
-                        <textarea type="text" class="form-control" id="intro" rows="5" name="intro"></textarea>
-                    </div>
+                        <label for="intro" class="col-sm-2 control-label">Listing Introduction</label>
+                        <div class="col-sm-4">
+                            <textarea type="text" class="form-control" id="intro" rows="5" name="intro"><?php echo $intro ?></textarea>
+                        </div>
                 </div>
 
                 <div class="form-group">
                     <label for="jurisdiction" class="col-sm-2 control-label">Jurisdiction</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="jurisdiction" name="jurisdiction">
+                        <select class="form-control" id="jurisdiction" value="<?php echo $jur;?>" name="jurisdiction">
                             <option>Canada</option>
                             <option>USA</option>
                             <option>Middle East</option>
@@ -204,7 +208,7 @@ if ( isset( $_POST['submit'] ) ) {
                 <div class="form-group">
                     <label for="depositType" class="col-sm-2 control-label">Deposit Type</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="depositType" name="depositType"/>
+                        <input type="text" class="form-control" id="depositType"  name="depositType"/>
                     </div>
                 </div>
 
@@ -246,9 +250,9 @@ if ( isset( $_POST['submit'] ) ) {
                 <div class="form-group">
                     <label for="minPrice" class="col-sm-2 control-label">Price Bracket</label>
                     <div class="col-sm-4">
-                        <input type="number" class="form-control" id="minPrice" name="minPrice"/>
+                        <input type="number" class="form-control" id="minPrice" value="<?php echo $minPrice;?>" name="minPrice"/>
                         <p>to</p>
-                        <input type="number" class="form-control" id="maxPrice" name="maxPrice"/>
+                        <input type="number" class="form-control" id="maxPrice" value="<?php echo $maxPrice;?>" name="maxPrice"/>
                         <?php
                         if($valueError == 1){
                             echo "Value must be a positive integer.";
@@ -266,13 +270,17 @@ if ( isset( $_POST['submit'] ) ) {
                 <div class="form-group">
                     <label for="details" class="col-sm-2 control-label">Additional Details</label>
                     <div class="col-sm-4">
-                        <textarea type="text" class="form-control" id="details" rows="5" name="details"></textarea>
+                        <textarea type="text" class="form-control" id="details" rows="5" name="details"><?php echo $details;?></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" name="submit" >Review and Submit your Listing</button>
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <button type="cancel" class="btn btn-default" name="cancel">Cancel</button>
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-default btn-success" name="submit">Submit Listing</button>
                     </div>
                 </div>
             </form>
