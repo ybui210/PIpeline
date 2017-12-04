@@ -1,6 +1,8 @@
 <?php 
-    /*require_once("../../include/configdb.php");*/
-    require_once("../configdb.php");
+    require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/navBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
     $keyword = $_POST["searchkey"];
     $dir    = 'Uploads/';
     $files = scandir($dir);
@@ -18,44 +20,14 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-wa
 <body>
 
 <div class="container-fluid" >
-    <div class="row">
-        <nav class="navbar navbar-inverse topNavBarDiv">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Pipeline</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Browse Listings</a></li>
-                    <li><a href="#">Active Listings</a></li>
-                    <li><a href="createListing.php">Create Listing</a></li>
-                    <li><a href="#">News</a></li>
-                </ul>
-                <form class="navbar-form navbar-left" method="post" action="searchListings.php">
-                    <div class="form-group">
-                        <input name="searchkey" type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-            </div>
-        </nav>
-    </div>
+          <?php displayNavBar($userType); ?>
 
-    <div class="row">
-        <div class="col-sm-3 col-lg-2 navBarDiv">
-            <nav class="nav nav-pills nav-stacked leftNavbar">
-                <li><a href="profile.php">Profile</a></li>
-                <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="myListings.php">My Listings</a></li>
-                <li><a href="savedListings.php">Saved Listings</a></li>
-                <li><a href="">Drafts</a></li>
-            </nav>
-        </div>
-        
-        <!************************************/>
+          <div class="row">
+            
+            <?php displaySideBar("Not a side bar option", $userType); ?>
         <div class="col-sm-6 col-lg-10">
             <h1>Search result for "<?php echo $keyword;?>"</h1>
             <?php
