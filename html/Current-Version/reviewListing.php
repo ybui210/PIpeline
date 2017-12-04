@@ -65,16 +65,6 @@
 
                             <dt>Deposit Type</dt>
                             <dd><?php echo $row["depositType"]?></dd>
-                            <dt>Development Stage</dt>
-                            <dd><?php echo $row["developmentStage"]?></dd>
-                            <dt>Resource Size</dt>
-                            <dd><?php echo $row["resourceSize"]?></dd>
-                            <dt>Acquisition Strategy</dt>
-                            <dd><?php echo $row["acquisitionStrategy"]?></dd>
-                            <dt>Due Dilligence</dt>
-                            <dd><?php echo $row["dueDiligence"]?></dd>
-                            <dt>Purchaser Information</dt>
-                            <dd><?php echo $row["purchaserInformation"]?></dd>
                             <dt>Price Bracket</dt>
                             <dd><?php echo $row["priceBracketMin"]?></dd>
                             <dd>to</dd>
