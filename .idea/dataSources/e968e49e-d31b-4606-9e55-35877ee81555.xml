@@ -13,405 +13,548 @@
     <schema id="7" parent="1" name="sys"/>
     <table id="8" parent="2" name="Blacklist"/>
     <table id="9" parent="2" name="Commodities"/>
-    <table id="10" parent="2" name="Interests"/>
-    <table id="11" parent="2" name="ListingImages"/>
-    <table id="12" parent="2" name="ListingToCommodities"/>
-    <table id="13" parent="2" name="ListingToInterest"/>
-    <table id="14" parent="2" name="Listings"/>
-    <table id="15" parent="2" name="Messages"/>
-    <table id="16" parent="2" name="RequestToInterests"/>
-    <table id="17" parent="2" name="Requests"/>
-    <table id="18" parent="2" name="SignUpLinks"/>
-    <table id="19" parent="2" name="SuspectedSpammers"/>
-    <table id="20" parent="2" name="Users"/>
-    <column id="21" parent="8" name="email">
+    <table id="10" parent="2" name="Connections"/>
+    <table id="11" parent="2" name="Interests"/>
+    <table id="12" parent="2" name="ListingImages"/>
+    <table id="13" parent="2" name="ListingToCommodities"/>
+    <table id="14" parent="2" name="ListingToInterest"/>
+    <table id="15" parent="2" name="Listings"/>
+    <table id="16" parent="2" name="Messages"/>
+    <table id="17" parent="2" name="Notifications"/>
+    <table id="18" parent="2" name="RequestToInterests"/>
+    <table id="19" parent="2" name="Requests"/>
+    <table id="20" parent="2" name="ResetPasswordLinks"/>
+    <table id="21" parent="2" name="SignUpLinks"/>
+    <table id="22" parent="2" name="SuspectedSpammers"/>
+    <table id="23" parent="2" name="UserToInterests"/>
+    <table id="24" parent="2" name="Users"/>
+    <column id="25" parent="8" name="email">
       <Position>1</Position>
       <DataType>varchar(350)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="8" name="whenAdded">
+    <column id="26" parent="8" name="whenAdded">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <key id="23" parent="8" name="PRIMARY">
+    <key id="27" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>email</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="24" parent="9" name="commodity">
+    <column id="28" parent="9" name="commodity">
       <Position>1</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="25" parent="9" name="PRIMARY">
+    <key id="29" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>commodity</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="26" parent="10" name="interest">
+    <column id="30" parent="10" name="creatorEmail">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="10" name="investorEmail">
+      <Position>2</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="10" name="approvedBy">
+      <Position>3</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="10" name="NDALocation">
+      <Position>4</Position>
+      <DataType>varchar(256)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="34" parent="10" name="fk_approvedBy">
+      <ColNames>approvedBy</ColNames>
+    </index>
+    <index id="35" parent="10" name="fk_creatorEmail">
+      <ColNames>creatorEmail</ColNames>
+    </index>
+    <index id="36" parent="10" name="fk_investorEmail">
+      <ColNames>investorEmail</ColNames>
+    </index>
+    <foreign-key id="37" parent="10" name="fk_creatorEmail">
+      <ColNames>creatorEmail</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>email</RefColNames>
+    </foreign-key>
+    <foreign-key id="38" parent="10" name="fk_investorEmail">
+      <ColNames>investorEmail</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>email</RefColNames>
+    </foreign-key>
+    <foreign-key id="39" parent="10" name="fk_approvedBy">
+      <ColNames>approvedBy</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>email</RefColNames>
+    </foreign-key>
+    <column id="40" parent="11" name="interest">
       <Position>1</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="27" parent="10" name="PRIMARY">
+    <key id="41" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>interest</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="28" parent="11" name="listingID">
+    <column id="42" parent="12" name="listingID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="11" name="image">
+    <column id="43" parent="12" name="image">
       <Position>2</Position>
       <DataType>blob|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="30" parent="11" name="ListingImages_Listings_listingID_fk">
+    <index id="44" parent="12" name="ListingImages_Listings_listingID_fk">
       <ColNames>listingID</ColNames>
     </index>
-    <foreign-key id="31" parent="11" name="ListingImages_Listings_listingID_fk">
+    <foreign-key id="45" parent="12" name="ListingImages_Listings_listingID_fk">
       <ColNames>listingID</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Listings</RefTableName>
       <RefColNames>listingID</RefColNames>
     </foreign-key>
-    <column id="32" parent="12" name="listingID">
+    <column id="46" parent="13" name="listingID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="12" name="commodity">
+    <column id="47" parent="13" name="commodity">
       <Position>2</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="34" parent="12" name="commodity">
+    <index id="48" parent="13" name="commodity">
       <ColNames>commodity</ColNames>
     </index>
-    <index id="35" parent="12" name="ListingToCommodities_Listings_listingID_fk">
+    <index id="49" parent="13" name="ListingToCommodities_Listings_listingID_fk">
       <ColNames>listingID</ColNames>
     </index>
-    <foreign-key id="36" parent="12" name="ListingToCommodities_Listings_listingID_fk">
+    <foreign-key id="50" parent="13" name="ListingToCommodities_Listings_listingID_fk">
       <ColNames>listingID</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Listings</RefTableName>
       <RefColNames>listingID</RefColNames>
     </foreign-key>
-    <foreign-key id="37" parent="12" name="ListingToCommodities_ibfk_2">
+    <foreign-key id="51" parent="13" name="ListingToCommodities_ibfk_2">
       <ColNames>commodity</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Commodities</RefTableName>
       <RefColNames>commodity</RefColNames>
     </foreign-key>
-    <column id="38" parent="13" name="listingID">
+    <column id="52" parent="14" name="listingID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="13" name="interest">
+    <column id="53" parent="14" name="interest">
       <Position>2</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="40" parent="13" name="interest">
+    <index id="54" parent="14" name="interest">
       <ColNames>interest</ColNames>
     </index>
-    <index id="41" parent="13" name="listingID">
+    <index id="55" parent="14" name="listingID">
       <ColNames>listingID</ColNames>
     </index>
-    <foreign-key id="42" parent="13" name="ListingToInterest_ibfk_1">
+    <foreign-key id="56" parent="14" name="ListingToInterest_ibfk_1">
       <ColNames>listingID</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Listings</RefTableName>
       <RefColNames>listingID</RefColNames>
     </foreign-key>
-    <foreign-key id="43" parent="13" name="ListingToInterest_ibfk_2">
+    <foreign-key id="57" parent="14" name="ListingToInterest_ibfk_2">
       <ColNames>interest</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Interests</RefTableName>
       <RefColNames>interest</RefColNames>
     </foreign-key>
-    <column id="44" parent="14" name="listingID">
+    <column id="58" parent="15" name="listingID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="45" parent="14" name="name">
+    <column id="59" parent="15" name="name">
       <Position>2</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="46" parent="14" name="introduction">
+    <column id="60" parent="15" name="introduction">
       <Position>3</Position>
       <DataType>varchar(4096)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="14" name="jurisdiction">
+    <column id="61" parent="15" name="jurisdiction">
       <Position>4</Position>
       <DataType>varchar(256)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="14" name="depositType">
+    <column id="62" parent="15" name="priceBracketMin">
       <Position>5</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>decimal(12,2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="14" name="developmentStage">
+    <column id="63" parent="15" name="priceBracketMax">
       <Position>6</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>decimal(12,2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="14" name="resourceSize">
+    <column id="64" parent="15" name="additionalDetails">
       <Position>7</Position>
-      <DataType>varchar(64)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="51" parent="14" name="acquisitionStrategy">
-      <Position>8</Position>
-      <DataType>varchar(64)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="52" parent="14" name="dueDiligence">
-      <Position>9</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="53" parent="14" name="purchaserInformation">
-      <Position>10</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="54" parent="14" name="priceBracketMin">
-      <Position>11</Position>
-      <DataType>decimal(12,2)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="55" parent="14" name="priceBracketMax">
-      <Position>12</Position>
-      <DataType>decimal(12,2)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="56" parent="14" name="additionalDetails">
-      <Position>13</Position>
       <DataType>varchar(4096)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="14" name="postedStatus">
-      <Position>14</Position>
+    <column id="65" parent="15" name="postedStatus">
+      <Position>8</Position>
       <DataType>char(0)|0</DataType>
     </column>
-    <column id="58" parent="14" name="savedStatus">
-      <Position>15</Position>
+    <column id="66" parent="15" name="savedStatus">
+      <Position>9</Position>
       <DataType>char(0)|0</DataType>
     </column>
-    <column id="59" parent="14" name="email">
-      <Position>16</Position>
+    <column id="67" parent="15" name="email">
+      <Position>10</Position>
       <DataType>varchar(350)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="14" name="investmentType">
-      <Position>17</Position>
+    <column id="68" parent="15" name="investmentType">
+      <Position>11</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="61" parent="14" name="status">
-      <Position>18</Position>
+    <column id="69" parent="15" name="status">
+      <Position>12</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <index id="62" parent="14" name="fk_email">
+    <index id="70" parent="15" name="fk_email">
       <ColNames>email</ColNames>
     </index>
-    <key id="63" parent="14" name="PRIMARY">
+    <key id="71" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>listingID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="64" parent="14" name="fk_email">
+    <foreign-key id="72" parent="15" name="fk_email">
       <ColNames>email</ColNames>
       <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>email</RefColNames>
     </foreign-key>
-    <column id="65" parent="15" name="name">
+    <column id="73" parent="16" name="name">
       <Position>1</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="66" parent="15" name="email">
+    <column id="74" parent="16" name="email">
       <Position>2</Position>
       <DataType>varchar(350)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="15" name="subject">
+    <column id="75" parent="16" name="subject">
       <Position>3</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="15" name="message">
+    <column id="76" parent="16" name="message">
       <Position>4</Position>
       <DataType>varchar(16384)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="15" name="readStatus">
+    <column id="77" parent="16" name="readStatus">
       <Position>5</Position>
       <DataType>char(0)|0</DataType>
     </column>
-    <column id="70" parent="16" name="email">
-      <Position>1</Position>
-      <DataType>varchar(350)|0</DataType>
+    <column id="78" parent="16" name="messageID">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="71" parent="16" name="interest">
-      <Position>2</Position>
-      <DataType>varchar(128)|0</DataType>
+    <column id="79" parent="16" name="whenSent">
+      <Position>7</Position>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <index id="72" parent="16" name="fk_interest">
-      <ColNames>interest</ColNames>
-    </index>
-    <foreign-key id="73" parent="16" name="fk_interest">
-      <ColNames>interest</ColNames>
-      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
-      <RefTableName>Interests</RefTableName>
-      <RefColNames>interest</RefColNames>
-    </foreign-key>
-    <column id="74" parent="17" name="requestID">
+    <key id="80" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>messageID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="81" parent="17" name="notificationID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="75" parent="17" name="email">
+    <column id="82" parent="17" name="subject">
       <Position>2</Position>
-      <DataType>varchar(350)|0</DataType>
+      <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="17" name="firstName">
+    <column id="83" parent="17" name="whenSent">
       <Position>3</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="84" parent="17" name="message">
+      <Position>4</Position>
+      <DataType>varchar(16384)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="17" name="middleName">
-      <Position>4</Position>
-      <DataType>varchar(128)|0</DataType>
-    </column>
-    <column id="78" parent="17" name="lastName">
+    <column id="85" parent="17" name="type">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="17" name="linkedInURL">
+    <column id="86" parent="17" name="sentBy">
+      <Position>6</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="87" parent="17" name="fk_sentBy">
+      <ColNames>sentBy</ColNames>
+    </index>
+    <key id="88" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>notificationID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="89" parent="17" name="fk_sentBy">
+      <ColNames>sentBy</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>email</RefColNames>
+    </foreign-key>
+    <column id="90" parent="18" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="91" parent="18" name="interest">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="92" parent="18" name="fk_interest">
+      <ColNames>interest</ColNames>
+    </index>
+    <foreign-key id="93" parent="18" name="fk_interest">
+      <ColNames>interest</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Interests</RefTableName>
+      <RefColNames>interest</RefColNames>
+    </foreign-key>
+    <column id="94" parent="19" name="requestID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="95" parent="19" name="email">
+      <Position>2</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="19" name="firstName">
+      <Position>3</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="19" name="middleName">
+      <Position>4</Position>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="98" parent="19" name="lastName">
+      <Position>5</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="99" parent="19" name="linkedInURL">
       <Position>6</Position>
       <DataType>varchar(256)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="17" name="typeOfUser">
+    <column id="100" parent="19" name="whenSent">
       <Position>7</Position>
-      <DataType>varchar(32)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="81" parent="17" name="whenSent">
-      <Position>8</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="82" parent="17" name="readStatus">
+    <column id="101" parent="19" name="readStatus">
+      <Position>8</Position>
+      <DataType>char(0)|0</DataType>
+    </column>
+    <column id="102" parent="19" name="inviteSent">
       <Position>9</Position>
       <DataType>char(0)|0</DataType>
     </column>
-    <key id="83" parent="17" name="PRIMARY">
+    <column id="103" parent="19" name="individualOrOrganization">
+      <Position>10</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="104" parent="19" name="type">
+      <Position>11</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="105" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>requestID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="84" parent="18" name="link">
+    <column id="106" parent="20" name="link">
       <Position>1</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="18" name="expirationDate">
+    <column id="107" parent="20" name="expirationDate">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <key id="86" parent="18" name="PRIMARY">
+    <key id="108" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>link</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="87" parent="19" name="email">
+    <column id="109" parent="21" name="link">
+      <Position>1</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="21" name="expirationDate">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="111" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>link</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="112" parent="22" name="email">
       <Position>1</Position>
       <DataType>varchar(350)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="19" name="numberOfMessagesSent">
+    <column id="113" parent="22" name="numberOfMessagesSent">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="89" parent="19" name="whenLastMessageWasSent">
+    <column id="114" parent="22" name="whenLastMessageWasSent">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="90" parent="19" name="numberOfWarningsSent">
+    <column id="115" parent="22" name="numberOfWarningsSent">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="91" parent="19" name="whenLastWarningWasSent">
+    <column id="116" parent="22" name="whenLastWarningWasSent">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="92" parent="20" name="email">
+    <column id="117" parent="23" name="email">
       <Position>1</Position>
       <DataType>varchar(350)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="93" parent="20" name="password">
+    <column id="118" parent="23" name="interest">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="119" parent="23" name="fk_interestUsers">
+      <ColNames>interest</ColNames>
+    </index>
+    <foreign-key id="120" parent="23" name="fk_interestUsers">
+      <ColNames>interest</ColNames>
+      <RefSchemaName>Pipeline_V2_Database</RefSchemaName>
+      <RefTableName>Interests</RefTableName>
+      <RefColNames>interest</RefColNames>
+    </foreign-key>
+    <column id="121" parent="24" name="email">
+      <Position>1</Position>
+      <DataType>varchar(350)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="24" name="password">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="94" parent="20" name="firstName">
+    <column id="123" parent="24" name="firstName">
       <Position>3</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="20" name="middleName">
+    <column id="124" parent="24" name="middleName">
       <Position>4</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="96" parent="20" name="lastName">
+    <column id="125" parent="24" name="lastName">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="97" parent="20" name="type">
+    <column id="126" parent="24" name="type">
       <Position>6</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="98" parent="20" name="profileImage">
+    <column id="127" parent="24" name="profileImage">
       <Position>7</Position>
       <DataType>blob|0</DataType>
     </column>
-    <column id="99" parent="20" name="location">
+    <column id="128" parent="24" name="location">
       <Position>8</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="100" parent="20" name="bio">
+    <column id="129" parent="24" name="bio">
       <Position>9</Position>
       <DataType>varchar(4096)|0</DataType>
     </column>
-    <column id="101" parent="20" name="gender">
+    <column id="130" parent="24" name="gender">
       <Position>10</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <key id="102" parent="20" name="PRIMARY">
+    <column id="131" parent="24" name="individualOrOrganization">
+      <Position>11</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="132" parent="24" name="phoneNumber">
+      <Position>12</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="133" parent="24" name="linkedInURL">
+      <Position>13</Position>
+      <DataType>varchar(256)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="134" parent="24" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>email</ColNames>
       <Primary>1</Primary>
