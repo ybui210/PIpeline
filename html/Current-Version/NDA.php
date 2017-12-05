@@ -1,13 +1,18 @@
 <?php
-require_once("../configdb.php");
-session_start();
-
+//require_once("../configdb.php");
+    require_once("../../include/favicon.php");
+    require_once("../../include/configdb.php");
+    require_once("../../include/navBar.php");
+    require_once("../../include/getUserTypeAndVerifyLogin.php");
+	session_start();
+    ini_set('display_errors',1);
+    error_reporting(E_ALL);
 // validation part
-$userid = $_SESSION["userEmail"];
-if(!isset($userid)) {
-    header("Location:login.php");
-    exit;
-}
+//$userid = $_SESSION["userEmail"];
+//if(!isset($userid)) {
+   // header("Location:login.php");
+    //exit;
+//}
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,8 +128,8 @@ if(!isset($userid)) {
                     <div class="col-xs-12 hidden-xs" style=" margin-bottom: 10px;">
                         <div class="col-xs-1"></div>
                         <div class="col-xs-10">
-                            <object data="uploads/nda.pdf" type="application/pdf" width="100%" height="450px">
-                                <a href="nda.pdf"></a>
+                            <object data="Uploads/nda.pdf" type="application/pdf" width="100%" height="450px">
+                                <a href="Uploads/nda.pdf"></a>
                             </object>
                         </div>
                     </div>
@@ -132,12 +137,12 @@ if(!isset($userid)) {
                     <form action="NDA.php" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         <div class="col-sm-offset-4 col-lg-offset-5">
                             <div class="form-group">
-                                <a href="uploads/nda.jpg" download="nda.jpg" class="btn btn-success" role="button">Save The NDA File Into Your Computer</a>
+                                <a href="Uploads/nda.jpg" download="nda.jpg" class="btn btn-success" role="button">Save The NDA File Into Your Computer</a>
                             </div>
                         </div>
                         <div class="col-sm-offset-4 col-lg-offset-5">
                             <div class="form-group">
-                                <input type="submit" value="Upload The Signed NDA's Picture" name="submit" class="btn btn-success">
+                                <input type="submit" value="Upload The Signed NDA's Picture" name="submit" id="submit" class="btn btn-success">
                                 <label class="btn btn-default btn-file">
                                     Choose File <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
                                 </label>
@@ -146,23 +151,27 @@ if(!isset($userid)) {
 
                             // Check if image file is a actual image or fake image
                             if(isset($_POST["submit"])) {
-                                $target_dir = "nda/";
+                                //$target_dir = "nda/";
+                                $target_dir = getcwd() . '/nda/';
                                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
                                 $uploadOk = 1;
                                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
                                 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+								
                                 if($check !== false) {
+                                    echo "File is an image - " . $check["mime"] . ".";
                                     $uploadOk = 1;
                                 } else {
                                     echo "File is not an image.";
                                     $uploadOk = 0;
                                 }
 
-                                // Check if file already exists
+                                /* Check if file already exists
                                 if (file_exists($target_file)) {
                                     echo "Sorry, file already exists.";
                                     $uploadOk = 0;
                                 }
+								*/
                                 // Check file size
                                 if ($_FILES["fileToUpload"]["size"] > 500000) {
                                     echo "Sorry, your file is too large.";
