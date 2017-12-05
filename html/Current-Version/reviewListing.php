@@ -65,16 +65,6 @@
 
                             <dt>Deposit Type</dt>
                             <dd><?php echo $row["depositType"]?></dd>
-                            <dt>Development Stage</dt>
-                            <dd><?php echo $row["developmentStage"]?></dd>
-                            <dt>Resource Size</dt>
-                            <dd><?php echo $row["resourceSize"]?></dd>
-                            <dt>Acquisition Strategy</dt>
-                            <dd><?php echo $row["acquisitionStrategy"]?></dd>
-                            <dt>Due Dilligence</dt>
-                            <dd><?php echo $row["dueDiligence"]?></dd>
-                            <dt>Purchaser Information</dt>
-                            <dd><?php echo $row["purchaserInformation"]?></dd>
                             <dt>Price Bracket</dt>
                             <dd><?php echo $row["priceBracketMin"]?></dd>
                             <dd>to</dd>
@@ -85,10 +75,18 @@
                             <dd><?php echo $row["additionalDetails"]?></dd>
                             <br>
                             <dt></dt>
+                            <?php if ($_SESSION["view"]==1)
+                            { ?>
+                            <form action="editListing.php" method="POST">
+                                <button type="submit" class="btn btn-default btn-success" name="Edit" value="<?php echo $id;?>">Edit</button>
+                                <button type="submit" class="btn btn-default btn-danger" name="Remove" value="<?php echo $id;?>"> Delete</button>
+                            </form>
+                            <?php } else { ?>
                             <form action="reviewListing.php" method="POST">
                                 <input type="hidden" name="listingId" value="<?php echo $id ?>">
                                 <dd><button type="submit" class="btn btn-default" name="submit" >Submit</button></dd>
                             </form>
+                            <?php } ?>
                         </dl>
                     </div>
                     <!-- your page content -->
